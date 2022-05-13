@@ -36,6 +36,8 @@
     <Content Include="public\img\reddit.png" />
     <Content Include="public\img\reddit.svg" />
     <Content Include="public\img\twitter.svg" />
+    <Content Include="public\img\vpc-alpha-left.jpg" />
+    <Content Include="public\img\vpc-alpha-right.jpg" />
     <Content Include="public\img\window_close.svg" />
     <Content Include="public\img\window_maximize.svg" />
     <Content Include="public\img\window_minimize.svg" />
@@ -65,6 +67,9 @@
     <TypeScriptCompile Include="src\background\background.ts" />
     <TypeScriptCompile Include="src\consts.ts" />
     <TypeScriptCompile Include="src\desktop\desktop.ts" />
+    <TypeScriptCompile Include="src\Hardware.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\WindowName.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
