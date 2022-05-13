@@ -7,9 +7,8 @@ const
 
 module.exports = env => ({
     entry: {
-        background: './src/background/background.ts',
-        desktop: './src/desktop/desktop.ts',
-        in_game: './src/in_game/in_game.ts'
+        Application: './src/Windows/Application.ts',
+        JoyMap: './src/Windows/JoyMap.ts',
     },
     devtool: 'inline-source-map',
     module: {
@@ -34,19 +33,14 @@ module.exports = env => ({
             patterns: [ { from: "public", to: "./" } ],
         }),
         new HtmlWebpackPlugin({
-            template: './src/background/background.html',
-            filename: path.resolve(__dirname, './dist/background.html'),
-            chunks: ['background']
+            template: './src/Windows/Application.html',
+            filename: path.resolve(__dirname, './dist/Application.html'),
+            chunks: ['Application']
         }),
         new HtmlWebpackPlugin({
-            template: './src/desktop/desktop.html',
-            filename: path.resolve(__dirname, './dist/desktop.html'),
-            chunks: ['desktop']
-        }),
-        new HtmlWebpackPlugin({
-            template: './src/in_game/in_game.html',
-            filename: path.resolve(__dirname, './dist/in_game.html'),
-            chunks: ['in_game']
+            template: './src/Windows/JoyMap.html',
+            filename: path.resolve(__dirname, './dist/JoyMap.html'),
+            chunks: ['JoyMap']
         }),
         new OverwolfPlugin(env)
     ]

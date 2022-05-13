@@ -3,8 +3,7 @@ import {
   OWGameListener,
   OWWindow
 } from '@overwolf/overwolf-api-ts';
-
-import { kWindowNames, kGameClassIds } from "../consts";
+import { WindowName } from '../WindowName';
 
 import RunningGameInfo = overwolf.games.RunningGameInfo;
 import AppLaunchTriggeredEvent = overwolf.extensions.AppLaunchTriggeredEvent;
@@ -16,14 +15,12 @@ import AppLaunchTriggeredEvent = overwolf.extensions.AppLaunchTriggeredEvent;
 // Our background controller implements the Singleton design pattern, since only one
 // instance of it should exist.
 class BackgroundController {
-  private static _instance: BackgroundController;
-  private _windows: Record<string, OWWindow> = {};
-  private _gameListener: OWGameListener;
+    private _gameListener: OWGameListener;
+    private iWindowJoyMap: OWWindow = null;
 
-  private constructor() {
-    // Populating the background controller's window dictionary
-    this._windows[kWindowNames.desktop] = new OWWindow(kWindowNames.desktop);
-    this._windows[kWindowNames.inGame] = new OWWindow(kWindowNames.inGame);
+  constructor() {
+      // Populating the background controller's window dictionary
+      this.iWindowJoyMap = new OWWindow(WindowName.JoyMap);
 
     // When a a supported game game is started or is ended, toggle the app's windows
     this._gameListener = new OWGameListener({
@@ -33,28 +30,22 @@ class BackgroundController {
 
     overwolf.extensions.onAppLaunchTriggered.addListener(
       e => this.onAppLaunchTriggered(e)
-    );
-  };
+      );
 
-  // Implementing the Singleton design pattern
-  public static instance(): BackgroundController {
-    if (!BackgroundController._instance) {
-      BackgroundController._instance = new BackgroundController();
-    }
-
-    return BackgroundController._instance;
+      this.run();
   }
+
 
   // When running the app, start listening to games' status and decide which window should
   // be launched first, based on whether a supported game is currently running
   public async run() {
     this._gameListener.start();
 
-    const currWindowName = (await this.isSupportedGameRunning())
-      ? kWindowNames.inGame
-      : kWindowNames.desktop;
+    //const currWindowName = (await this.isSupportedGameRunning())
+    //  ? kWindowNames.inGame
+    //  : kWindowNames.desktop;
 
-    this._windows[currWindowName].restore();
+      this.iWindowJoyMap.restore();
   }
 
   private async onAppLaunchTriggered(e: AppLaunchTriggeredEvent) {
@@ -64,13 +55,13 @@ class BackgroundController {
       return;
     }
 
-    if (await this.isSupportedGameRunning()) {
-      this._windows[kWindowNames.desktop].close();
-      this._windows[kWindowNames.inGame].restore();
-    } else {
-      this._windows[kWindowNames.desktop].restore();
-      this._windows[kWindowNames.inGame].close();
-    }
+    //if (await this.isSupportedGameRunning()) {
+    //  this._windows[kWindowNames.desktop].close();
+    //  this._windows[kWindowNames.inGame].restore();
+    //} else {
+    //  this._windows[kWindowNames.desktop].restore();
+    //  this._windows[kWindowNames.inGame].close();
+    //}
   }
 
   private toggleWindows(info: RunningGameInfo) {
@@ -78,13 +69,13 @@ class BackgroundController {
       return;
     }
 
-    if (info.isRunning) {
-      this._windows[kWindowNames.desktop].close();
-      this._windows[kWindowNames.inGame].restore();
-    } else {
-      this._windows[kWindowNames.desktop].restore();
-      this._windows[kWindowNames.inGame].close();
-    }
+  //  if (info.isRunning) {
+  //    this._windows[kWindowNames.desktop].close();
+  //    this._windows[kWindowNames.inGame].restore();
+  //  } else {
+  //    this._windows[kWindowNames.desktop].restore();
+  //    this._windows[kWindowNames.inGame].close();
+  //  }
   }
 
   private async isSupportedGameRunning(): Promise<boolean> {
@@ -94,9 +85,10 @@ class BackgroundController {
   }
 
   // Identify whether the RunningGameInfo object we have references a supported game
-  private isSupportedGame(info: RunningGameInfo) {
-    return kGameClassIds.includes(info.classId);
+    private isSupportedGame(info: RunningGameInfo): boolean {
+        return false;
+    /*return kGameClassIds.includes(info.classId);*/
   }
 }
 
-BackgroundController.instance().run();
+new BackgroundController();

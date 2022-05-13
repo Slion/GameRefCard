@@ -18,7 +18,7 @@
     "GameInfo"
   ],
   "data": {
-    "start_window": "background",
+    "start_window": "Application",
     "hotkeys": {
       "sample_app_ts_showhide": {
         "title": "Show/Hide In-Game Window",
@@ -40,32 +40,15 @@
     },
     "force_browser": "user",
     "windows": {
-      "background": {
-        "file": "background.html",
+      "Application": {
+        "file": "Application.html",
         "background_optimization": false,
         "is_background_page": true
       },
-      "desktop": {
-        "file": "desktop.html",
+      "JoyMap": {
+        "file": "JoyMap.html",
         "desktop_only": true,
         "native_window": true,
-        "resizable": true,
-        "transparent": true,
-        "override_on_update": true,
-        "size": {
-          "width": 1212,
-          "height": 699
-        },
-        "min_size": {
-          "width": 1212,
-          "height": 699
-        }
-      },
-      "in_game": {
-        "file": "in_game.html",
-        "in_game_only": true,
-        "focus_game_takeover": "ReleaseOnHidden",
-        "focus_game_takeover_release_hotkey": "sample_app_ts_showhide",
         "resizable": true,
         "transparent": true,
         "override_on_update": true,
