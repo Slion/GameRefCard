@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{e38ddfe8-f35a-41b5-84da-c5b49a362bae}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <EnableTypeScript>true</EnableTypeScript>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="overwolf.webpack.js" />
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Content Include="public\css\desktop.css" />
+    <Content Include="public\css\general.css" />
+    <Content Include="public\css\header.css" />
+    <Content Include="public\css\ingame.css" />
+    <Content Include="public\css\modal.css" />
+    <Content Include="public\icons\desktop-icon.ico" />
+    <Content Include="public\icons\IconMouseNormal.png" />
+    <Content Include="public\icons\IconMouseOver.png" />
+    <Content Include="public\img\background.svg" />
+    <Content Include="public\img\cool_wolf.png" />
+    <Content Include="public\img\facebook.svg" />
+    <Content Include="public\img\header_icon.svg" />
+    <Content Include="public\img\reddit.png" />
+    <Content Include="public\img\reddit.svg" />
+    <Content Include="public\img\twitter.svg" />
+    <Content Include="public\img\window_close.svg" />
+    <Content Include="public\img\window_maximize.svg" />
+    <Content Include="public\img\window_minimize.svg" />
+    <Content Include="public\img\window_restore.svg" />
+    <Content Include="public\img\window_settings.svg" />
+    <Content Include="public\img\window_support.svg" />
+    <Content Include="public\manifest.json" />
+    <Content Include="README.md" />
+    <Content Include="src\background\background.html" />
+    <Content Include="src\desktop\desktop.html" />
+    <Content Include="src\in_game\in_game.html" />
+    <Content Include="tsconfig.json" />
+    <Content Include="webpack.config.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="public\" />
+    <Folder Include="public\css\" />
+    <Folder Include="public\icons\" />
+    <Folder Include="public\img\" />
+    <Folder Include="src\" />
+    <Folder Include="src\background\" />
+    <Folder Include="src\desktop\" />
+    <Folder Include="src\in_game\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\AppWindow.ts" />
+    <TypeScriptCompile Include="src\background\background.ts" />
+    <TypeScriptCompile Include="src\consts.ts" />
+    <TypeScriptCompile Include="src\desktop\desktop.ts" />
+    <TypeScriptCompile Include="src\in_game\in_game.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
