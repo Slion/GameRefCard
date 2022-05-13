@@ -116,6 +116,9 @@ export class JoyMap {
         canvas.style.maxWidth = '100%';
         canvas.style.maxHeight = '100%';
 
+        // TODO: Not convinced that's needed
+        let logicalButtons = Array();
+
         //
         img.onload = function () {
 
@@ -130,19 +133,27 @@ export class JoyMap {
 
             // For each buttons
             xml.VIRPIL.BUTTONS_TABLE.ROW.forEach(row => {
-                if (row.iCOL1 != '---') {
-                    // If we have a hardware button for it
-                    let btnKey = 'Joy_' + parseInt(row.iCOL1);
+                let hardwareButton = parseInt(row.iCOL1);
+                // Make sure that hardware button is valid
+                if (hardwareButton) {
+                    // If we have a valid hardware button
+                    let btnKey = 'Joy_' + hardwareButton;
+                    
+                    //Log.d(row.iCOL1);
+                    //Log.d(btnKey);
                     let btn = hwd[btnKey];
                     // Work out the logical button this hardware button was mapped to and display it
-                    ctx.fillText(row.iCOL0.substring('Button '.length), btn.x, btn.y + fontSizeInPixels);
+
+                    let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
+                    logicalButtons[logicalButton] = btn;
+
+                    ctx.fillText(logicalButton.toString(), btn.x, btn.y + fontSizeInPixels);
                 }
             });                       
         };
 
         // Add our canvas to our document
-        this.iMain.appendChild(canvas);
-       
+        this.iMain.appendChild(canvas);       
     }
 
 
