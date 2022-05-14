@@ -3,13 +3,9 @@ import { XMLParser } from "fast-xml-parser";
 import { Device } from "../Device";
 import { KHardware } from "../Hardware";
 import { Log } from "../Log";
+import { Utils } from "../Utils";
 import { WindowName } from "../WindowName";
 //import { XMLParser, XMLBuilder, XMLValidator } = require("../src/fxp");
-
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 
 
@@ -56,12 +52,7 @@ export class JoyMap {
         //    this.maximized = !this.maximized;
         //});        
 
-        let vpcAlphaLeft = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-left-03EB-9901.XML';
-        let vpcAlphaRight = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-right-03EB-9902.XML';
-        this.LoadVirpilProfile(vpcAlphaLeft);
-        this.LoadVirpilProfile(vpcAlphaRight);
-
-        
+ 
 
 
 
@@ -74,23 +65,31 @@ export class JoyMap {
         })
 
 
-        this.Continue();
+        this.Construct();
         
 
     }
 
     /**
+     * Asynchronous constructor
      */
-    async Continue() {
+    async Construct() {
+
+        let vpcAlphaLeft = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-left-03EB-9901.XML';        
+        await this.LoadVirpilProfile(vpcAlphaLeft);
+
+        let vpcAlphaRight = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-right-03EB-9902.XML';
+        await this.LoadVirpilProfile(vpcAlphaRight);
+
 
         // TODO: Find a way not to do that
-        await sleep(2000);
+        //await sleep(2000);
 
         let mwRemap = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\HOTASMappings.Remap';
 
 
         Log.obj("Devices: ", this.iDevices);
-        this.LoadRemap(mwRemap);
+        this.LoadMechWarriorRemap(mwRemap);
     }
 
 
@@ -113,8 +112,9 @@ export class JoyMap {
 
 
     /**
- */
-    public async LoadRemap(aFileName: string) {
+     * Parse MW5 joystick remap file.
+     */
+    public async LoadMechWarriorRemap(aFileName: string) {
         //let dir = `${overwolf.io.paths.localAppData}\\Slions\\JoyMap\\MyFile`;
 
         let result = await this.ReadFile(aFileName);
@@ -171,8 +171,6 @@ export class JoyMap {
 
                 return;
             }
-
-
 
             // Extract VID
             if (line.startsWith("VID:")) {
@@ -255,11 +253,6 @@ export class JoyMap {
         device.iVendorID = vid;
         device.iProductID = pid;
 
-        // Load our hardware image
-        let img = new Image();
-        img.src = hwd.image;
-        //img.style.maxWidth = '100%';
-        //img.style.maxHeight = '100%';
 
         // Prepare a canvas to draw our references
         var canvas = document.createElement('canvas');
@@ -273,43 +266,38 @@ export class JoyMap {
 
         let fontSizeInPixels = this.iFontSizeInPixels;
 
-        let loaded = false;
+        // Create our hardware image and wait for it to load
+        let img = await Utils.LoadImage(hwd.image);
+        
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext('2d');
+        device.iContext = ctx;
+        ctx.drawImage(img, 0, 0);            
+        ctx.font = `${fontSizeInPixels}px Arial`;
+        ctx.fillStyle = "#000000";
 
-        //
-        img.onload = function () {
-
-            //Log.d("Loaded!");
-            canvas.width = img.width;
-            canvas.height = img.height;
-            var ctx = canvas.getContext('2d');
-            device.iContext = ctx;
-            ctx.drawImage(img, 0, 0);            
-            ctx.font = `${fontSizeInPixels}px Arial`;
-            ctx.fillStyle = "#000000";
-
-            // For each buttons
-            xml.VIRPIL.BUTTONS_TABLE.ROW.forEach(row => {
-                let hardwareButton = parseInt(row.iCOL1);
-                // Make sure that hardware button is valid
-                if (hardwareButton) {
-                    // If we have a valid hardware button
-                    let btnKey = 'Joy_' + hardwareButton;
+        // For each buttons
+        xml.VIRPIL.BUTTONS_TABLE.ROW.forEach(row => {
+            let hardwareButton = parseInt(row.iCOL1);
+            // Make sure that hardware button is valid
+            if (hardwareButton) {
+                // If we have a valid hardware button
+                let btnKey = 'Joy_' + hardwareButton;
                     
-                    //Log.d(row.iCOL1);
-                    //Log.d(btnKey);
-                    let btn = hwd[btnKey];
-                    // Work out the logical button this hardware button was mapped to and display it
+                //Log.d(row.iCOL1);
+                //Log.d(btnKey);
+                let btn = hwd[btnKey];
+                // Work out the logical button this hardware button was mapped to and display it
 
-                    let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
-                    logicalButtons[logicalButton] = btn;
+                let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
+                logicalButtons[logicalButton] = btn;
 
-                    ctx.fillText(logicalButton.toString(), btn.x, btn.y + fontSizeInPixels);
-                }
-            });
+                ctx.fillText(logicalButton.toString(), btn.x, btn.y + fontSizeInPixels);
+            }
+        });
 
-            loaded = true;
-        };
-
+ 
         // Add our canvas to our document
         this.iMain.appendChild(canvas);
 

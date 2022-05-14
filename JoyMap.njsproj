@@ -73,6 +73,10 @@
     <TypeScriptCompile Include="src\Hardware.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Log.ts" />
+    <TypeScriptCompile Include="src\Utils.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\WindowName.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
