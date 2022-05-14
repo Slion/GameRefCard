@@ -18,12 +18,8 @@ export class JoyMap {
     iMain: HTMLElement = document.getElementsByTagName('main')[0];
 
     iDevices = new Array<Device>();
-
-    iFontSizeInPixels = 48;
-    iLevel = 0;
-    iActionKeyMap: Object = new Object();
-    iChars: string[];
-    //iCurrentObject: Object = null;
+    iFontSizeInPixels = 48;   
+    iActionKeyMap: any;
 
     constructor() {
         this.mainWindow = new OWWindow(WindowName.Application);
@@ -146,10 +142,11 @@ export class JoyMap {
     }
 
     /**
+     * Convert weird action key map format into JSON so that we can parse it.
      * 
      * @param aData
      */
-    ParseActionKeyMap(aData: string, aObject: Object | Array<any>) {
+    ParseActionKeyMap(aData: string) {
 
         // Add quote everywhere        
         aData = aData.replace(/([\(,=])(\w+)([\),=])/g, "$1\"$2\"$3");
@@ -175,7 +172,7 @@ export class JoyMap {
             }
         }
 
-        // Remove first and last brackets
+        // Change first and last brackets
         chars[0] = '[';
         chars[chars.length - 1] = ']';
 
@@ -186,100 +183,13 @@ export class JoyMap {
         aData = aData.replace(/\)/g, "}");
         aData = aData.replace(/=/g, ":");
 
-        //aData = aData.replace(/\)/g, "}");
-        //aData = aData.replace(/\(/g, "{");
-        
-
-        /*
-        
-        aData = aData.replace(/\)/g, "}");
-        
-        */
-
-
-        //aData = aData.replace(/[^"](\w+)[^"]/g,"\"$1\"");
-
-        
-
-
-        /*
-        aActionKeyMap = aActionKeyMap.replace(/\)\s/g, "], ");
-        aActionKeyMap = aActionKeyMap.replace(/\)/g, "]");
-        aActionKeyMap = aActionKeyMap.replace(/\s+/, ", ");
-        aActionKeyMap = "[" + aActionKeyMap + "]";
-        aActionKeyMap = aActionKeyMap.replace(/[^\[\]\,\s]+/g, "\"$&\"");
-        aActionKeyMap = aActionKeyMap.replace(/" /g, "\", ");
-        */
-
-        // Create JSON arrays
-        //aActionKeyMap = aActionKeyMap.replace(/=\(\(/g, ":{");
-        //aActionKeyMap = aActionKeyMap.replace(/\)\)\),/g, "}),");
-        //aActionKeyMap = aActionKeyMap.replace(/\)\),/g, "},");
-
-        // Quote all strings
-        //aActionKeyMap = aActionKeyMap.replace(/\)\),/g, "},");
-
-        //([]+)
-
-        /*
-        aData = aData.trim();
-
-        if (aData[0] == '(') {
-            this.iLevel++;
-
-            if (Array.isArray(aObject)) {
-                aObject.push(new );
-                this.ParseActionKeyMap(aData.substr(1), aObject);
-            } else {
-                // Go down one level, remain on the same object I guess
-                this.ParseActionKeyMap(aData.substr(1), aObject);
-            }
-
-            return;
-        } else if (aData[0] == ')') {
-            this.iLevel--;
-
-            return;
-        }
-
-        let match = aData.match(/^(\w+),/)
-        if (match != null) {
-            // We have an object
-            aObject[match[1]] = new Object();
-            this.ParseActionKeyMap(aData.substr(match[0].length), aObject[match[1]]);
-            return;
-        }
-
-        match = aData.match(/^(\w+)=\(/)
-        if (match != null) {
-            // We have an array
-            this.iLevel++;
-            aObject[match[1]] = new Array<any>();
-            this.ParseActionKeyMap(aData.substr(match[0].length), aObject[match[1]]);
-            return;
-        }
-
-        let obj = new Object();
-        match = aData.match(/^(\w+)=\?"*(\w+)"*,/)        
-        if (match != null) {
-            // We have an array
-            this.iLevel++;
-            aObject[match[1]] = new Array<any>();
-            this.ParseActionKeyMap(aData.substr(match[0].length), aObject[match[1]]);
-            return;
-        }
-        */
-
-        //Log.obj("match",aActionKeyMap.match(/\((.*)\)/)[1]);
-
-
-
         Log.d(aData);
 
         return JSON.parse(aData);
     }
 
     /**
+     * Load our action key map from MW5 GameUserSettings.ini
      * 
      * @param aFileName
      */
@@ -307,8 +217,24 @@ export class JoyMap {
             return true;
         });
 
-        this.ParseActionKeyMap(actionKeyMap, this.iActionKeyMap);
-        Log.obj("ActionKeyMap",this.iActionKeyMap);
+        this.iActionKeyMap = this.ParseActionKeyMap(actionKeyMap);
+        Log.obj("ActionKeyMap", this.iActionKeyMap);
+
+        this.iActionKeyMap[2].Joystick.ActionKeyMaps.forEach(action => {
+            if (action.hasOwnProperty("BoundedKeys")) {
+                action.BoundedKeys.forEach(key => {
+                    // Check if that key is on any of our devices
+                    this.iDevices.forEach(d => {
+                        if (d.iLabels.hasOwnProperty(key.Key)) {
+                            let btn = d.iLabels[key.Key];
+                            d.iContext.fillText(action.ActionName, btn.x + btn.offsetX, btn.y + this.iFontSizeInPixels);
+                            // Offset our text cursor
+                            btn.offsetX += d.iContext.measureText(action.ActionName).width + 20;
+                        }
+                    });                    
+                })
+            }
+        })
     }
 
     /**
@@ -368,10 +294,8 @@ export class JoyMap {
                     // Build our label map
                     device.iLabels[outButtons] = btn;
 
-                    //var ctx = device.iCanvas.getContext('2d');                   
-                    //ctx.font = `${this.iFontSizeInPixels}px Arial`;
-                    //ctx.fillStyle = "#000000";
-                    device.iContext.fillText(outButtons, btn.x + 80, btn.y + this.iFontSizeInPixels);
+                    // Use this to display the GameUserSettings button we map to
+                    //device.iContext.fillText(outButtons, btn.x + 80, btn.y + this.iFontSizeInPixels);
                 }
 
                 return;
@@ -496,7 +420,9 @@ export class JoyMap {
                 let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
                 logicalButtons[logicalButton] = btn;
 
+                // Display our logical button codes
                 ctx.fillText(logicalButton.toString(), btn.x, btn.y + this.iFontSizeInPixels);
+                btn.offsetX = 80;
             }
         });
 
