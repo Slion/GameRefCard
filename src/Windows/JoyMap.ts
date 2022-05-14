@@ -12,14 +12,18 @@ import { WindowName } from "../WindowName";
 // A base class for the app's foreground windows.
 // Sets the modal and drag behaviors, which are shared across the desktop and in-game windows.
 export class JoyMap {
-    protected currWindow: OWWindow;
-    protected mainWindow: OWWindow;
-    protected maximized: boolean = false;
-    protected iMain: HTMLElement = document.getElementsByTagName('main')[0];
+    currWindow: OWWindow;
+    mainWindow: OWWindow;
+    maximized: boolean = false;
+    iMain: HTMLElement = document.getElementsByTagName('main')[0];
 
-    protected iDevices = new Array<Device>();
+    iDevices = new Array<Device>();
 
-    protected  iFontSizeInPixels = 48;
+    iFontSizeInPixels = 48;
+    iLevel = 0;
+    iActionKeyMap: Object = new Object();
+    iChars: string[];
+    //iCurrentObject: Object = null;
 
     constructor() {
         this.mainWindow = new OWWindow(WindowName.Application);
@@ -85,11 +89,16 @@ export class JoyMap {
         // TODO: Find a way not to do that
         //await sleep(2000);
 
+
+        //Log.obj("Devices: ", this.iDevices);
         let mwRemap = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\HOTASMappings.Remap';
+        await this.LoadMechWarriorRemap(mwRemap);
+
+        let mwUserSettings = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\GameUserSettings.ini';
+        await this.LoadMechWarriorGameUserSettings(mwUserSettings);
 
 
-        Log.obj("Devices: ", this.iDevices);
-        this.LoadMechWarriorRemap(mwRemap);
+
     }
 
 
@@ -110,6 +119,197 @@ export class JoyMap {
         return result;
     }
 
+    /**
+     * 
+     * 
+     * @param aChars
+     * @param aIndex
+     * @param aReplacement
+     */
+    ReplaceMatchingBrackets(aChars: string[], aIndex: number, aBeginRep: string, aEndRep: string) {
+
+        let level = 0;
+
+        aChars[aIndex] = aBeginRep;
+
+        for (let i = aIndex+1; i < aChars.length; i++) {
+            if (aChars[i] == ')' && level == 0) {
+                aChars[i] = aEndRep;
+                return;
+            } else if (aChars[i] == ')') {
+                level--;
+            } else if (aChars[i] == '(') {
+                level++;
+            }
+        }
+
+    }
+
+    /**
+     * 
+     * @param aData
+     */
+    ParseActionKeyMap(aData: string, aObject: Object | Array<any>) {
+
+        // Add quote everywhere        
+        aData = aData.replace(/([\(,=])(\w+)([\),=])/g, "$1\"$2\"$3");
+        // Not sure why those were needed as in theory all should have been taken care by the above alone
+        aData = aData.replace(/([\(,=])(\w)([\),=])/g, "$1\"$2\"$3");
+        aData = aData.replace(/(=)(\w+)(\))/g, "$1\"$2\"$3");
+        aData = aData.replace(/(=)(\w+)(,)/g, "$1\"$2\"$3");
+        
+        //aData = aData.replace(/([\(,=])(\w+)([\(,=])/g, "$1\"$2\"$3");
+
+        let chars = aData.split('');
+
+        for (let i = 0; i < (chars.length - 3); i++) {
+            // Spot our arrays and set them between square brackets
+            if (chars[i] == 's' && chars[i + 1] == '"' && chars[i + 2] == '=' && chars[i + 3] == '(') {
+                this.ReplaceMatchingBrackets(chars, i + 3, '[', ']');
+            }
+            // Spot our three main sections and set them between curly bracket
+            else if (chars[i] == ',' && chars[i + 1] == ' ' && chars[i + 2] == '(') {
+                this.ReplaceMatchingBrackets(chars, i + 2, '{', '}');
+                // Also replace that coma with colon
+                chars[i] = ':';
+            }
+        }
+
+        // Remove first and last brackets
+        chars[0] = '[';
+        chars[chars.length - 1] = ']';
+
+
+        aData = chars.join('');
+
+        aData = aData.replace(/\(/g, "{");
+        aData = aData.replace(/\)/g, "}");
+        aData = aData.replace(/=/g, ":");
+
+        //aData = aData.replace(/\)/g, "}");
+        //aData = aData.replace(/\(/g, "{");
+        
+
+        /*
+        
+        aData = aData.replace(/\)/g, "}");
+        
+        */
+
+
+        //aData = aData.replace(/[^"](\w+)[^"]/g,"\"$1\"");
+
+        
+
+
+        /*
+        aActionKeyMap = aActionKeyMap.replace(/\)\s/g, "], ");
+        aActionKeyMap = aActionKeyMap.replace(/\)/g, "]");
+        aActionKeyMap = aActionKeyMap.replace(/\s+/, ", ");
+        aActionKeyMap = "[" + aActionKeyMap + "]";
+        aActionKeyMap = aActionKeyMap.replace(/[^\[\]\,\s]+/g, "\"$&\"");
+        aActionKeyMap = aActionKeyMap.replace(/" /g, "\", ");
+        */
+
+        // Create JSON arrays
+        //aActionKeyMap = aActionKeyMap.replace(/=\(\(/g, ":{");
+        //aActionKeyMap = aActionKeyMap.replace(/\)\)\),/g, "}),");
+        //aActionKeyMap = aActionKeyMap.replace(/\)\),/g, "},");
+
+        // Quote all strings
+        //aActionKeyMap = aActionKeyMap.replace(/\)\),/g, "},");
+
+        //([]+)
+
+        /*
+        aData = aData.trim();
+
+        if (aData[0] == '(') {
+            this.iLevel++;
+
+            if (Array.isArray(aObject)) {
+                aObject.push(new );
+                this.ParseActionKeyMap(aData.substr(1), aObject);
+            } else {
+                // Go down one level, remain on the same object I guess
+                this.ParseActionKeyMap(aData.substr(1), aObject);
+            }
+
+            return;
+        } else if (aData[0] == ')') {
+            this.iLevel--;
+
+            return;
+        }
+
+        let match = aData.match(/^(\w+),/)
+        if (match != null) {
+            // We have an object
+            aObject[match[1]] = new Object();
+            this.ParseActionKeyMap(aData.substr(match[0].length), aObject[match[1]]);
+            return;
+        }
+
+        match = aData.match(/^(\w+)=\(/)
+        if (match != null) {
+            // We have an array
+            this.iLevel++;
+            aObject[match[1]] = new Array<any>();
+            this.ParseActionKeyMap(aData.substr(match[0].length), aObject[match[1]]);
+            return;
+        }
+
+        let obj = new Object();
+        match = aData.match(/^(\w+)=\?"*(\w+)"*,/)        
+        if (match != null) {
+            // We have an array
+            this.iLevel++;
+            aObject[match[1]] = new Array<any>();
+            this.ParseActionKeyMap(aData.substr(match[0].length), aObject[match[1]]);
+            return;
+        }
+        */
+
+        //Log.obj("match",aActionKeyMap.match(/\((.*)\)/)[1]);
+
+
+
+        Log.d(aData);
+
+        return JSON.parse(aData);
+    }
+
+    /**
+     * 
+     * @param aFileName
+     */
+    public async LoadMechWarriorGameUserSettings(aFileName: string) {
+        // InputTypeToActionKeyMap
+
+
+        let result = await this.ReadFile(aFileName);
+        Log.d(result);
+        const options = {
+            ignoreAttributes: false,
+            attributeNamePrefix: "i"
+        };
+        var lines = result.content.split('\n');
+        let actionKeyMap: string = "";
+
+        lines.every(line => {
+            if (line.startsWith("InputTypeToActionKeyMap")) {
+                actionKeyMap = line.substr("InputTypeToActionKeyMap=".length).trim();
+                // Break our loop
+                return false;
+            }
+
+            // Try next line
+            return true;
+        });
+
+        this.ParseActionKeyMap(actionKeyMap, this.iActionKeyMap);
+        Log.obj("ActionKeyMap",this.iActionKeyMap);
+    }
 
     /**
      * Parse MW5 joystick remap file.
@@ -162,6 +362,11 @@ export class JoyMap {
                     //
                     let btn = device.iLogicals[inButton];
                     Log.obj("Button: ", btn);
+
+                    btn.Key = outButtons;
+
+                    // Build our label map
+                    device.iLabels[outButtons] = btn;
 
                     //var ctx = device.iCanvas.getContext('2d');                   
                     //ctx.font = `${this.iFontSizeInPixels}px Arial`;
@@ -262,9 +467,7 @@ export class JoyMap {
 
         // TODO: Not convinced that's needed
         let logicalButtons = new Array();
-        //logicalButtons[0] = 'Not used';
-
-        let fontSizeInPixels = this.iFontSizeInPixels;
+        //logicalButtons[0] = 'Not used';      
 
         // Create our hardware image and wait for it to load
         let img = await Utils.LoadImage(hwd.image);
@@ -274,7 +477,7 @@ export class JoyMap {
         var ctx = canvas.getContext('2d');
         device.iContext = ctx;
         ctx.drawImage(img, 0, 0);            
-        ctx.font = `${fontSizeInPixels}px Arial`;
+        ctx.font = `${this.iFontSizeInPixels}px Arial`;
         ctx.fillStyle = "#000000";
 
         // For each buttons
@@ -293,7 +496,7 @@ export class JoyMap {
                 let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
                 logicalButtons[logicalButton] = btn;
 
-                ctx.fillText(logicalButton.toString(), btn.x, btn.y + fontSizeInPixels);
+                ctx.fillText(logicalButton.toString(), btn.x, btn.y + this.iFontSizeInPixels);
             }
         });
 
