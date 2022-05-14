@@ -67,6 +67,9 @@
     <TypeScriptCompile Include="src\background\background.ts" />
     <TypeScriptCompile Include="src\consts.ts" />
     <TypeScriptCompile Include="src\desktop\desktop.ts" />
+    <TypeScriptCompile Include="src\Device.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\Hardware.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
