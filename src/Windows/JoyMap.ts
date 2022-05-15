@@ -81,10 +81,10 @@ export class JoyMap {
         let vpcAlphaRight = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-right-03EB-9902.XML';
         await this.LoadVirpilProfile(vpcAlphaRight);
 
-
-        // TODO: Find a way not to do that
-        //await sleep(2000);
-
+        // Set action name text color
+        this.iDevices.forEach(d => {
+            d.iContext.fillStyle = "#0000FF";
+        });
 
         //Log.obj("Devices: ", this.iDevices);
         let mwRemap = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\HOTASMappings.Remap';
@@ -227,9 +227,11 @@ export class JoyMap {
                 this.iDevices.forEach(d => {
                     if (d.iLabels.hasOwnProperty(axis.Key)) {
                         let rci = d.iLabels[axis.Key]; // RCI = ref card item
-                        d.iContext.fillText(axis.AxisName, rci.x + rci.offsetX, rci.y + this.iFontSizeInPixels);
+                        let prints = Utils.FormatActionName(axis.AxisName, rci.labelCount);
+                        d.iContext.fillText(prints, rci.x + rci.offsetX, rci.y + this.iFontSizeInPixels);
                         // Offset our text cursor
-                        rci.offsetX += d.iContext.measureText(axis.AxisName).width + 20;
+                        rci.offsetX += d.iContext.measureText(prints).width;
+                        rci.labelCount++;
                     }
                 });
             }
@@ -247,10 +249,12 @@ export class JoyMap {
                     // Check if that key is on any of our devices
                     this.iDevices.forEach(d => {
                         if (d.iLabels.hasOwnProperty(key.Key)) {
-                            let btn = d.iLabels[key.Key];
-                            d.iContext.fillText(action.ActionName, btn.x + btn.offsetX, btn.y + this.iFontSizeInPixels);
+                            let rci = d.iLabels[key.Key];
+                            let prints = Utils.FormatActionName(action.ActionName, rci.labelCount);
+                            d.iContext.fillText(prints, rci.x + rci.offsetX, rci.y + this.iFontSizeInPixels);
                             // Offset our text cursor
-                            btn.offsetX += d.iContext.measureText(action.ActionName).width + 20;
+                            rci.offsetX += d.iContext.measureText(prints).width;
+                            rci.labelCount++;
                         }
                     });                    
                 })
@@ -469,15 +473,16 @@ export class JoyMap {
                     
                 //Log.d(row.iCOL1);
                 //Log.d(btnKey);
-                let btn = hwd[btnKey];
+                let rci = hwd[btnKey];
                 // Work out the logical button this hardware button was mapped to and display it
                 // COL0 is the logical button
                 let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
-                logicalMap[logicalButton] = btn;
+                logicalMap[logicalButton] = rci;
 
                 // Display our logical button codes
-                ctx.fillText(logicalButton.toString(), btn.x, btn.y + this.iFontSizeInPixels);
-                btn.offsetX = 80;
+                ctx.fillText(logicalButton.toString(), rci.x, rci.y + this.iFontSizeInPixels);
+                rci.offsetX = 80;
+                rci.labelCount = 0;
             }
         });
 
@@ -501,15 +506,16 @@ export class JoyMap {
             if (hwPort) {
                 // If we have a valid axis
                 // Fetch axis ref card item
-                let refCardItem = hwd[hwId];
+                let rci = hwd[hwId];
                 // Work out the logical button this hardware button was mapped to and display it
 
                 //let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
-                logicalMap[logicalAxisName] = refCardItem;
+                logicalMap[logicalAxisName] = rci;
 
-                // Display our logical button codes
-                ctx.fillText(logicalAxisName, refCardItem.x, refCardItem.y + this.iFontSizeInPixels);
-                refCardItem.offsetX = 140;
+                // Display our logical axis codes
+                ctx.fillText(logicalAxisName, rci.x, rci.y + this.iFontSizeInPixels);
+                rci.offsetX = 140;
+                rci.labelCount = 0;
             }
         });
  

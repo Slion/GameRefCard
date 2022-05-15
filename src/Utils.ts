@@ -62,6 +62,27 @@ export class Utils {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+    /**
+     * 
+     * @param aString
+     */
+    static ExpandCamelCase(aString: string): string {
+        let res = aString.replace(/([^\s])([0-9]+)/g, "$1 $2");
+        res = res.replace(/([^\s])([A-Z])/g, (a, p, s) => p + " " + s.toLowerCase());
+        return res;
+    }
 
+    /**
+     * 
+     * @param aString
+     */
+    static FormatActionName(aString: string, aLabelCount: number): string {
+        let res = Utils.ExpandCamelCase(aString);
+        if (aLabelCount > 0) {
+            return " - " + res;
+        }
+        //return "[ " + res + " ]";
+        return res;
+    }
 
 }
