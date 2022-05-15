@@ -50,6 +50,7 @@
     <Content Include="src\desktop\desktop.html" />
     <Content Include="src\Windows\Application.html" />
     <Content Include="src\Windows\JoyMap.html" />
+    <Content Include="src\Windows\MW5.html" />
     <Content Include="tsconfig.json" />
     <Content Include="webpack.config.js" />
   </ItemGroup>
@@ -82,6 +83,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\Windows\Application.ts" />
     <TypeScriptCompile Include="src\Windows\JoyMap.ts" />
+    <TypeScriptCompile Include="src\Windows\MW5.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

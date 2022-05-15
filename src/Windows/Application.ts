@@ -8,21 +8,20 @@ import { WindowName } from '../WindowName';
 import RunningGameInfo = overwolf.games.RunningGameInfo;
 import AppLaunchTriggeredEvent = overwolf.extensions.AppLaunchTriggeredEvent;
 
-// The background controller holds all of the app's background logic - hence its name. it has
-// many possible use cases, for example sharing data between windows, or, in our case,
-// managing which window is currently presented to the user. To that end, it holds a dictionary
-// of the windows available in the app.
-// Our background controller implements the Singleton design pattern, since only one
-// instance of it should exist.
-class BackgroundController {
+/**
+ * 
+ */
+class Application {
     private _gameListener: OWGameListener;
     private iWindowJoyMap: OWWindow = null;
+    private iWindowMW5: OWWindow = null;
 
   constructor() {
       // Populating the background controller's window dictionary
       this.iWindowJoyMap = new OWWindow(WindowName.JoyMap);
+      this.iWindowMW5 = new OWWindow(WindowName.MW5);
 
-    // When a a supported game game is started or is ended, toggle the app's windows
+    // When a supported game game is started or is ended, toggle the app's windows
     this._gameListener = new OWGameListener({
       onGameStarted: this.toggleWindows.bind(this),
       onGameEnded: this.toggleWindows.bind(this)
@@ -32,8 +31,22 @@ class BackgroundController {
       e => this.onAppLaunchTriggered(e)
       );
 
+
+      // Make sure when our last window is closed that we close this application too
+      overwolf.windows.onStateChanged.addListener( () => {
+          overwolf.windows.getOpenWindows(windows => {
+              // Are we the last window?
+              if (Object.keys(windows).length <= 1) {
+                  // We are the last window, just close the app then
+                  window.close();
+              }
+          });
+      });
+
       this.run();
   }
+
+    
 
 
   // When running the app, start listening to games' status and decide which window should
@@ -45,7 +58,7 @@ class BackgroundController {
     //  ? kWindowNames.inGame
     //  : kWindowNames.desktop;
 
-      this.iWindowJoyMap.restore();
+      this.iWindowMW5.restore();
   }
 
   private async onAppLaunchTriggered(e: AppLaunchTriggeredEvent) {
@@ -91,4 +104,4 @@ class BackgroundController {
   }
 }
 
-new BackgroundController();
+new Application();

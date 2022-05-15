@@ -54,7 +54,27 @@
         "show_in_taskbar": true,
         "topmost": false,
         "desktop_only": false,
-        "show_maximize": true, 
+        "show_maximize": true,
+        "show_minimize": true,
+        "size": {
+          "width": 1200,
+          "height": 600
+        },
+        "min_size": {
+          "width": 600,
+          "height": 300
+        }
+      },
+      "MW5": {
+        "file": "MW5.html",
+        "native_window": false,
+        "clickthrough": false,
+        "transparent": false,
+        "resizable": true,
+        "show_in_taskbar": true,
+        "topmost": false,
+        "desktop_only": false,
+        "show_maximize": true,
         "show_minimize": true,
         "size": {
           "width": 1200,
