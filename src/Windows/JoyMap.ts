@@ -18,7 +18,7 @@ export class JoyMap {
     iMain: HTMLElement = document.getElementsByTagName('main')[0];
 
     iDevices = new Array<Device>();
-    iFontSizeInPixels = 48;   
+    iFontSizeInPixels = 46;   
     iActionKeyMap: any;
 
     constructor() {
@@ -209,8 +209,29 @@ export class JoyMap {
         lines.every(line => {
             if (line.startsWith("InputTypeToActionKeyMap")) {
                 actionKeyMap = line.substr("InputTypeToActionKeyMap=".length).trim();
-                // Break our loop
-                return false;
+            } else if (line.startsWith("InputTypeToAxisKeyList")) {
+                let lineData = line.substr("InputTypeToAxisKeyList=".length).trim();
+                // Turn that line into JSON
+                // Should only replace first and last bracket really as they are the only ones
+                lineData = lineData.replace(/\(/g, "{");
+                lineData = lineData.replace(/\)/g, "}");
+                // Replace '=' with ':'
+                lineData = lineData.replace(/=/g, ":");
+                // Add quote everywhere        
+                lineData = lineData.replace(/"/g, ""); // First remove all quotes
+                lineData = lineData.replace(/([^:,\}\{]+)/g, "\"$1\""); // Then add them back
+                Log.d(lineData);
+                // 
+                let axis = JSON.parse(lineData);                
+                // Check if that key is on any of our devices
+                this.iDevices.forEach(d => {
+                    if (d.iLabels.hasOwnProperty(axis.Key)) {
+                        let rci = d.iLabels[axis.Key]; // RCI = ref card item
+                        d.iContext.fillText(axis.AxisName, rci.x + rci.offsetX, rci.y + this.iFontSizeInPixels);
+                        // Offset our text cursor
+                        rci.offsetX += d.iContext.measureText(axis.AxisName).width + 20;
+                    }
+                });
             }
 
             // Try next line
@@ -237,11 +258,24 @@ export class JoyMap {
         })
     }
 
+
     /**
      * Parse MW5 joystick remap file.
      */
     public async LoadMechWarriorRemap(aFileName: string) {
         //let dir = `${overwolf.io.paths.localAppData}\\Slions\\JoyMap\\MyFile`;
+
+        // VIRPIL Windows axes to MW5 InAxis map
+        const KAxesMap = {
+            'HOTAS_XAxis' : 'X',
+            'HOTAS_YAxis': 'Y',
+            'HOTAS_ZAxis': 'Z',
+            'GenericUSBController_Axis3': 'rX',
+            'GenericUSBController_Axis4': 'rY',
+            'HOTAS_RZAxis': 'rZ',
+            'GenericUSBController_Axis1': 'Slider', // Not sure about that on
+            'GenericUSBController_Axis2': 'Dial' // Not tested this pure guess
+        }
 
         let result = await this.ReadFile(aFileName);
         Log.d(result);
@@ -277,16 +311,18 @@ export class JoyMap {
             if (device != null) {
                 Log.obj("Device: ", device);
                 // Deal with parsing once we got a device
-                if (line.startsWith("BUTTON:")) {
-                    let split = line.substr(7).trim().split(',');
-                    // InButton
+                const KButton = "BUTTON:";
+                const KAxis = "AXIS:";
+                if (line.startsWith(KButton)) {
+                    let split = line.substr(KButton.length).trim().split(',');
+                    // InButton, assuming this is the first on our line
                     let inButton = parseInt(split[0].split('=')[1].substr('GenericUSBController_Button'.length));
-                    // OutButtons
+                    // OutButtons, assuming this is the second on our line
                     let outButtons = split[1].split('=')[1];
                     Log.d("outButtons: " + outButtons);
                     Log.d("inButton: " + inButton);
                     //
-                    let btn = device.iLogicals[inButton];
+                    let btn = device.iLogicalMap[inButton];
                     Log.obj("Button: ", btn);
 
                     btn.Key = outButtons;
@@ -295,7 +331,24 @@ export class JoyMap {
                     device.iLabels[outButtons] = btn;
 
                     // Use this to display the GameUserSettings button we map to
-                    //device.iContext.fillText(outButtons, btn.x + 80, btn.y + this.iFontSizeInPixels);
+                    //device.iContext.fillText(outButtons, btn.x + btn.offsetX, btn.y + this.iFontSizeInPixels);
+                } else if (line.startsWith(KAxis)) {
+                    let split = line.substr(KAxis.length).trim().split(',');
+
+                    // InAxis, assuming this is the first on our line
+                    let inAxis = split[0].split('=')[1];
+                    // OutAxis, assuming this is the second on our line
+                    let outAxis = split[1].split('=')[1];
+                    // Check if we know that axis
+                    if (KAxesMap.hasOwnProperty(inAxis)) {
+                        // That's an axis we know then, get the ref card item for it
+                        let refCardItem = device.iLogicalMap[KAxesMap[inAxis]];
+                        refCardItem.Key = outAxis;
+                        // Build our map
+                        device.iLabels[outAxis] = refCardItem;
+                        // Use this to display the GameUserSettings axis we map to
+                        //device.iContext.fillText(outAxis, refCardItem.x + refCardItem.offsetX, refCardItem.y + this.iFontSizeInPixels);
+                    }
                 }
 
                 return;
@@ -341,6 +394,7 @@ export class JoyMap {
     }
 
     /**
+     * Load VPC profile from specified XML file.
      */
     public async LoadVirpilProfile(aFileName: string) {
         //let dir = `${overwolf.io.paths.localAppData}\\Slions\\JoyMap\\MyFile`;
@@ -389,8 +443,8 @@ export class JoyMap {
         canvas.style.maxHeight = '100%';
         device.iCanvas = canvas;
 
-        // TODO: Not convinced that's needed
-        let logicalButtons = new Array();
+        // Object used to map logical axes and buttons to reference card items
+        let logicalMap = new Object();
         //logicalButtons[0] = 'Not used';      
 
         // Create our hardware image and wait for it to load
@@ -406,6 +460,7 @@ export class JoyMap {
 
         // For each buttons
         xml.VIRPIL.BUTTONS_TABLE.ROW.forEach(row => {
+            // COL1 is the hardware button
             let hardwareButton = parseInt(row.iCOL1);
             // Make sure that hardware button is valid
             if (hardwareButton) {
@@ -416,9 +471,9 @@ export class JoyMap {
                 //Log.d(btnKey);
                 let btn = hwd[btnKey];
                 // Work out the logical button this hardware button was mapped to and display it
-
+                // COL0 is the logical button
                 let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
-                logicalButtons[logicalButton] = btn;
+                logicalMap[logicalButton] = btn;
 
                 // Display our logical button codes
                 ctx.fillText(logicalButton.toString(), btn.x, btn.y + this.iFontSizeInPixels);
@@ -426,11 +481,42 @@ export class JoyMap {
             }
         });
 
+        // For each axis
+        xml.VIRPIL.AXES_TABLE.ROW.forEach(row => {
+
+            // COL4 is the source
+            // COL5 is the port
+            // COL6 is the sub.port
+            // Together they form our axis hardware ID
+            let hwId = `${row.iCOL4}_${row.iCOL5}_${row.iCOL6}`;
+
+            // COL1 is the windows logical axis this axis is mapped too
+            // Possible values are: X, Y, Z, rX, rY, rZ, Slider and Dial
+            let logicalAxisName = row.iCOL1;
+
+            // Make sure that axis is valid by checking if it has a valid port
+            let hwPort = parseInt(row.iCOL5);
+           
+            // Make sure that hardware button is valid
+            if (hwPort) {
+                // If we have a valid axis
+                // Fetch axis ref card item
+                let refCardItem = hwd[hwId];
+                // Work out the logical button this hardware button was mapped to and display it
+
+                //let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
+                logicalMap[logicalAxisName] = refCardItem;
+
+                // Display our logical button codes
+                ctx.fillText(logicalAxisName, refCardItem.x, refCardItem.y + this.iFontSizeInPixels);
+                refCardItem.offsetX = 140;
+            }
+        });
  
         // Add our canvas to our document
         this.iMain.appendChild(canvas);
 
-        device.iLogicals = logicalButtons;
+        device.iLogicalMap = logicalMap;
 
         this.iDevices.push(device);
 
