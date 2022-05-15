@@ -1,4 +1,71 @@
 
+enum ControlType {
+    Digital, // Typically a button
+    Analogue // Typically an axes
+}
+
+/**
+ */
+export class RefCardItem {
+
+    //iType: ControlType;
+    constructor(
+        public iName: string,
+        public iX: number,
+        public iY: number,
+        public iWidth: number) { }
+}
+
+enum Axis {
+    X = 0,
+    Y = 1,
+    Z = 2,
+    rX = 3,
+    rY = 4,
+    rZ = 5,
+    Slider = 6,
+    Dial = 7
+}
+
+
+/**
+ * 
+ */
+export class RefCardDevice {
+
+    constructor(
+        public iName: string,
+        public iImageSrc: string,
+        public iButtons: RefCardItem[] = new Array<RefCardItem>(),
+        public iAxis: RefCardItem[] = new Array<RefCardItem>())
+    {
+    }
+}
+
+
+/**
+ * Just an example of what a typed template list could look like.
+ * Not currently actually used.
+ */
+export const KRefCardTemplates: Map<string, RefCardDevice> = new Map<string, RefCardDevice>([
+    ['[FLIGHT BASE] VPC WarBRD.[FLIGHT GRIP] VPC Constellation ALPHA.LEFT',
+        {
+            iName: 'VPC Alpha Left',
+            iImageSrc:  './img/vpc-alpha-left.jpg',
+            iButtons: [
+                { iName: "tata", iX: 3, iY: 2, iWidth: 100 },
+                new RefCardItem("lala", 2, 3, 10),
+
+            ],
+            iAxis: [
+                { iName: "toto", iX: 3, iY: 2, iWidth: 100 }
+            ],
+        }],
+    ['[FLIGHT BASE] VPC WarBRD.[FLIGHT GRIP] VPC Constellation ALPHA.RIGHT',
+        new RefCardDevice('VPC Alpha Right', './img/vpc-alpha-right.jpg')
+    ],
+]);
+
 
 // Define coordinate for drawing control text
 export const KHardware = {
@@ -38,14 +105,14 @@ export const KHardware = {
             // Thumb hat
         'Joy_25': { 'Type': 'Digital', 'x': 2610, 'y': 1540, 'width': 1180 }, // Push
         'Joy_26': { 'Type': 'Digital', 'x': 2610, 'y': 1300, 'width': 1180 }, // Up
-        'Joy_27': { 'Type': 'Digital', 'x': 2610, 'y': 1360, 'width': 1180 }, // Righ
+        'Joy_27': { 'Type': 'Digital', 'x': 2610, 'y': 1360, 'width': 1180 }, // Right
         'Joy_28': { 'Type': 'Digital', 'x': 2610, 'y': 1420, 'width': 1180 }, // Down
         'Joy_29': { 'Type': 'Digital', 'x': 2610, 'y': 1480, 'width': 1180 }, // Left
             // Pinky button
         'Joy_30': { 'Type': 'Digital', 'x': 2610, 'y': 1900, 'width': 1180 },
             // Break axis
         'Joy_31': { 'Type': 'Digital', 'x': 2610, 'y': 1750, 'width': 1180 },
-         'Joy_UAxis': { 'Type': 'Analogue', 'x': 2610, 'y': 1690, 'width': 1180 },
+        'Joy_UAxis': { 'Type': 'Analogue', 'x': 2610, 'y': 1690, 'width': 1180 },
             // Joystick axis
         'Joy_XAxis': { 'Type': 'Analogue', 'x': 120, 'y': 1860, 'width': 1180 },
         'Joy_YAxis': { 'Type': 'Analogue', 'x': 120, 'y': 1920, 'width': 1180 },
@@ -92,7 +159,7 @@ export const KHardware = {
             // Thumb hat
         'Joy_25': { 'Type': 'Digital', 'x': 120, 'y': 1540, 'width': 1180 }, // Push
         'Joy_26': { 'Type': 'Digital', 'x': 120, 'y': 1300, 'width': 1180 }, // Up
-        'Joy_27': { 'Type': 'Digital', 'x': 120, 'y': 1360, 'width': 1180 }, // Righ
+        'Joy_27': { 'Type': 'Digital', 'x': 120, 'y': 1360, 'width': 1180 }, // Right
         'Joy_28': { 'Type': 'Digital', 'x': 120, 'y': 1420, 'width': 1180 }, // Down
         'Joy_29': { 'Type': 'Digital', 'x': 120, 'y': 1480, 'width': 1180 }, // Left
             // Pinky button
