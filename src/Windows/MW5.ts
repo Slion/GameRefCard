@@ -23,7 +23,7 @@ export class MW5 {
 
     constructor() {
         this.mainWindow = new OWWindow(WindowName.Application);
-        this.currWindow = new OWWindow(WindowName.JoyMap);
+        this.currWindow = new OWWindow(WindowName.MW5);
 
         
         //const closeButton = document.getElementById('closeButton');
