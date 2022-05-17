@@ -31,8 +31,7 @@ class Application {
       e => this.onAppLaunchTriggered(e)
       );
 
-
-      // Make sure when our last window is closed that we close this application too
+      // When our last window is closed make sure that we close this application too
       overwolf.windows.onStateChanged.addListener( () => {
           overwolf.windows.getOpenWindows(windows => {
               // Are we the last window?
