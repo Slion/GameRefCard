@@ -76,6 +76,9 @@
     <TypeScriptCompile Include="src\Utils.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\VirpilProfile.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\WindowName.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

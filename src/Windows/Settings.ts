@@ -4,6 +4,7 @@ import { Device } from "../Device";
 import { KHardware } from "../Hardware";
 import { Log } from "../Log";
 import { Utils } from "../Utils";
+import { VirpilProfile } from "../VirpilProfile";
 import { WindowName } from "../WindowName";
 
 //import '@material/theme/dist/mdc.theme.css';
@@ -21,6 +22,9 @@ export class Settings {
     maximized: boolean = false;
     iMain: HTMLElement = document.getElementsByTagName('main')[0];
     iButtonCreateRefCard = document.getElementById('iButtonCreateRefCard');
+    iButtonVirpilProfileAdd = document.getElementById('iButtonVirpilProfileAdd');
+    iListVirpilProfile = document.getElementById('iListVirpilProfile');
+    
 
     iDevices = new Array<Device>();
     iFontSizeInPixels = 46;   
@@ -31,24 +35,24 @@ export class Settings {
         this.currWindow = new OWWindow(WindowName.Settings);
         
 
-        
-        //const closeButton = document.getElementById('closeButton');
-        //const maximizeButton = document.getElementById('maximizeButton');
-        //const minimizeButton = document.getElementById('minimizeButton');
+        let virpilProfilePath = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\';
 
-        
+        this.iButtonVirpilProfileAdd.addEventListener('click', () => {
+            //overwolf.io.paths
+            overwolf.utils.openFilePicker('*.XML', virpilProfilePath, async (aRes) => {
+                if (!aRes.success) {
+                    return;
+                }
 
-        
+                let vp = new VirpilProfile(aRes.file);
+                await vp.LoadProfile();
+                this.AddProfile(vp);
 
-        //const header = document.getElementById('header');
-
-        //this.setDrag(header);
-
-        //closeButton.addEventListener('click', () => {
-        //    this.mainWindow.close();
-        //});
+            }, false);
+        });      
 
         this.iButtonCreateRefCard.addEventListener('click', () => {
+            // Just show our reference card then
             this.iWindowMW5.restore();
         });
 
@@ -76,6 +80,23 @@ export class Settings {
         
 
     }
+
+
+    AddProfile(aProfile: VirpilProfile) {
+        // Do not use innerHTML += as it will break previous items onclick binding
+        this.iListVirpilProfile.insertAdjacentHTML("beforeend",
+            "<li id='" + aProfile.iKey + "' class='mdc-list-item mdc-list-item--with-two-lines'>" +
+            "<span class= 'mdc-list-item__ripple' > </span>" +
+            "<span class='mdc-list-item__text' > " +
+            "<span class= 'mdc-list-item__primary-text' > " + aProfile.iName + "</span>" +
+            "<span class= 'mdc-list-item__secondary-text'>" + ` ${aProfile.iVendorId} / ${aProfile.iProductId}` + "</span > " +
+            "</span>" +
+            "</li > ");
+        //this.iListSources.innerHTML += "<li onclick='" + this.sourceClicked + ".call(this.id)' id='" + aSource.Address + "' class='mdc-list-item'><span class='mdc-list-item__ripple'></span><span class='mdc-list-item__text'>" + aSource.Name + " (" + aSource.Address + ")</span></li>";
+        //document.getElementById(aSource.Address).style.color = 'red';
+        document.getElementById(aProfile.iKey).onclick = () => { /* Could do something*/ };
+    }
+
 
     /**
      * Asynchronous constructor
@@ -105,22 +126,6 @@ export class Settings {
     }
 
 
-    /**
-     *
-     * @param aPath
-     */
-    async ReadFile(aPath: string): Promise<overwolf.io.ReadFileContentsResult> {
-        console.info(aPath);
-        const result: overwolf.io.ReadFileContentsResult = await new Promise(resolve => {
-            overwolf.io.readFileContents(
-                aPath,
-                overwolf.io.enums.eEncoding.UTF8,
-                resolve
-            );
-        });
-     
-        return result;
-    }
 
     /**
      * 
@@ -204,7 +209,7 @@ export class Settings {
         // InputTypeToActionKeyMap
 
 
-        let result = await this.ReadFile(aFileName);
+        let result = await Utils.ReadFile(aFileName);
         Log.d(result);
         const options = {
             ignoreAttributes: false,
@@ -288,7 +293,7 @@ export class Settings {
             'GenericUSBController_Axis2': 'Dial' // Not tested this pure guess
         }
 
-        let result = await this.ReadFile(aFileName);
+        let result = await Utils.ReadFile(aFileName);
         Log.d(result);
         const options = {
             ignoreAttributes: false,
@@ -410,7 +415,7 @@ export class Settings {
     public async LoadVirpilProfile(aFileName: string) {
         //let dir = `${overwolf.io.paths.localAppData}\\Slions\\JoyMap\\MyFile`;
         
-        let result = await this.ReadFile(aFileName);
+        let result = await Utils.ReadFile(aFileName);
         Log.d(result);
         const options = {
             ignoreAttributes: false,

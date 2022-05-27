@@ -85,4 +85,21 @@ export class Utils {
         return res;
     }
 
+
+    /**
+     *
+     * @param aPath
+     */
+    static async ReadFile(aPath: string): Promise<overwolf.io.ReadFileContentsResult> {
+        console.info(aPath);
+        const result: overwolf.io.ReadFileContentsResult = await new Promise(resolve => {
+            overwolf.io.readFileContents(
+                aPath,
+                overwolf.io.enums.eEncoding.UTF8,
+                resolve
+            );
+        });
+
+        return result;
+    }
 }

@@ -15,7 +15,8 @@
   },
   "permissions": [
     "Hotkeys",
-    "GameInfo"
+    "GameInfo",
+    "FileSystem"
   ],
   "data": {
     "start_window": "Application",
