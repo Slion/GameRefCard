@@ -1,0 +1,59 @@
+
+/*
+Use those to override Material Component Design
+Those double hyphen properties are CSS variables
+See: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+*/
+:root {
+    /* Menu */
+    /* 
+       --mdc-menu-max-height does not look like its working as we thought it should. 
+       Fortunately we override that hardcoded 120px limitation below using !important in mdc-menu.
+    */
+    /*--mdc-menu-max-height: 300px;*/
+    --mdc-menu-min-width: 0px;
+    /* We don't want focus highlight on text buttons */
+    --mdc-text-button-focus-state-layer-opacity: 0.0;
+    /* We don't want focus highlight on switches */
+    --mdc-switch-unselected-focus-state-layer-opacity: 0.0;
+    --mdc-switch-selected-focus-state-layer-opacity: 0.0;
+    --mdc-switch-unselected-pressed-state-layer-opacity: 0.0;
+    --mdc-switch-selected-pressed-state-layer-opacity: 0.0;
+    /* Theme colors */
+    --mdc-theme-primary: #64b5f6;
+    --mdc-theme-secondary: #ce93d8;
+    --mdc-theme-background: #000;
+    --mdc-theme-surface: #000;
+    --mdc-theme-error: #b00020;
+    --mdc-theme-on-primary: #fff;
+    --mdc-theme-on-secondary: #fff;
+    --mdc-theme-on-surface: #fff;
+    --mdc-theme-on-error: #fff;
+    --mdc-theme-text-primary-on-background: rgba(255, 255, 255, 0.87);
+    --mdc-theme-text-secondary-on-background: rgba(255, 255, 255, 0.54);
+    --mdc-theme-text-hint-on-background: rgba(255, 255, 255, 0.38);
+    --mdc-theme-text-disabled-on-background: rgba(1, 1, 1, 0.38);
+    --mdc-theme-text-icon-on-background: rgba(255, 255, 255, 0.38);
+    --mdc-theme-text-primary-on-light: rgba(1, 1, 1, 0.87);
+    --mdc-theme-text-secondary-on-light: rgba(1, 1, 1, 0.54);
+    --mdc-theme-text-hint-on-light: rgba(1, 1, 1, 0.38);
+    --mdc-theme-text-disabled-on-light: rgba(1, 1, 1, 0.38);
+    --mdc-theme-text-icon-on-light: rgba(1, 1, 1, 0.38);
+    --mdc-theme-text-primary-on-dark: white;
+    --mdc-theme-text-secondary-on-dark: rgba(255, 255, 255, 0.7);
+    --mdc-theme-text-hint-on-dark: rgba(255, 255, 255, 0.5);
+    --mdc-theme-text-disabled-on-dark: rgba(255, 255, 255, 0.5);
+    --mdc-theme-text-icon-on-dark: rgba(255, 255, 255, 0.5);
+}
+
+
+html {
+    /* Since material typography fonts are specified using root element unit (REM) we can change this to adjust them */
+    /* Make them scalable according to viewport width */
+    /*font-size: 1vw;*/
+    font-size: 100%;
+}
+
+.mdc-button--outlined .mdc-button__ripple {
+    border-color: var(--mdc-theme-primary, #6200ee);
+}

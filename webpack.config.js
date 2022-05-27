@@ -18,7 +18,32 @@ module.exports = env => ({
                 test: /\.ts?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
-            }
+            },
+            // https://blog.logrocket.com/how-to-configure-css-modules-webpack/
+            // CSS loader example with string interpolation in HTML
+            /*
+            {
+                test: /\\.css$/,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1,
+                            modules: true,
+                        },
+                    },
+                ],
+            },
+            */
+            /*
+            {
+                test: /\.css$/i,
+                loader: "css-loader",
+                options: {
+                    modules: true,
+                },
+            },*/
         ]
     },
     resolve: {
@@ -30,8 +55,25 @@ module.exports = env => ({
     },
     plugins: [
         new CleanWebpackPlugin,
+        // See docs: https://github.com/webpack-contrib/copy-webpack-plugin
         new CopyPlugin({
-            patterns: [ { from: "public", to: "./" } ],
+            patterns: [
+                // Copy public files to our dist folder
+                { from: "public", to: "./" },
+                // Copy Material Design Components CSS to our dist folder
+                //{
+                //    from: 'node_modules/@material/**/*.css', to({ context, absoluteFilename }) {
+                //        return "./css/[name].[ext]";
+                //    },
+                //},
+                // Copy Material Design Components CSS to our dist folder
+                {
+                    from: 'node_modules/material-components-web/**/*.css', to({ context, absoluteFilename }) {
+                        return "./css/[name].[ext]";
+                    },
+                },
+
+            ],
         }),
         new HtmlWebpackPlugin({
             template: './src/Windows/Application.html',

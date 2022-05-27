@@ -16,8 +16,10 @@
     "@overwolf/types": "^2.33.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
+    "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.2.0",
     "semver": "^7.3.4",
+    "style-loader": "^3.3.1",
     "ts-loader": "^8.0.17",
     "typescript": "^4.2.2",
     "webpack": "^5.24.1",
@@ -26,6 +28,7 @@
   },
   "dependencies": {
     "fast-xml-parser": "^4.0.7",
-    "luxon": "^2.4.0"
+    "luxon": "^2.4.0",
+    "material-components-web": "^14.0.0"
   }
 }
