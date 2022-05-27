@@ -84,6 +84,26 @@
           "width": 600,
           "height": 300
         }
+      },
+      "Settings": {
+        "file": "Settings.html",
+        "native_window": false,
+        "clickthrough": false,
+        "transparent": false,
+        "resizable": true,
+        "show_in_taskbar": true,
+        "topmost": false,
+        "desktop_only": false,
+        "show_maximize": true,
+        "show_minimize": true,
+        "size": {
+          "width": 800,
+          "height": 600
+        },
+        "min_size": {
+          "width": 600,
+          "height": 600
+        }
       }
     },
     "game_targeting": {

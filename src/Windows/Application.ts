@@ -15,11 +15,13 @@ class Application {
     private _gameListener: OWGameListener;
     private iWindowJoyMap: OWWindow = null;
     private iWindowMW5: OWWindow = null;
+    private iWindowSettings: OWWindow = null;
 
   constructor() {
       // Populating the background controller's window dictionary
       this.iWindowJoyMap = new OWWindow(WindowName.JoyMap);
       this.iWindowMW5 = new OWWindow(WindowName.MW5);
+      this.iWindowSettings = new OWWindow(WindowName.Settings);
 
     // When a supported game game is started or is ended, toggle the app's windows
     this._gameListener = new OWGameListener({
@@ -57,7 +59,8 @@ class Application {
     //  ? kWindowNames.inGame
     //  : kWindowNames.desktop;
 
-      this.iWindowMW5.restore();
+      //this.iWindowMW5.restore();
+      this.iWindowSettings.restore();
   }
 
   private async onAppLaunchTriggered(e: AppLaunchTriggeredEvent) {

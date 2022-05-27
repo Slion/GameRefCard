@@ -10,6 +10,7 @@ module.exports = env => ({
         Application: './src/Windows/Application.ts',
         JoyMap: './src/Windows/JoyMap.ts',
         MW5: './src/Windows/MW5.ts',
+        Settings: './src/Windows/Settings.ts',
     },
     devtool: 'inline-source-map',
     module: {
@@ -89,6 +90,11 @@ module.exports = env => ({
             template: './src/Windows/MW5.html',
             filename: path.resolve(__dirname, './dist/MW5.html'),
             chunks: ['MW5']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/Windows/Settings.html',
+            filename: path.resolve(__dirname, './dist/Settings.html'),
+            chunks: ['Settings']
         }),
         new OverwolfPlugin(env)
     ]

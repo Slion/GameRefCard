@@ -54,6 +54,10 @@ html {
     font-size: 100%;
 }
 
+main {
+    padding: 10px;
+}
+
 .mdc-button--outlined .mdc-button__ripple {
     border-color: var(--mdc-theme-primary, #6200ee);
 }
