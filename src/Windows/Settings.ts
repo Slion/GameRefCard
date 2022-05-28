@@ -26,7 +26,7 @@ export class Settings {
     iMain: HTMLElement = document.getElementsByTagName('main')[0];
     iButtonCreateRefCard = document.getElementById('iButtonCreateRefCard');
     iButtonVirpilProfileAdd = document.getElementById('iButtonVirpilProfileAdd');
-    iButtonVirpilProfileRemove = document.getElementById('iButtonVirpilProfileRemove');
+    iButtonVirpilProfileClear = document.getElementById('iButtonVirpilProfileClear');
     iListVirpilProfile = document.getElementById('iListVirpilProfile');
     
 
@@ -63,8 +63,11 @@ export class Settings {
         });      
 
 
-        this.iButtonVirpilProfileRemove.addEventListener('click', () => {
-            // TODO: Make the remove button a clear button
+        this.iButtonVirpilProfileClear.addEventListener('click', () => {
+            this.iVirpilProfiles.length = 0;
+            this.iListVirpilProfile.innerHTML = "";
+            // Save our settings since we changed them
+            this.Save();
         });
 
 
