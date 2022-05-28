@@ -91,7 +91,7 @@ export class Utils {
      * @param aPath
      */
     static async ReadFile(aPath: string): Promise<overwolf.io.ReadFileContentsResult> {
-        console.info(aPath);
+        //console.info(aPath);
         const result: overwolf.io.ReadFileContentsResult = await new Promise(resolve => {
             overwolf.io.readFileContents(
                 aPath,
@@ -102,4 +102,29 @@ export class Utils {
 
         return result;
     }
+
+    /**
+     *
+     * @param aPath
+     * @param aContent
+     */
+    static async WriteFile(aPath: string, aContent) {
+        //console.log(aPath);
+        //console.log(content);
+        //;
+        const result = await new Promise((resolve, reject) => {
+            overwolf.io.writeFileContents(
+                aPath,
+                aContent,
+                overwolf.io.enums.eEncoding.UTF8,
+                true,
+                r => r.success ? resolve(r) : reject(r)
+            );
+        });
+
+        console.log('writeFile()', result);
+
+        return result;
+    }
+
 }

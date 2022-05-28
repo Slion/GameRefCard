@@ -1,10 +1,13 @@
 import { XMLParser } from "fast-xml-parser";
+import { JsonObject, JsonProperty } from "typescript-json-serializer";
 import { Log } from "./Log";
 import { Utils } from "./Utils";
 
 
+@JsonObject()
 export class VirpilProfile {
 
+    @JsonProperty()
     public iFileName: string;
     public iXml: any;
     public iKey: string;

@@ -1,5 +1,6 @@
 import { OWWindow } from "@overwolf/overwolf-api-ts";
 import { XMLParser } from "fast-xml-parser";
+import { JsonObject, JsonProperty, JsonSerializer } from "typescript-json-serializer";
 import { Device } from "../Device";
 import { KHardware } from "../Hardware";
 import { Log } from "../Log";
@@ -12,10 +13,12 @@ import { WindowName } from "../WindowName";
 //import { XMLParser, XMLBuilder, XMLValidator } = require("../src/fxp");
 
 
-
-// A base class for the app's foreground windows.
-// Sets the modal and drag behaviors, which are shared across the desktop and in-game windows.
+/**
+ * 
+ */
+@JsonObject()
 export class Settings {
+
     currWindow: OWWindow;
     mainWindow: OWWindow;
     iWindowMW5 = new OWWindow(WindowName.MW5);
@@ -23,12 +26,17 @@ export class Settings {
     iMain: HTMLElement = document.getElementsByTagName('main')[0];
     iButtonCreateRefCard = document.getElementById('iButtonCreateRefCard');
     iButtonVirpilProfileAdd = document.getElementById('iButtonVirpilProfileAdd');
+    iButtonVirpilProfileRemove = document.getElementById('iButtonVirpilProfileRemove');
     iListVirpilProfile = document.getElementById('iListVirpilProfile');
     
 
     iDevices = new Array<Device>();
     iFontSizeInPixels = 46;   
     iActionKeyMap: any;
+
+
+    @JsonProperty({ type: VirpilProfile })
+    iVirpilProfiles: VirpilProfile[] = new Array();
 
     constructor() {
         this.mainWindow = new OWWindow(WindowName.Application);
@@ -45,11 +53,20 @@ export class Settings {
                 }
 
                 let vp = new VirpilProfile(aRes.file);
+                this.iVirpilProfiles.push(vp);
                 await vp.LoadProfile();
                 this.AddProfile(vp);
+                // Save our settings since we changed them
+                this.Save();
 
             }, false);
         });      
+
+
+        this.iButtonVirpilProfileRemove.addEventListener('click', () => {
+            // TODO: Make the remove button a clear button
+        });
+
 
         this.iButtonCreateRefCard.addEventListener('click', () => {
             // Just show our reference card then
@@ -81,7 +98,10 @@ export class Settings {
 
     }
 
-
+    /**
+     * Add the given profile to our list box.
+     * @param aProfile
+     */
     AddProfile(aProfile: VirpilProfile) {
         // Do not use innerHTML += as it will break previous items onclick binding
         this.iListVirpilProfile.insertAdjacentHTML("beforeend",
@@ -92,9 +112,31 @@ export class Settings {
             "<span class= 'mdc-list-item__secondary-text'>" + ` ${aProfile.iVendorId} / ${aProfile.iProductId}` + "</span > " +
             "</span>" +
             "</li > ");
-        //this.iListSources.innerHTML += "<li onclick='" + this.sourceClicked + ".call(this.id)' id='" + aSource.Address + "' class='mdc-list-item'><span class='mdc-list-item__ripple'></span><span class='mdc-list-item__text'>" + aSource.Name + " (" + aSource.Address + ")</span></li>";
-        //document.getElementById(aSource.Address).style.color = 'red';
-        document.getElementById(aProfile.iKey).onclick = () => { /* Could do something*/ };
+
+        document.getElementById(aProfile.iKey).onclick = () => { /* Could do something, display that profile properties */ };
+    }
+
+    /**
+     * Define path to persisted settings JSON file.
+     */
+    static get FileName(): string { return `${overwolf.io.paths.localAppData}\\Slions\\GameRefCard\\Settings.json`; }
+
+    /**
+     * Persist our settings into a file
+     */
+    Save() {
+        const serializer = new JsonSerializer();
+        Utils.WriteFile(Settings.FileName, JSON.stringify(serializer.serialize(this)));
+    }
+
+    /**
+     * Load Virpil profiles and populate our list box after internalizing our settings.
+     */
+    async ConstructVirpilProfiles() {
+        for (const vp of this.iVirpilProfiles) {
+            await vp.LoadProfile();
+            this.AddProfile(vp);
+        }
     }
 
 
@@ -550,6 +592,27 @@ export class Settings {
     private async setDrag(elem) {
         this.currWindow.dragMove(elem);
     }
+
 }
 
-new Settings();
+
+
+/**
+ * Try load persisted settings if any.
+ */
+async function LoadSettings(): Promise<Settings> {
+       
+    let res = await Utils.ReadFile(Settings.FileName);
+    if (res.success) {
+        const serializer = new JsonSerializer();
+        let settings: Settings = serializer.deserializeObject(res.content, Settings);
+        settings.ConstructVirpilProfiles();
+        return settings;
+    }
+
+    return new Settings();
+}
+    
+
+
+LoadSettings();
