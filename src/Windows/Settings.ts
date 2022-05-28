@@ -34,24 +34,31 @@ export class Settings {
     iFontSizeInPixels = 46;   
     iActionKeyMap: any;
 
-
+    // Persisted Virpil profiles 
     @JsonProperty({ type: VirpilProfile })
     iVirpilProfiles: VirpilProfile[] = new Array();
 
-    constructor() {
-        this.mainWindow = new OWWindow(WindowName.Application);
-        this.currWindow = new OWWindow(WindowName.Settings);
-        
+    // Persisted last directory from which we loaded a profile
+    @JsonProperty()
+    iProfileDir: string = `${overwolf.io.paths.localAppData}\\Slions\\GameRefCard`;
 
-        let virpilProfilePath = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\';
+    constructor() {
+
+        Log.d("Settings constructor");
+
+        this.mainWindow = new OWWindow(WindowName.Application);
+        this.currWindow = new OWWindow(WindowName.Settings);        
 
         this.iButtonVirpilProfileAdd.addEventListener('click', () => {
             //overwolf.io.paths
-            overwolf.utils.openFilePicker('*.XML', virpilProfilePath, async (aRes) => {
+            overwolf.utils.openFilePicker('*.XML', this.iProfileDir, async (aRes) => {
                 if (!aRes.success) {
                     return;
                 }
 
+                // Remember that folder
+                this.iProfileDir = aRes.file.substr(0,aRes.file.lastIndexOf("\\") + 1);
+                
                 let vp = new VirpilProfile(aRes.file);
                 this.iVirpilProfiles.push(vp);
                 await vp.LoadProfile();
@@ -123,6 +130,9 @@ export class Settings {
      * Define path to persisted settings JSON file.
      */
     static get FileName(): string { return `${overwolf.io.paths.localAppData}\\Slions\\GameRefCard\\Settings.json`; }
+
+
+
 
     /**
      * Persist our settings into a file
