@@ -4,7 +4,9 @@ import { Device } from "../Device";
 import { KHardware } from "../Hardware";
 import { Log } from "../Log";
 import { Utils } from "../Utils";
+import { VirpilProfile } from "../VirpilProfile";
 import { WindowName } from "../WindowName";
+import { Base } from "./Base";
 
 //import '@material/theme/dist/mdc.theme.css';
 
@@ -14,7 +16,7 @@ import { WindowName } from "../WindowName";
 
 // A base class for the app's foreground windows.
 // Sets the modal and drag behaviors, which are shared across the desktop and in-game windows.
-export class MW5 {
+export class MW5 extends Base {
     currWindow: OWWindow;
     mainWindow: OWWindow;
     maximized: boolean = false;
@@ -25,8 +27,8 @@ export class MW5 {
     iActionKeyMap: any;
 
     constructor() {
-        this.mainWindow = new OWWindow(WindowName.Application);
-        this.currWindow = new OWWindow(WindowName.MW5);
+
+        super()
 
         
         //const closeButton = document.getElementById('closeButton');
@@ -78,11 +80,10 @@ export class MW5 {
      */
     async Construct() {
 
-        let vpcAlphaLeft = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-left-03EB-9901.XML';        
-        await this.LoadVirpilProfile(vpcAlphaLeft);
-
-        let vpcAlphaRight = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-right-03EB-9902.XML';
-        await this.LoadVirpilProfile(vpcAlphaRight);
+        // First load our Virpil profiles
+        for (const vp of this.Settings.iVirpilProfiles) {
+            await this.LoadVirpilProfile(vp);
+        }
 
         // Set action name text color
         this.iDevices.forEach(d => {
@@ -90,13 +91,11 @@ export class MW5 {
         });
 
         //Log.obj("Devices: ", this.iDevices);
-        let mwRemap = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\HOTASMappings.Remap';
-        await this.LoadMechWarriorRemap(mwRemap);
+        //let mwRemap = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\HOTASMappings.Remap';
+        await this.LoadMechWarriorRemap(this.Settings.iMechWarriorFiveHotasRemap);
 
-        let mwUserSettings = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\GameUserSettings.ini';
-        await this.LoadMechWarriorGameUserSettings(mwUserSettings);
-
-
+        //let mwUserSettings = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\GameUserSettings.ini';
+        await this.LoadMechWarriorGameUserSettings(this.Settings.iMechWarriorFiveUserSettingsIni);
 
     }
 
@@ -401,20 +400,13 @@ export class MW5 {
     }
 
     /**
-     * Load VPC profile from specified XML file.
+     * Load VPC profile from into our ref card
      */
-    public async LoadVirpilProfile(aFileName: string) {
+    public async LoadVirpilProfile(aProfile: VirpilProfile) {
         //let dir = `${overwolf.io.paths.localAppData}\\Slions\\JoyMap\\MyFile`;
-        
-        let result = await this.ReadFile(aFileName);
-        Log.d(result);
-        const options = {
-            ignoreAttributes: false,
-            attributeNamePrefix: "i"
-        };
-        const parser = new XMLParser(options);
 
-        let xml = parser.parse(result.content);
+        let xml = aProfile.iXml;
+
         Log.d(xml);
 
         //Log.d(`Logical ${xml.VIRPIL.BUTTONS_TABLE.ROW[0].iCOL0} mapped to hardware ${xml.VIRPIL.BUTTONS_TABLE.ROW[0].iCOL1}`);

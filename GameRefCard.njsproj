@@ -89,6 +89,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\Windows\Application.ts" />
+    <TypeScriptCompile Include="src\Windows\Base.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\Windows\JoyMap.ts" />
     <TypeScriptCompile Include="src\Windows\MW5.ts" />
     <TypeScriptCompile Include="src\Windows\Settings.ts" />
