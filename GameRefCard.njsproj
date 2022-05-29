@@ -65,6 +65,9 @@
     <Folder Include="src\Windows\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\AppWindow.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\consts.ts" />
     <TypeScriptCompile Include="src\Device.ts">
       <SubType>Code</SubType>
@@ -73,6 +76,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\Log.ts" />
+    <TypeScriptCompile Include="src\Settings.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\Utils.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

@@ -1,6 +1,7 @@
 import { OWWindow } from "@overwolf/overwolf-api-ts";
 import { XMLParser } from "fast-xml-parser";
 import { JsonObject, JsonProperty, JsonSerializer } from "typescript-json-serializer";
+import { AppWindow } from "../AppWindow";
 import { Device } from "../Device";
 import { KHardware } from "../Hardware";
 import { Log } from "../Log";
@@ -12,75 +13,67 @@ import { WindowName } from "../WindowName";
 
 //import { XMLParser, XMLBuilder, XMLValidator } = require("../src/fxp");
 
-
 /**
- * 
- */
-@JsonObject()
+    * 
+    */    
 export class Settings {
 
     currWindow: OWWindow;
     mainWindow: OWWindow;
-    iWindowMW5 = new OWWindow(WindowName.MW5);
     maximized: boolean = false;
     iMain: HTMLElement = document.getElementsByTagName('main')[0];
     iButtonCreateRefCard = document.getElementById('iButtonCreateRefCard');
     iButtonVirpilProfileAdd = document.getElementById('iButtonVirpilProfileAdd');
     iButtonVirpilProfileClear = document.getElementById('iButtonVirpilProfileClear');
     iListVirpilProfile = document.getElementById('iListVirpilProfile');
-    
+
+    iAppWindow = <AppWindow>overwolf.windows.getMainWindow();
+
 
     iDevices = new Array<Device>();
-    iFontSizeInPixels = 46;   
+    iFontSizeInPixels = 46;
     iActionKeyMap: any;
 
-    // Persisted Virpil profiles 
-    @JsonProperty({ type: VirpilProfile })
-    iVirpilProfiles: VirpilProfile[] = new Array();
-
-    // Persisted last directory from which we loaded a profile
-    @JsonProperty()
-    iProfileDir: string = `${overwolf.io.paths.localAppData}\\Slions\\GameRefCard`;
 
     constructor() {
 
         Log.d("Settings constructor");
 
         this.mainWindow = new OWWindow(WindowName.Application);
-        this.currWindow = new OWWindow(WindowName.Settings);        
+        this.currWindow = new OWWindow(WindowName.Settings);
 
         this.iButtonVirpilProfileAdd.addEventListener('click', () => {
             //overwolf.io.paths
-            overwolf.utils.openFilePicker('*.XML', this.iProfileDir, async (aRes) => {
+            overwolf.utils.openFilePicker('*.XML', this.Settings.iProfileDir, async (aRes) => {
                 if (!aRes.success) {
                     return;
                 }
 
                 // Remember that folder
-                this.iProfileDir = aRes.file.substr(0,aRes.file.lastIndexOf("\\") + 1);
-                
+                this.Settings.iProfileDir = aRes.file.substr(0, aRes.file.lastIndexOf("\\") + 1);
+
                 let vp = new VirpilProfile(aRes.file);
-                this.iVirpilProfiles.push(vp);
+                this.Settings.iVirpilProfiles.push(vp);
                 await vp.LoadProfile();
                 this.AddProfile(vp);
                 // Save our settings since we changed them
-                this.Save();
+                this.Settings.Save();
 
             }, false);
-        });      
+        });
 
 
         this.iButtonVirpilProfileClear.addEventListener('click', () => {
-            this.iVirpilProfiles.length = 0;
+            this.Settings.iVirpilProfiles.length = 0;
             this.iListVirpilProfile.innerHTML = "";
             // Save our settings since we changed them
-            this.Save();
+            this.Settings.Save();
         });
 
 
         this.iButtonCreateRefCard.addEventListener('click', () => {
             // Just show our reference card then
-            this.iWindowMW5.restore();
+            this.iAppWindow.iWindowMW5.restore();
         });
 
         //maximizeButton.addEventListener('click', () => {
@@ -93,7 +86,7 @@ export class Settings {
         //    this.maximized = !this.maximized;
         //});        
 
- 
+
 
         window.addEventListener('load', () => {
             //console.log("page is loaded")
@@ -104,14 +97,17 @@ export class Settings {
 
 
         //this.Construct();
-        
+
+        this.ConstructVirpilProfiles();
 
     }
 
+    get Settings() { return this.iAppWindow.iSettings; }
+
     /**
-     * Add the given profile to our list box.
-     * @param aProfile
-     */
+        * Add the given profile to our list box.
+        * @param aProfile
+        */
     AddProfile(aProfile: VirpilProfile) {
         // Do not use innerHTML += as it will break previous items onclick binding
         this.iListVirpilProfile.insertAdjacentHTML("beforeend",
@@ -126,27 +122,12 @@ export class Settings {
         document.getElementById(aProfile.iKey).onclick = () => { /* Could do something, display that profile properties */ };
     }
 
-    /**
-     * Define path to persisted settings JSON file.
-     */
-    static get FileName(): string { return `${overwolf.io.paths.localAppData}\\Slions\\GameRefCard\\Settings.json`; }
-
-
-
-
-    /**
-     * Persist our settings into a file
-     */
-    Save() {
-        const serializer = new JsonSerializer();
-        Utils.WriteFile(Settings.FileName, JSON.stringify(serializer.serialize(this)));
-    }
 
     /**
      * Load Virpil profiles and populate our list box after internalizing our settings.
      */
     async ConstructVirpilProfiles() {
-        for (const vp of this.iVirpilProfiles) {
+        for (const vp of this.Settings.iVirpilProfiles) {
             await vp.LoadProfile();
             this.AddProfile(vp);
         }
@@ -154,11 +135,11 @@ export class Settings {
 
 
     /**
-     * Asynchronous constructor
-     */
+        * Asynchronous constructor
+        */
     async Construct() {
 
-        let vpcAlphaLeft = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-left-03EB-9901.XML';        
+        let vpcAlphaLeft = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-left-03EB-9901.XML';
         await this.LoadVirpilProfile(vpcAlphaLeft);
 
         let vpcAlphaRight = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Virpil\\Profiles\\alpha-warbrd-right-03EB-9902.XML';
@@ -183,19 +164,19 @@ export class Settings {
 
 
     /**
-     * 
-     * 
-     * @param aChars
-     * @param aIndex
-     * @param aReplacement
-     */
+        * 
+        * 
+        * @param aChars
+        * @param aIndex
+        * @param aReplacement
+        */
     ReplaceMatchingBrackets(aChars: string[], aIndex: number, aBeginRep: string, aEndRep: string) {
 
         let level = 0;
 
         aChars[aIndex] = aBeginRep;
 
-        for (let i = aIndex+1; i < aChars.length; i++) {
+        for (let i = aIndex + 1; i < aChars.length; i++) {
             if (aChars[i] == ')' && level == 0) {
                 aChars[i] = aEndRep;
                 return;
@@ -209,10 +190,10 @@ export class Settings {
     }
 
     /**
-     * Convert weird action key map format into JSON so that we can parse it.
-     * 
-     * @param aData
-     */
+        * Convert weird action key map format into JSON so that we can parse it.
+        * 
+        * @param aData
+        */
     ParseActionKeyMap(aData: string) {
 
         // Add quote everywhere        
@@ -221,7 +202,7 @@ export class Settings {
         aData = aData.replace(/([\(,=])(\w)([\),=])/g, "$1\"$2\"$3");
         aData = aData.replace(/(=)(\w+)(\))/g, "$1\"$2\"$3");
         aData = aData.replace(/(=)(\w+)(,)/g, "$1\"$2\"$3");
-        
+
         //aData = aData.replace(/([\(,=])(\w+)([\(,=])/g, "$1\"$2\"$3");
 
         let chars = aData.split('');
@@ -256,10 +237,10 @@ export class Settings {
     }
 
     /**
-     * Load our action key map from MW5 GameUserSettings.ini
-     * 
-     * @param aFileName
-     */
+        * Load our action key map from MW5 GameUserSettings.ini
+        * 
+        * @param aFileName
+        */
     public async LoadMechWarriorGameUserSettings(aFileName: string) {
         // InputTypeToActionKeyMap
 
@@ -289,7 +270,7 @@ export class Settings {
                 lineData = lineData.replace(/([^:,\}\{]+)/g, "\"$1\""); // Then add them back
                 Log.d(lineData);
                 // 
-                let axis = JSON.parse(lineData);                
+                let axis = JSON.parse(lineData);
                 // Check if that key is on any of our devices
                 this.iDevices.forEach(d => {
                     if (d.iLabels.hasOwnProperty(axis.Key)) {
@@ -323,7 +304,7 @@ export class Settings {
                             rci.offsetX += d.iContext.measureText(prints).width;
                             rci.labelCount++;
                         }
-                    });                    
+                    });
                 })
             }
         })
@@ -331,14 +312,14 @@ export class Settings {
 
 
     /**
-     * Parse MW5 joystick remap file.
-     */
+        * Parse MW5 joystick remap file.
+        */
     public async LoadMechWarriorRemap(aFileName: string) {
         //let dir = `${overwolf.io.paths.localAppData}\\Slions\\JoyMap\\MyFile`;
 
         // VIRPIL Windows axes to MW5 InAxis map
         const KAxesMap = {
-            'HOTAS_XAxis' : 'X',
+            'HOTAS_XAxis': 'X',
             'HOTAS_YAxis': 'Y',
             'HOTAS_ZAxis': 'Z',
             'GenericUSBController_Axis3': 'rX',
@@ -449,7 +430,7 @@ export class Settings {
                         Log.d("Found remap device");
                         return false;
                     }
-                    
+
                     return true;
                 });
 
@@ -465,11 +446,11 @@ export class Settings {
     }
 
     /**
-     * Load VPC profile from specified XML file.
-     */
+        * Load VPC profile from specified XML file.
+        */
     public async LoadVirpilProfile(aFileName: string) {
         //let dir = `${overwolf.io.paths.localAppData}\\Slions\\JoyMap\\MyFile`;
-        
+
         let result = await Utils.ReadFile(aFileName);
         Log.d(result);
         const options = {
@@ -520,12 +501,12 @@ export class Settings {
 
         // Create our hardware image and wait for it to load
         let img = await Utils.LoadImage(hwd.image);
-        
+
         canvas.width = img.width;
         canvas.height = img.height;
         var ctx = canvas.getContext('2d');
         device.iContext = ctx;
-        ctx.drawImage(img, 0, 0);            
+        ctx.drawImage(img, 0, 0);
         ctx.font = `${this.iFontSizeInPixels}px Arial`;
         ctx.fillStyle = "#000000";
 
@@ -537,7 +518,7 @@ export class Settings {
             if (hardwareButton) {
                 // If we have a valid hardware button
                 let btnKey = 'Joy_' + hardwareButton;
-                    
+
                 //Log.d(row.iCOL1);
                 //Log.d(btnKey);
                 let rci = hwd[btnKey];
@@ -568,7 +549,7 @@ export class Settings {
 
             // Make sure that axis is valid by checking if it has a valid port
             let hwPort = parseInt(row.iCOL5);
-           
+
             // Make sure that hardware button is valid
             if (hwPort) {
                 // If we have a valid axis
@@ -585,7 +566,7 @@ export class Settings {
                 rci.labelCount = 0;
             }
         });
- 
+
         // Add our canvas to our document
         this.iMain.appendChild(canvas);
 
@@ -610,22 +591,6 @@ export class Settings {
 
 
 
-/**
- * Try load persisted settings if any.
- */
-async function LoadSettings(): Promise<Settings> {
-       
-    let res = await Utils.ReadFile(Settings.FileName);
-    if (res.success) {
-        const serializer = new JsonSerializer();
-        let settings: Settings = serializer.deserializeObject(res.content, Settings);
-        settings.ConstructVirpilProfiles();
-        return settings;
-    }
+new Settings();
 
-    return new Settings();
-}
     
-
-
-LoadSettings();
