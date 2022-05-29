@@ -26,8 +26,14 @@ export class Settings extends Base {
     iButtonCreateRefCard = document.getElementById('iButtonCreateRefCard');
     iButtonVirpilProfileAdd = document.getElementById('iButtonVirpilProfileAdd');
     iButtonVirpilProfileClear = document.getElementById('iButtonVirpilProfileClear');
-    iListVirpilProfile = document.getElementById('iListVirpilProfile');  
+    iListVirpilProfile = document.getElementById('iListVirpilProfile');
+    iTextMechWarriorFiveHotasRemap = document.getElementById('iTextMechWarriorFiveHotasRemap');
+    iButtonMechWarriorFiveHotasRemap = document.getElementById('iButtonMechWarriorFiveHotasRemap');
+    iTextMechWarriorFiveUserSettings = document.getElementById('iTextMechWarriorFiveUserSettings');
+    iButtonMechWarriorFiveUserSettings = document.getElementById('iButtonMechWarriorFiveUserSettings');
 
+
+    
     iDevices = new Array<Device>();
     iFontSizeInPixels = 46;
     iActionKeyMap: any;
@@ -43,14 +49,14 @@ export class Settings extends Base {
         this.currWindow = new OWWindow(WindowName.Settings);
 
         this.iButtonVirpilProfileAdd.addEventListener('click', () => {
-            //overwolf.io.paths
+            // Select an XML profile file
             overwolf.utils.openFilePicker('*.XML', this.Settings.iProfileDir, async (aRes) => {
                 if (!aRes.success) {
                     return;
                 }
 
                 // Remember that folder
-                this.Settings.iProfileDir = aRes.file.substr(0, aRes.file.lastIndexOf("\\") + 1);
+                this.Settings.iProfileDir = Utils.Folder(aRes.file);
 
                 let vp = new VirpilProfile(aRes.file);
                 this.Settings.iVirpilProfiles.push(vp);
@@ -94,6 +100,47 @@ export class Settings extends Base {
             //Log.obj("Devices: ", this.iDevices);
             //this.LoadRemap(mwRemap);
         })
+
+
+        this.iTextMechWarriorFiveHotasRemap.innerText = this.Settings.iMechWarriorFiveHotasRemap
+        this.iButtonMechWarriorFiveHotasRemap.addEventListener('click', () => {
+            overwolf.utils.openFilePicker('*.remap;*.Remap', Utils.Folder(this.Settings.iMechWarriorFiveHotasRemap), async (aRes) => {
+                if (!aRes.success) {
+                    return;
+                }
+
+                // Remember that folder
+                //this.Settings.iProfileDir = aRes.file.substr(0, aRes.file.lastIndexOf("\\") + 1);
+                this.Settings.iMechWarriorFiveHotasRemap = aRes.file;
+
+                // Save our settings since we changed them
+                this.Settings.Save();
+
+                //
+                this.iTextMechWarriorFiveHotasRemap.innerText = this.Settings.iMechWarriorFiveHotasRemap
+
+            }, false);
+        });
+
+        this.iTextMechWarriorFiveUserSettings.innerText = this.Settings.iMechWarriorFiveUserSettings;
+        this.iButtonMechWarriorFiveUserSettings.addEventListener('click', () => {
+            overwolf.utils.openFilePicker('*.ini', Utils.Folder(this.Settings.iMechWarriorFiveUserSettings), async (aRes) => {
+                if (!aRes.success) {
+                    return;
+                }
+
+                // Remember that folder
+                //this.Settings.iProfileDir = aRes.file.substr(0, aRes.file.lastIndexOf("\\") + 1);
+                this.Settings.iMechWarriorFiveUserSettings = aRes.file;
+
+                // Save our settings since we changed them
+                this.Settings.Save();
+                //
+                this.iTextMechWarriorFiveUserSettings.innerText = this.Settings.iMechWarriorFiveUserSettings;
+
+            }, false);
+        });
+
 
 
         this.Construct();

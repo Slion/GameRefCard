@@ -19,7 +19,7 @@ export class Settings {
     iMechWarriorFiveHotasRemap: string = `${overwolf.io.paths.localAppData}\\MW5Mercs\\Saved\\SavedHOTAS\\HOTASMappings.Remap`;
 
     @JsonProperty()
-    iMechWarriorFiveUserSettingsIni: string = `${overwolf.io.paths.localAppData}\\MW5Mercs\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini`;
+    iMechWarriorFiveUserSettings: string = `${overwolf.io.paths.localAppData}\\MW5Mercs\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini`;
 
     /**
     * Define path to persisted settings JSON file.

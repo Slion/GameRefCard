@@ -95,7 +95,7 @@ export class MW5 extends Base {
         await this.LoadMechWarriorRemap(this.Settings.iMechWarriorFiveHotasRemap);
 
         //let mwUserSettings = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\GameUserSettings.ini';
-        await this.LoadMechWarriorGameUserSettings(this.Settings.iMechWarriorFiveUserSettingsIni);
+        await this.LoadMechWarriorGameUserSettings(this.Settings.iMechWarriorFiveUserSettings);
 
     }
 

@@ -127,4 +127,12 @@ export class Utils {
         return result;
     }
 
+    /**
+     * 
+     * @param aFileName
+     */
+    static Folder(aFileName: string) : string {
+        return aFileName.substr(0, aFileName.lastIndexOf("\\") + 1);
+    }
+
 }
