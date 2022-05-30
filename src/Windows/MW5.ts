@@ -484,21 +484,22 @@ export class MW5 extends Base {
         };
 
         // Link all labels to anchors
-        for (let i = 1; i < 65; i++) {
-            try {
-                let line = new LeaderLine(
-                    document.getElementById(aId).querySelector(`#label-button-${i}`),
-                    document.getElementById(aId).querySelector(`#anchor-button-${i}`),
-                    options
-                );
+        // Get our refcard content
+        let content = document.getElementById(aId);
+        // Get all our ref card label groups
+        let lgs = content.getElementsByClassName(`label-group`);
+        //console.log(lgs);  
 
-                Log.d("Linked label to anchor");
-
-                this.iLines.push(line);
-            }
-            catch (ex) {
-                Log.d(ex.toString());
-            }
+        // For each label group in our refcard
+        for (let lg of lgs) {
+            //console.log(lg);
+            // Workouk the anchor id for this label group
+            let anchorId = lg.id.replace('label-group-', 'anchor-');
+            //anchorId = anchorId.replace('label-','anchor-');
+            // Create our link object 
+            let line = new LeaderLine(lg, content.querySelector(`#${anchorId}`), options);
+            // Keep track of it
+            this.iLines.push(line);
         }
     }
 
@@ -531,7 +532,7 @@ export class MW5 extends Base {
             return;
         }
 
-        let contentId = `${aProfile.iProductId} ${aProfile.iVendorId}`;
+        let contentId = `id-${aProfile.iProductId}-${aProfile.iVendorId}`;
 
         // Replace ID before parsing XML so that we can uniquely target each controller
         let html = parse((await frag.text()).replace("id=\"content\"", `id=\"${contentId}\"`));
@@ -556,6 +557,8 @@ export class MW5 extends Base {
         this.LinkLabelsToAnchors(contentId);
 
 
+        let refCard = this.iDivInsert.querySelector(`#${contentId}`);
+
         //this.iMain.appendChild(content);
 
 
@@ -577,9 +580,12 @@ export class MW5 extends Base {
         let vid = xml.VIRPIL.PROFILE.GroupBox_ProfileUSB.dev_vid.iData;
         let pid = xml.VIRPIL.PROFILE.GroupBox_ProfileUSB.dev_pid.iData;
 
-        Log.d(`Base: ${base}`);
-        Log.d(`Grip: ${grip}`);
-        Log.d(`Side: ${side}`);
+        Log.d(`Base: -${base}-`);
+        Log.d(`Grip: -${grip}-`);
+        Log.d(`Side: -${side}-`);
+        Log.d(`VID: -${vid}-`);
+        Log.d(`PID: -${pid}-`);
+
 
         // Build hardware key
         let key = `${base}.${grip}.${side}`;
@@ -631,6 +637,11 @@ export class MW5 extends Base {
                 // COL0 is the logical button
                 let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
                 logicalMap[logicalButton] = rci;
+
+                let label = refCard.querySelector(`#label-button-${hardwareButton}`);
+                if (label) {
+                    label.innerHTML = hardwareButton.toString();
+                }
 
                 // Display our logical button codes
                 //ctx.fillText(logicalButton.toString(), rci.x, rci.y + this.iFontSizeInPixels);

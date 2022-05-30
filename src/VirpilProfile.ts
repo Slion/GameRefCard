@@ -47,9 +47,12 @@ export class VirpilProfile {
         this.iVendorId = this.iXml.VIRPIL.PROFILE.GroupBox_ProfileUSB.dev_vid.iData;
         this.iProductId = this.iXml.VIRPIL.PROFILE.GroupBox_ProfileUSB.dev_pid.iData;
 
-        Log.d(`Base: ${this.iBase}`);
-        Log.d(`Grip: ${this.iGrip}`);
-        Log.d(`Side: ${this.iSide}`);
+        Log.d(`Base: -${this.iBase}-`);
+        Log.d(`Grip: -${this.iGrip}-`);
+        Log.d(`Side: -${this.iSide}-`);
+        Log.d(`VID: -${this.iVendorId}-`);
+        Log.d(`PID: -${this.iProductId}-`);
+
 
         // Build hardware key
         this.iKey = `${this.iBase}.${this.iGrip}.${this.iSide}`;

@@ -18,7 +18,6 @@
     <script src="../node_modules/leader-line2/leader-line.min.js"></script>
     <!--Runtime-->
     <script src="../js/leader-line.min.js"></script>
-    <script src="../js/iframeResizer.contentWindow.min.js"></script>   
 
     <script id="script">
 
@@ -35,20 +34,23 @@
             };
 
             // Link all labels to anchors
-            for (let i = 1; i < 65; i++) {
-                try {
-                    let line = new LeaderLine(
-                        document.getElementById(`label-button-${i}`),
-                        document.getElementById(`anchor-button-${i}`),
-                        options
-                    );
+            // Get our refcard content
+            let content = document.getElementById('content');  
+            // Get all our ref card label groups
+            let lgs = content.getElementsByClassName(`label-group`);
+            //console.log(lgs);  
 
-                    lines.push(line);
-                }
-                catch (ex) {
-
-                }
-            }
+            // For each label group in our refcard
+            for (let lg of lgs) {
+              //console.log(lg);
+              // Workouk the anchor id for this label group
+              let anchorId = lg.id.replace('label-group-','anchor-');
+              //anchorId = anchorId.replace('label-','anchor-');
+              // Create our link object 
+              let line = new LeaderLine(lg,content.querySelector(`#${anchorId}`),options);
+              // Keep track of it
+              lines.push(line);
+            }  
         }
 
         window.addEventListener('load', LinkLabelsToAnchors);
@@ -82,7 +84,7 @@
             width: 100%;
             height: auto;
             /*background-color: white;*/
-            outline: 1px solid lime;
+            outline: 1px solid BlueViolet;
         }
 
         .anchor {
@@ -90,24 +92,41 @@
             outline: 1px solid lime;
         }
 
+
         .label {
-            position: absolute;
-            outline: 1px solid lime;
+            position: relative;
+            outline: 1px solid BlueViolet;
             /* Padding is inside the ouline */
-            padding: 1%;
+            padding: 5px;
             /* Margin is outside the ouline */
             /* margin: 1%; */
         }
 
-        #anchor-button-6 {
+        .label-group {
+            position: absolute;
+            outline: 3px solid BlueViolet;
+        }
+
+        #anchor-red-button {
             left: 58%;
             top: 18%;
         }
 
-        #label-button-6 {
-            left: 75%;
+        #label-group-red-button {
+            left: 70%;
             top: 5%;
-            width: 20%;
+            width: 22%;
+        }
+
+        #anchor-mini-joystick {
+            left: 66%;
+            top: 28%;
+        }
+
+        #label-group-mini-joystick {          
+          left: 76%;
+          top: 15%;
+          width: 22%;
         }
     </style>
 
@@ -133,12 +152,19 @@
   <main>
 
     <div id="content" class="container">
-
-        <div id="label-button-6" class="label">My Label</div>
+    
         <img class="background" src="img/VPC-Alpha-Left-Front-super.png" />
-        <img id="anchor-button-6" class="anchor"/>
-    </div>
-
+        <div id="label-group-red-button" class="label-group">
+          <div id="label-button-6" class="label">Red button</div>        
+        </div>
+        <div id="anchor-red-button" class="anchor"></div>    
+        <div id="label-group-mini-joystick" class="label-group">
+          <div id="label-axis-rx" class="label">Mini-joystick RX</div>        
+          <div id="label-axis-ry" class="label">Mini-joystick RY</div>        
+          <div id="label-button-5" class="label">Mini-joystick button</div>        
+        </div>
+        <div id="anchor-mini-joystick" class="anchor"></div>    
+  </div>
   </main>
 
   <!--<div>Stuff after</div>-->
