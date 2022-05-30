@@ -93,13 +93,40 @@
         }
 
 
-        .label {
+        div.label {
             position: relative;
             outline: 1px solid BlueViolet;
             /* Padding is inside the ouline */
-            padding: 5px;
+            /* padding: 5px; */
             /* Margin is outside the ouline */
             /* margin: 1%; */
+
+            /* For it to work with multiple line of text */
+            display: flex;
+            align-items:center;
+        }
+
+        span.label {
+            position: relative;
+            /* vertical-align: middle; */
+            /* Padding is inside the ouline */
+            padding: 3px 3px 3px 10px;
+            /* Margin is outside the ouline */
+            /* margin: 1%; */
+
+            border-left: 2px solid BlueViolet;
+
+            height: 100%;
+        }
+
+
+        img.label {
+          padding: 0px;
+          margin: 0px;
+          vertical-align:middle;
+          width: 24px;
+          /* border-right: 2px solid BlueViolet; */
+          /* outline: 1px solid BlueViolet; */
         }
 
         .label-group {
@@ -155,13 +182,13 @@
     
         <img class="background" src="img/VPC-Alpha-Left-Front-super.png" />
         <div id="label-group-red-button" class="label-group">
-          <div id="label-button-6" class="label">Red button</div>        
+          <div class="label"><img src="img/window_close.svg" class="label" /><span id="label-button-6" class="label">Red button</span></div>        
         </div>
         <div id="anchor-red-button" class="anchor"></div>    
         <div id="label-group-mini-joystick" class="label-group">
-          <div id="VPC_Stick_1_4" class="label">Mini-joystick RX</div>        
-          <div id="VPC_Stick_1_3" class="label">Mini-joystick RY</div>        
-          <div id="label-button-5" class="label">Mini-joystick button</div>        
+          <div class="label"><img src="img/window_close.svg" class="label" /><span id="VPC_Stick_1_4" class="label">Mini-joystick RX</span></div>
+          <div class="label"><img src="img/window_close.svg" class="label" /><span id="VPC_Stick_1_3" class="label">Mini-joystick RY</span></div>        
+          <div class="label"><img src="img/window_close.svg" class="label" /><span id="label-button-5" class="label">Mini-joystick button long text overflow even more text</span></div>        
         </div>
         <div id="anchor-mini-joystick" class="anchor"></div>    
   </div>
