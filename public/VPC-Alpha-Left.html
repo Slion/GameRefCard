@@ -110,7 +110,7 @@
             position: relative;
             /* vertical-align: middle; */
             /* Padding is inside the ouline */
-            padding: 3px 3px 3px 10px;
+            padding: 6px 6px 6px 10px;
             /* Margin is outside the ouline */
             /* margin: 1%; */
 
@@ -121,7 +121,7 @@
 
 
         img.label {
-          padding: 0px;
+          padding: 2px;
           margin: 0px;
           vertical-align:middle;
           width: 24px;
@@ -140,8 +140,8 @@
         }
 
         #label-group-red-button {
-            left: 70%;
-            top: 5%;
+            left: 68%;
+            top: 2%;
             width: 22%;
         }
 
@@ -152,9 +152,65 @@
 
         #label-group-mini-joystick {          
           left: 76%;
-          top: 15%;
+          top: 10%;
           width: 22%;
         }
+
+        #anchor-trigger-flip {
+            left: 62%;
+            top: 39%;
+        }
+  
+        #label-group-trigger-flip {
+          left: 76%;
+          top: 30%;
+          width: 22%;
+        }
+
+        #anchor-trigger {
+            left: 58%;
+            top: 40%;
+        }
+  
+        #label-group-trigger {
+          left: 76%;
+          top: 45%;
+          width: 22%;
+        }
+
+        #anchor-hat-thumb {
+            left: 57%;
+            top: 49%;
+        }
+  
+        #label-group-hat-thumb {
+          left: 76%;
+          top: 58%;
+          width: 22%;
+        }
+
+        #anchor-axis-lever {
+            left: 58%;
+            top: 62%;
+        }
+  
+        #label-group-axis-lever {
+          left: 76%;
+          top: 80%;
+          width: 22%;
+        }
+
+        #anchor-button-pinky {
+            left: 52%;
+            top: 67%;
+        }
+  
+        #label-group-button-pinky {
+          left: 76%;
+          top: 92%;
+          width: 22%;
+        }
+
     </style>
 
 </head>
@@ -181,16 +237,51 @@
     <div id="content" class="container">
     
         <img class="background" src="img/VPC-Alpha-Left-Front-super.png" />
+        
         <div id="label-group-red-button" class="label-group">
-          <div class="label"><img src="img/window_close.svg" class="label" /><span id="label-button-6" class="label">Red button</span></div>        
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-6" class="label">Red button</span></div>        
         </div>
         <div id="anchor-red-button" class="anchor"></div>    
+        
         <div id="label-group-mini-joystick" class="label-group">
-          <div class="label"><img src="img/window_close.svg" class="label" /><span id="VPC_Stick_1_4" class="label">Mini-joystick RX</span></div>
-          <div class="label"><img src="img/window_close.svg" class="label" /><span id="VPC_Stick_1_3" class="label">Mini-joystick RY</span></div>        
-          <div class="label"><img src="img/window_close.svg" class="label" /><span id="label-button-5" class="label">Mini-joystick button long text overflow even more text</span></div>        
+          <div class="label"><img src="img/icon-axis-x.svg" class="label" /><span id="VPC_Stick_1_4" class="label">Mini-joystick rX</span></div>
+          <div class="label"><img src="img/icon-axis-y.svg" class="label" /><span id="VPC_Stick_1_3" class="label">Mini-joystick rY</span></div>        
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-5" class="label">Mini-joystick button long text overflow even more text</span></div>        
         </div>
         <div id="anchor-mini-joystick" class="anchor"></div>    
+        
+        <div id="label-group-trigger-flip" class="label-group">
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-1" class="label">Flip trigger first stage</span></div>
+          <div class="label"><img src="img/icon-button-stage-second.svg" class="label" /><span id="label-button-2" class="label">Flip trigger second stage</span></div>        
+        </div>
+        <div id="anchor-trigger-flip" class="anchor"></div>
+
+        <div id="label-group-trigger" class="label-group">
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-3" class="label">Trigger first stage</span></div>
+          <div class="label"><img src="img/icon-button-stage-second.svg" class="label" /><span id="label-button-4" class="label">Trigger second stage</span></div>        
+        </div>
+        <div id="anchor-trigger" class="anchor"></div>    
+
+        <div id="label-group-hat-thumb" class="label-group">
+          <div class="label"><img src="img/icon-arrow-up.svg" class="label" /><span id="label-button-26" class="label">Thumb hat top</span></div>
+          <div class="label"><img src="img/icon-arrow-right.svg" class="label" /><span id="label-button-27" class="label">Thumb hat right</span></div>        
+          <div class="label"><img src="img/icon-arrow-down.svg" class="label" /><span id="label-button-28" class="label">Thumb hat down</span></div>        
+          <div class="label"><img src="img/icon-arrow-left.svg" class="label" /><span id="label-button-29" class="label">Thumb hat left</span></div>        
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-25" class="label">Thumb hat button</span></div>
+        </div>
+        <div id="anchor-hat-thumb" class="anchor"></div> 
+
+        <div id="label-group-axis-lever" class="label-group">
+          <div class="label"><img src="img/icon-axis-y.svg" class="label" /><span id="VPC_Stick_1_2" class="label">Lever axis</span></div>        
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-31" class="label">Lever button</span></div>        
+        </div>
+        <div id="anchor-axis-lever" class="anchor"></div>    
+
+        <div id="label-group-button-pinky" class="label-group">
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-30" class="label">Pinky button</span></div>        
+        </div>
+        <div id="anchor-button-pinky" class="anchor"></div>    
+
   </div>
   </main>
 
