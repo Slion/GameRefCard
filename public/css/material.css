@@ -52,6 +52,12 @@ html {
     /* Make them scalable according to viewport width */
     /*font-size: 1vw;*/
     font-size: 100%;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    
 }
 
 main {
@@ -60,4 +66,24 @@ main {
 
 .mdc-button--outlined .mdc-button__ripple {
     border-color: var(--mdc-theme-primary, #6200ee);
+}
+
+iframe {
+    visibility: visible;
+    position: relative;
+    width: 1px;
+    min-width:100%;
+    
+}
+
+.frame-container {
+    position: relative;
+    width:100%;
+    height:500px;
+}
+
+#iDivInsert {
+    overflow-y: auto;
+    height: 100%;
+    position: relative;
 }

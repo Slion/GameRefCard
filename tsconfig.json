@@ -9,6 +9,7 @@
     "strict": true,
     "noImplicitAny": false,
     "strictNullChecks": false,
+    "declaration": false,
     "types": [
       "@overwolf/types"
     ],
@@ -16,7 +17,8 @@
       "./src"
     ],
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "node_modules"

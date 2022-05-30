@@ -73,7 +73,18 @@ module.exports = env => ({
                         return "./css/[name].[ext]";
                     },
                 },
-
+                // Copy leader-line JS
+                //{
+                //    from: 'node_modules/leader-line2/**/*.js', to({ context, absoluteFilename }) {
+                //        return "./js/[name].[ext]";
+                //    },
+                //},
+                // Copy iframe-resizer JS
+                {
+                    from: 'node_modules/iframe-resizer/**/*.js', to({ context, absoluteFilename }) {
+                        return "./js/[name].[ext]";
+                    },
+                },
             ],
         }),
         new HtmlWebpackPlugin({

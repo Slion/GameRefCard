@@ -1,0 +1,151 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../../css/general.css" />
+    <link rel="stylesheet" href="../../css/header.css" />
+    <link rel="stylesheet" href="../../css/desktop.css" />
+    <link rel="stylesheet" href="../../css/modal.css" />
+    <!-- Shown on taskbar and default title bar which is enabled when transparent is false -->
+    <title>JoyMap</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--Design time-->
+    <script src="../node_modules/leader-line2/leader-line.min.js"></script>
+    <!--Runtime-->
+    <script src="../js/leader-line.min.js"></script>
+    <script src="../js/iframeResizer.contentWindow.min.js"></script>   
+
+    <script id="script">
+
+        let lines = new Array();
+
+        function LinkLabelsToAnchors() {
+
+            let options = {
+                color: 'BlueViolet',
+                //startPlug: 'disc',
+                endPlug: 'disc',
+                //path: 'grid'
+                path: 'straight'
+            };
+
+            // Link all labels to anchors
+            for (let i = 1; i < 65; i++) {
+                try {
+                    let line = new LeaderLine(
+                        document.getElementById(`label-button-${i}`),
+                        document.getElementById(`anchor-button-${i}`),
+                        options
+                    );
+
+                    lines.push(line);
+                }
+                catch (ex) {
+
+                }
+            }
+        }
+
+        window.addEventListener('load', LinkLabelsToAnchors);
+
+        /*Needed for resize to work in iframe*/
+        window.addEventListener('resize', function () {
+            for (const l of lines) {
+                l.position();
+            }
+        }, false);
+
+        //LinkLabelsToAnchors();
+
+    </script>
+
+
+
+    <style id="style">
+        main {
+          /* padding:10%; */
+        }
+
+        .container {
+            position: relative;
+            /*box-sizing: border-box;
+            overflow: visible;*/
+            /* padding: -10px; */
+        }
+
+        .background {
+            width: 100%;
+            height: auto;
+            /*background-color: white;*/
+            outline: 1px solid lime;
+        }
+
+        .anchor {
+            position: absolute;
+            outline: 1px solid lime;
+        }
+
+        .label {
+            position: absolute;
+            outline: 1px solid lime;
+            /* Padding is inside the ouline */
+            padding: 1%;
+            /* Margin is outside the ouline */
+            /* margin: 1%; */
+        }
+
+        #anchor-button-6 {
+            left: 58%;
+            top: 18%;
+        }
+
+        #label-button-6 {
+            left: 75%;
+            top: 5%;
+            width: 20%;
+        }
+    </style>
+
+</head>
+
+<body class="desktop">
+  <!-- -------------------------------- Header ------------------------------- -->
+
+  <!--<header id="header" class="app-header">
+    <img src="../../img/header_icon.svg" />
+    <h1>Sample App / desktop window</h1>
+    <div class="window-controls-group">
+      <button id="minimizeButton" class="window-control window-control-minimize" />
+      <button id="maximizeButton" class="window-control window-control-maximize" />
+      <button id="closeButton" class="window-control window-control-close" />
+    </div>
+  </header>-->
+
+  <!-- --------------------------------- Main -------------------------------- -->
+
+<!--<div>Stuff before</div>-->
+
+  <main>
+
+    <div id="content" class="container">
+
+        <div id="label-button-6" class="label">My Label</div>
+        <img class="background" src="img/VPC-Alpha-Left-Front-super.png" />
+        <img id="anchor-button-6" class="anchor"/>
+    </div>
+
+  </main>
+
+  <!--<div>Stuff after</div>-->
+
+</body>
+
+
+
+
+</html>

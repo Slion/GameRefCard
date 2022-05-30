@@ -29,6 +29,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="public\css\modal.css" />
+    <Content Include="public\css\VirpilAlphaLeft.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\icons\desktop-icon.ico" />
     <Content Include="public\icons\IconMouseNormal.png" />
     <Content Include="public\icons\IconMouseOver.png" />

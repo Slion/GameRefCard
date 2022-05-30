@@ -27,9 +27,14 @@
     "zip-a-folder": "^0.0.12"
   },
   "dependencies": {
+    "@types/iframe-resizer": "^3.5.9",
     "fast-xml-parser": "^4.0.7",
+    "iframe-resizer": "^4.3.2",
+    "jquery": "^3.6.0",
+    "leader-line2": "^1.0.7",
     "luxon": "^2.4.0",
     "material-components-web": "^14.0.0",
+    "node-html-parser": "^5.3.3",
     "typescript-json-serializer": "^4.2.0"
   }
 }
