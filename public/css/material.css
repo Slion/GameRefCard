@@ -87,3 +87,16 @@ iframe {
     height: 100%;
     position: relative;
 }
+
+.grc-switch-label {
+    display: inline-block;
+    position: relative;
+    padding-right: 20px;
+    vertical-align: middle;
+    /* Make sure the switches are aligned on the right */
+    width: 25%;
+}
+
+.mdc-switch {
+    vertical-align: middle;
+}

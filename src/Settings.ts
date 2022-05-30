@@ -21,6 +21,12 @@ export class Settings {
     @JsonProperty()
     iMechWarriorFiveUserSettings: string = `${overwolf.io.paths.localAppData}\\MW5Mercs\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini`;
 
+    @JsonProperty()
+    iShowHardwareIds: boolean = false;
+
+    @JsonProperty()
+    iShowLogicalIds: boolean = true;
+
     /**
     * Define path to persisted settings JSON file.
     */

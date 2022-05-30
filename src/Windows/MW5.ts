@@ -573,31 +573,15 @@ export class MW5 extends Base {
         //Log.d(`Logical ${xml.VIRPIL.BUTTONS_TABLE.ROW[0].iCOL0} mapped to hardware ${xml.VIRPIL.BUTTONS_TABLE.ROW[0].iCOL1}`);
 
 
-        let base = xml.VIRPIL.PROFILE.GroupBox_ProfileWizard.pfl_base.iData;
-        let grip = xml.VIRPIL.PROFILE.GroupBox_ProfileWizard.pfl_grip.iData;
-        let side = xml.VIRPIL.PROFILE.GroupBox_ProfileWizard.dev_side.iData;
-
-        let vid = xml.VIRPIL.PROFILE.GroupBox_ProfileUSB.dev_vid.iData;
-        let pid = xml.VIRPIL.PROFILE.GroupBox_ProfileUSB.dev_pid.iData;
-
-        Log.d(`Base: -${base}-`);
-        Log.d(`Grip: -${grip}-`);
-        Log.d(`Side: -${side}-`);
-        Log.d(`VID: -${vid}-`);
-        Log.d(`PID: -${pid}-`);
-
-
-        // Build hardware key
-        let key = `${base}.${grip}.${side}`;
 
         // Fetch our hardware definition
-        let hwd = KHardware[key]
+        let hwd = KHardware[aProfile.iKey];
         Log.d(hwd);
 
         let device = new Device();
         device.iTemplate = hwd;
-        device.iVendorID = vid;
-        device.iProductID = pid;
+        device.iVendorID = aProfile.iVendorId;
+        device.iProductID = aProfile.iProductId;
 
 
         // Prepare a canvas to draw our references
@@ -639,8 +623,21 @@ export class MW5 extends Base {
                 logicalMap[logicalButton] = rci;
 
                 let label = refCard.querySelector(`#label-button-${hardwareButton}`);
-                if (label) {
-                    label.innerHTML = hardwareButton.toString();
+
+                if (!label) {
+                    return;
+                }
+
+                // Remove default text
+                label.innerHTML = "";
+
+                // Add button id as needed
+                if (this.Settings.iShowHardwareIds && this.Settings.iShowLogicalIds) {
+                    label.innerHTML = `${hardwareButton} - ${logicalButton}  `;
+                } else if (this.Settings.iShowHardwareIds) {
+                    label.innerHTML = `${hardwareButton}  `;
+                } else if (this.Settings.iShowLogicalIds) {
+                    label.innerHTML = `${logicalButton}  `;
                 }
 
                 // Display our logical button codes
@@ -681,9 +678,30 @@ export class MW5 extends Base {
                 //let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
                 logicalMap[logicalAxisName] = rci;
 
+                // Add axis id as needed
+                let label = refCard.querySelector(`#${hwId}`);
+
+                if (!label) {
+                    return;
+                }
+
+                
+                if (this.Settings.iShowHardwareIds && this.Settings.iShowLogicalIds) {
+                    label.innerHTML = `${hwId} - ${logicalAxisName}  `;
+                } else if (this.Settings.iShowHardwareIds) {
+                    label.innerHTML = `${hwId}  `;
+                } else if (this.Settings.iShowLogicalIds) {
+                    label.innerHTML = `${logicalAxisName}  `;
+                }
+                
+
                 // Display our logical axis codes
-                ctx.fillText(logicalAxisName, rci.x, rci.y + this.iFontSizeInPixels);
-                rci.offsetX = 140;
+                //ctx.fillText(logicalAxisName, rci.x, rci.y + this.iFontSizeInPixels);
+
+                // Display our hardware axis id
+                ctx.fillText(hwId, rci.x, rci.y + this.iFontSizeInPixels);
+
+                rci.offsetX = 360;
                 rci.labelCount = 0;
             }
         });
