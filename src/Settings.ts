@@ -27,6 +27,9 @@ export class Settings {
     @JsonProperty()
     iShowLogicalIds: boolean = true;
 
+    @JsonProperty()
+    iShowDebugInfo: boolean = false;
+
     /**
     * Define path to persisted settings JSON file.
     */

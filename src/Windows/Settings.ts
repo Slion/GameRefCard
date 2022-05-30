@@ -32,11 +32,17 @@ export class Settings extends Base {
     iButtonMechWarriorFiveHotasRemap = document.getElementById('iButtonMechWarriorFiveHotasRemap');
     iTextMechWarriorFiveUserSettings = document.getElementById('iTextMechWarriorFiveUserSettings');
     iButtonMechWarriorFiveUserSettings = document.getElementById('iButtonMechWarriorFiveUserSettings');
+    //
     iButtonShowLogicalIds = <HTMLButtonElement>document.getElementById('iButtonShowLogicalIds');
     iSwitchShowLogicalIds: MDCSwitch = null;
+    //
     iButtonShowHardwareIds = <HTMLButtonElement>document.getElementById('iButtonShowHardwareIds');
     iSwitchShowHardwareIds: MDCSwitch = null;
+    //
+    iButtonShowDebugInfo = <HTMLButtonElement>document.getElementById('iButtonShowDebugInfo');
+    iSwitchShowDebugInfo: MDCSwitch = null;
 
+    
 
     
     iDevices = new Array<Device>();
@@ -60,6 +66,10 @@ export class Settings extends Base {
         this.iSwitchShowHardwareIds = new MDCSwitch(this.iButtonShowHardwareIds);
         this.iSwitchShowHardwareIds.selected = this.Settings.iShowHardwareIds;
         //this.iSwitchShowHardwareIds.listen("selected", () => { console.log("toggle"); this.Settings.iShowHardwareIds = this.iSwitchShowHardwareIds.selected; this.Settings.Save(); })
+        this.iSwitchShowDebugInfo = new MDCSwitch(this.iButtonShowDebugInfo);
+        this.iSwitchShowDebugInfo.selected = this.Settings.iShowDebugInfo;
+        //this.iSwitchShowHardwareIds.listen("selected", () => { console.log("toggle"); this.Settings.iShowHardwareIds = this.iSwitchShowHardwareIds.selected; this.Settings.Save(); })
+
 
         this.iButtonVirpilProfileAdd.addEventListener('click', () => {
             // Select an XML profile file
@@ -96,6 +106,7 @@ export class Settings extends Base {
             // See: https://github.com/material-components/material-components-web/issues/7628
             this.Settings.iShowLogicalIds = this.iSwitchShowLogicalIds.selected;
             this.Settings.iShowHardwareIds = this.iSwitchShowHardwareIds.selected;
+            this.Settings.iShowDebugInfo = this.iSwitchShowDebugInfo.selected;
             this.Settings.Save();
 
             // Just show our reference card then

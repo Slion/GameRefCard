@@ -295,6 +295,7 @@ export class MW5 extends Base {
                 let axis = JSON.parse(lineData);                
                 // Check if that key is on any of our devices
                 this.iDevices.forEach(d => {
+                    // TODO: remove canvas stuff
                     if (d.iLabels.hasOwnProperty(axis.Key)) {
                         let rci = d.iLabels[axis.Key]; // RCI = ref card item
                         let prints = Utils.FormatActionName(axis.AxisName, rci.labelCount);
@@ -303,6 +304,14 @@ export class MW5 extends Base {
                         rci.offsetX += d.iContext.measureText(prints).width;
                         rci.labelCount++;
                     }
+
+                    // HTML stuff
+                    if (d.iRemapToLabel.has(axis.Key)) {
+                        let label = d.iRemapToLabel.get(axis.Key);
+                        let prints = Utils.FormatActionName(axis.AxisName, 0);
+                        label.innerHTML += "  " + prints;
+                    }
+
                 });
             }
 
@@ -318,6 +327,7 @@ export class MW5 extends Base {
                 action.BoundedKeys.forEach(key => {
                     // Check if that key is on any of our devices
                     this.iDevices.forEach(d => {
+                        // TODO: remove canvas stuff
                         if (d.iLabels.hasOwnProperty(key.Key)) {
                             let rci = d.iLabels[key.Key];
                             let prints = Utils.FormatActionName(action.ActionName, rci.labelCount);
@@ -325,6 +335,13 @@ export class MW5 extends Base {
                             // Offset our text cursor
                             rci.offsetX += d.iContext.measureText(prints).width;
                             rci.labelCount++;
+                        }
+
+                        //HTML stuff
+                        if (d.iRemapToLabel.has(key.Key)) {
+                            let label = d.iRemapToLabel.get(key.Key);
+                            let prints = Utils.FormatActionName(action.ActionName, 0);
+                            label.innerHTML += "  " + prints;
                         }
                     });                    
                 })
@@ -335,6 +352,7 @@ export class MW5 extends Base {
 
     /**
      * Parse MW5 joystick remap file.
+     * That file maps logical device features to user settings ones.
      */
     public async LoadMechWarriorRemap(aFileName: string) {
         //let dir = `${overwolf.io.paths.localAppData}\\Slions\\JoyMap\\MyFile`;
@@ -395,17 +413,24 @@ export class MW5 extends Base {
                     let outButtons = split[1].split('=')[1];
                     Log.d("outButtons: " + outButtons);
                     Log.d("inButton: " + inButton);
-                    //
+                    // TODO: remove canvas stuff
                     let btn = device.iLogicalMap[inButton];
                     Log.obj("Button: ", btn);
-
                     btn.Key = outButtons;
-
                     // Build our label map
                     device.iLabels[outButtons] = btn;
-
                     // Use this to display the GameUserSettings button we map to
                     //device.iContext.fillText(outButtons, btn.x + btn.offsetX, btn.y + this.iFontSizeInPixels);
+
+                    //HTML stuff
+                    let label = device.iLogicalToLabel.get(inButton.toString());
+                    if (label) {
+                        device.iRemapToLabel.set(outButtons, label);
+                        if (this.Settings.iShowDebugInfo) {
+                            label.innerHTML += outButtons;
+                        }                        
+                    }
+
                 } else if (line.startsWith(KAxis)) {
                     let split = line.substr(KAxis.length).trim().split(',');
 
@@ -415,6 +440,7 @@ export class MW5 extends Base {
                     let outAxis = split[1].split('=')[1];
                     // Check if we know that axis
                     if (KAxesMap.hasOwnProperty(inAxis)) {
+                        // TODO: Remove canvas stuff
                         // That's an axis we know then, get the ref card item for it
                         let refCardItem = device.iLogicalMap[KAxesMap[inAxis]];
                         refCardItem.Key = outAxis;
@@ -422,6 +448,15 @@ export class MW5 extends Base {
                         device.iLabels[outAxis] = refCardItem;
                         // Use this to display the GameUserSettings axis we map to
                         //device.iContext.fillText(outAxis, refCardItem.x + refCardItem.offsetX, refCardItem.y + this.iFontSizeInPixels);
+
+                        //HTML stuff
+                        let label = device.iLogicalToLabel.get(KAxesMap[inAxis]);
+                        if (label) {
+                            device.iRemapToLabel.set(outAxis, label);
+                            if (this.Settings.iShowDebugInfo) {
+                                label.innerHTML += outAxis;
+                            }                            
+                        }
                     }
                 }
 
@@ -592,6 +627,7 @@ export class MW5 extends Base {
 
         // Object used to map logical axes and buttons to reference card items
         let logicalMap = new Object();
+        
         //logicalButtons[0] = 'Not used';      
 
         // Create our hardware image and wait for it to load
@@ -616,7 +652,7 @@ export class MW5 extends Base {
                     
                 //Log.d(row.iCOL1);
                 //Log.d(btnKey);
-                let rci = hwd[btnKey];
+                let rci = hwd[btnKey]; // Ref Card Item
                 // Work out the logical button this hardware button was mapped to and display it
                 // COL0 is the logical button
                 let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
@@ -627,6 +663,9 @@ export class MW5 extends Base {
                 if (!label) {
                     return;
                 }
+
+                // Keep track of the label for that button 
+                device.iLogicalToLabel.set(logicalButton.toString(), label);
 
                 // Remove default text
                 label.innerHTML = "";
@@ -684,6 +723,9 @@ export class MW5 extends Base {
                 if (!label) {
                     return;
                 }
+
+                // Keep track of the label for that axis
+                device.iLogicalToLabel.set(logicalAxisName, label);
 
                 
                 if (this.Settings.iShowHardwareIds && this.Settings.iShowLogicalIds) {
