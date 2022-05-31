@@ -90,10 +90,7 @@ export class MW5 extends Base {
 
             //this.LinkLabelsToAnchors();
 
-            for (const l of this.iLines) {
-                l.position();
-            }
-
+            this.UpdateLinksPositions();
 
         })
 
@@ -115,18 +112,13 @@ export class MW5 extends Base {
 
             //this.LinkLabelsToAnchors();
 
-            for (const l of this.iLines) {
-                l.position();
-            }
-
+            this.UpdateLinksPositions();
         })
 
         this.iDivInsert.addEventListener('scroll', () => {
             console.log("on scroll")
 
-            for (const l of this.iLines) {
-                l.position();
-            }
+            this.UpdateLinksPositions();
         })
 
 
@@ -135,9 +127,7 @@ export class MW5 extends Base {
         const config = { attributes: true, childList: true, subtree: true };
         // Callback function to execute when mutations are observed
         const callback = (mutationList, observer) => {
-            for (const l of this.iLines) {
-                l.position();
-            }
+            this.UpdateLinksPositions();
         };
         // Create an observer instance linked to the callback function
         const observer = new MutationObserver(callback);
