@@ -69,6 +69,14 @@
 
 
     <style id="style">
+
+        :root {
+          --grc-id-anchor-offset-x: 0.8;
+          --grc-id-label-group-width: 30%;
+          --grc-id-label-group-left: 65%;
+          --grc-id-label-group-left-left: 2%;
+        }
+
         main {
           /* padding:10%; */
         }
@@ -78,13 +86,21 @@
             /*box-sizing: border-box;
             overflow: visible;*/
             /* padding: -10px; */
+            outline: 1px solid Lime;
         }
 
-        .background {
-            width: 100%;
-            height: auto;
+        img.background {
+            position:relative;
+            display: block;
+            width: 50%;
+            height: auto;            
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 10%;
+            padding-bottom: 10%;
             /*background-color: white;*/
-            outline: 1px solid BlueViolet;
+            /* padding: 10% 10% 10% 10%; */            
+            /* outline: 1px solid BlueViolet; */
         }
 
         .anchor {
@@ -113,10 +129,11 @@
             padding: 6px 6px 6px 10px;
             /* Margin is outside the ouline */
             /* margin: 1%; */
-
+            /* Separation between icon and text */
             border-left: 2px solid BlueViolet;
-
             height: 100%;
+            /* Scallable font */
+            font-size: 1vw;
         }
 
 
@@ -124,7 +141,7 @@
           padding: 2px;
           margin: 0px;
           vertical-align:middle;
-          width: 24px;
+          width: 5%;
           /* border-right: 2px solid BlueViolet; */
           /* outline: 1px solid BlueViolet; */
         }
@@ -134,81 +151,139 @@
             outline: 3px solid BlueViolet;
         }
 
-        #anchor-red-button {
-            left: 58%;
-            top: 18%;
+        #anchor-button-red {
+            left: 54%;
+            /* left: 55%; */
+            top: 18.4%;
         }
 
-        #label-group-red-button {
-            left: 68%;
+        #label-group-button-red {
+            left: 60%;
             top: 2%;
-            width: 22%;
+            width: var(--grc-id-label-group-width);
         }
 
         #anchor-mini-joystick {
-            left: 66%;
+            left: 58%;
             top: 28%;
         }
 
         #label-group-mini-joystick {          
-          left: 76%;
-          top: 10%;
-          width: 22%;
-        }
-
-        #anchor-trigger-flip {
-            left: 62%;
-            top: 39%;
-        }
-  
-        #label-group-trigger-flip {
-          left: 76%;
-          top: 30%;
-          width: 22%;
+          left: var(--grc-id-label-group-left);
+          top: 9%;
+          width: var(--grc-id-label-group-width);
         }
 
         #anchor-trigger {
-            left: 58%;
-            top: 40%;
+            left: 54.5%;
+            top: 38%;
         }
   
         #label-group-trigger {
-          left: 76%;
-          top: 45%;
-          width: 22%;
+          left: var(--grc-id-label-group-left);
+          top: 26%;
+          width: var(--grc-id-label-group-width);
+        }
+
+        #anchor-trigger-flip {
+            left: 55%;
+            top: 43%;
+        }
+  
+        #label-group-trigger-flip {
+          left: var(--grc-id-label-group-left);
+          top: 38%;
+          width: var(--grc-id-label-group-width);
         }
 
         #anchor-hat-thumb {
-            left: 57%;
+            left: 54%;
             top: 49%;
         }
   
         #label-group-hat-thumb {
-          left: 76%;
-          top: 58%;
-          width: 22%;
+          left: var(--grc-id-label-group-left);
+          top: 50%;
+          width: var(--grc-id-label-group-width);
         }
 
         #anchor-axis-lever {
-            left: 58%;
+            left: 54%;
             top: 62%;
         }
   
         #label-group-axis-lever {
-          left: 76%;
-          top: 80%;
-          width: 22%;
+          left: var(--grc-id-label-group-left);
+          top: 78%;
+          width: var(--grc-id-label-group-width);
         }
 
         #anchor-button-pinky {
-            left: 52%;
+            left: 51%;
             top: 67%;
         }
   
         #label-group-button-pinky {
-          left: 76%;
+          left: var(--grc-id-label-group-left);
           top: 92%;
-          width: 22%;
+          width: var(--grc-id-label-group-width);
+        }
+
+      /* Left side */
+
+        #anchor-hat-two-way {
+            left: 52%;
+            top: 10%;
+        }
+  
+        #label-group-hat-two-way {
+          left: var(--grc-id-label-group-left-left);
+          top: 2%;
+          width: var(--grc-id-label-group-width);
+        }
+
+        #anchor-hat-top {
+            left: 49.7%;
+            top: 15.5%;
+        }
+  
+        #label-group-hat-top {
+          left: var(--grc-id-label-group-left-left);
+          top: 20%;
+          width: var(--grc-id-label-group-width);
+        }
+
+        #anchor-button-black {
+            left: 49.5%;
+            top: 24.5%;
+        }
+  
+        #label-group-button-black {
+          left: var(--grc-id-label-group-left-left);
+          top: 48%;
+          width: var(--grc-id-label-group-width);
+        }
+
+        #anchor-wheel {
+            left: 48%;
+            top: 36%;
+        }
+  
+        #label-group-wheel {
+          left: var(--grc-id-label-group-left-left);
+          top: 57%;
+          width: var(--grc-id-label-group-width);
+        }
+
+        #anchor-hat-middle {
+            left: 52%;
+            top: 30%;
+        }
+  
+        #label-group-hat-middle {
+          left: var(--grc-id-label-group-left-left);
+          top: 80%;
+          width: var(--grc-id-label-group-width);
         }
 
     </style>
@@ -236,17 +311,24 @@
 
     <div id="content" class="container">
     
-        <img class="background" src="img/VPC-Alpha-Left-Front-super.png" />
+        <img class="background" src="img/VPC-Alpha-Left-Front-super.png">        
+        </img>
         
-        <div id="label-group-red-button" class="label-group">
+        <!-- 
+          NOTE:
+          Mapping to hardware buttons is don using such ids: label-button-xx
+          Same for the axes label ids that should look like: VPC_Stick_x_x
+        -->
+
+        <div id="label-group-button-red" class="label-group">
           <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-6" class="label">Red button</span></div>        
         </div>
-        <div id="anchor-red-button" class="anchor"></div>    
+        <div id="anchor-button-red" class="anchor"></div>    
         
         <div id="label-group-mini-joystick" class="label-group">
           <div class="label"><img src="img/icon-axis-x.svg" class="label" /><span id="VPC_Stick_1_4" class="label">Mini-joystick rX</span></div>
           <div class="label"><img src="img/icon-axis-y.svg" class="label" /><span id="VPC_Stick_1_3" class="label">Mini-joystick rY</span></div>        
-          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-5" class="label">Mini-joystick button long text overflow even more text</span></div>        
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-5" class="label">Mini-joystick button long text</span></div>        
         </div>
         <div id="anchor-mini-joystick" class="anchor"></div>    
         
@@ -280,7 +362,47 @@
         <div id="label-group-button-pinky" class="label-group">
           <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-30" class="label">Pinky button</span></div>        
         </div>
-        <div id="anchor-button-pinky" class="anchor"></div>    
+        <div id="anchor-button-pinky" class="anchor"></div>  
+        
+        <!-- Left side -->
+
+        <div id="label-group-hat-two-way" class="label-group">
+          <div class="label"><img src="img/icon-arrow-up.svg" class="label" /><span id="label-button-19" class="label">2-way hat up</span></div>        
+          <div class="label"><img src="img/icon-arrow-down.svg" class="label" /><span id="label-button-20" class="label">2-way hat down</span></div>
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-18" class="label">2-way hat button</span></div>        
+        </div>
+        <div id="anchor-hat-two-way" class="anchor"></div>    
+
+        <div id="label-group-hat-top" class="label-group">
+          <div class="label"><img src="img/icon-arrow-up.svg" class="label" /><span id="label-button-8" class="label">Top hat top</span></div>
+          <div class="label"><img src="img/icon-arrow-right.svg" class="label" /><span id="label-button-9" class="label">Top hat right</span></div>        
+          <div class="label"><img src="img/icon-arrow-down.svg" class="label" /><span id="label-button-10" class="label">Top hat down</span></div>        
+          <div class="label"><img src="img/icon-arrow-left.svg" class="label" /><span id="label-button-11" class="label">Top hat left</span></div>        
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-7" class="label">Top hat button</span></div>
+        </div>
+        <div id="anchor-hat-top" class="anchor"></div>    
+
+        <div id="label-group-button-black" class="label-group">
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-12" class="label">Black button</span></div>        
+        </div>
+        <div id="anchor-button-black" class="anchor"></div>    
+
+        <div id="label-group-wheel" class="label-group">
+          <div class="label"><img src="img/icon-arrow-up.svg" class="label" /><span id="label-button-24" class="label">Wheel up</span></div>
+          <div class="label"><img src="img/icon-arrow-down.svg" class="label" /><span id="label-button-23" class="label">Wheel down</span></div>                  
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-22" class="label">Wheel first stage button</span></div>
+          <div class="label"><img src="img/icon-button-stage-second.svg" class="label" /><span id="label-button-21" class="label">Wheel second stage button</span></div>        
+        </div>
+        <div id="anchor-wheel" class="anchor"></div>
+
+        <div id="label-group-hat-middle" class="label-group">
+          <div class="label"><img src="img/icon-arrow-up.svg" class="label" /><span id="label-button-14" class="label">Middle hat top</span></div>
+          <div class="label"><img src="img/icon-arrow-right.svg" class="label" /><span id="label-button-15" class="label">Middle hat right</span></div>        
+          <div class="label"><img src="img/icon-arrow-down.svg" class="label" /><span id="label-button-16" class="label">Middle hat down</span></div>        
+          <div class="label"><img src="img/icon-arrow-left.svg" class="label" /><span id="label-button-17" class="label">Middle hat left</span></div>        
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-13" class="label">Middle hat button</span></div>
+        </div>
+        <div id="anchor-hat-middle" class="anchor"></div>
 
   </div>
   </main>
