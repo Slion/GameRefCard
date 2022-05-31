@@ -72,9 +72,9 @@
 
         :root {
           --grc-id-anchor-offset-x: 0.8;
-          --grc-id-label-group-width: 30%;
-          --grc-id-label-group-left: 65%;
-          --grc-id-label-group-left-left: 2%;
+          --grc-id-label-group-width: 33%;
+          --grc-id-label-group-offset-right: 65%;
+          --grc-id-label-group-offset-left: 2%;
         }
 
         main {
@@ -151,48 +151,48 @@
             outline: 3px solid BlueViolet;
         }
 
+        /* Right side */
         #anchor-button-red {
             left: 54%;
-            /* left: 55%; */
-            top: 18.4%;
+            top: 27%;
         }
 
         #label-group-button-red {
-            left: 60%;
+          left: var(--grc-id-label-group-offset-right);
             top: 2%;
             width: var(--grc-id-label-group-width);
         }
 
         #anchor-mini-joystick {
             left: 58%;
-            top: 28%;
+            top: 33%;
         }
 
         #label-group-mini-joystick {          
-          left: var(--grc-id-label-group-left);
-          top: 9%;
-          width: var(--grc-id-label-group-width);
-        }
-
-        #anchor-trigger {
-            left: 54.5%;
-            top: 38%;
-        }
-  
-        #label-group-trigger {
-          left: var(--grc-id-label-group-left);
-          top: 26%;
+          left: var(--grc-id-label-group-offset-right);
+          top: 12%;
           width: var(--grc-id-label-group-width);
         }
 
         #anchor-trigger-flip {
-            left: 55%;
-            top: 43%;
+            left: 56%;
+            top: 41.5%;
         }
   
         #label-group-trigger-flip {
-          left: var(--grc-id-label-group-left);
-          top: 38%;
+          left: var(--grc-id-label-group-offset-right);
+          top: 30%;
+          width: var(--grc-id-label-group-width);
+        }
+
+        #anchor-trigger {
+            left: 54%;
+            top: 43.2%;
+        }
+  
+        #label-group-trigger {
+          left: var(--grc-id-label-group-offset-right);
+          top: 44%;
           width: var(--grc-id-label-group-width);
         }
 
@@ -202,30 +202,30 @@
         }
   
         #label-group-hat-thumb {
-          left: var(--grc-id-label-group-left);
-          top: 50%;
+          left: var(--grc-id-label-group-offset-right);
+          top: 55%;
           width: var(--grc-id-label-group-width);
         }
 
         #anchor-axis-lever {
             left: 54%;
-            top: 62%;
+            top: 58%;
         }
   
         #label-group-axis-lever {
-          left: var(--grc-id-label-group-left);
+          left: var(--grc-id-label-group-offset-right);
           top: 78%;
           width: var(--grc-id-label-group-width);
         }
 
         #anchor-button-pinky {
             left: 51%;
-            top: 67%;
+            top: 63%;
         }
   
         #label-group-button-pinky {
-          left: var(--grc-id-label-group-left);
-          top: 92%;
+          left: var(--grc-id-label-group-offset-right);
+          top: 90%;
           width: var(--grc-id-label-group-width);
         }
 
@@ -233,58 +233,70 @@
 
         #anchor-hat-two-way {
             left: 52%;
-            top: 10%;
+            top: 20%;
         }
   
         #label-group-hat-two-way {
-          left: var(--grc-id-label-group-left-left);
+          left: var(--grc-id-label-group-offset-left);
           top: 2%;
           width: var(--grc-id-label-group-width);
         }
 
         #anchor-hat-top {
             left: 49.7%;
-            top: 15.5%;
+            top: 25.5%;
         }
   
         #label-group-hat-top {
-          left: var(--grc-id-label-group-left-left);
-          top: 20%;
+          left: var(--grc-id-label-group-offset-left);
+          top: 16%;
           width: var(--grc-id-label-group-width);
         }
 
         #anchor-button-black {
             left: 49.5%;
-            top: 24.5%;
+            top: 32%;
         }
   
         #label-group-button-black {
-          left: var(--grc-id-label-group-left-left);
-          top: 48%;
-          width: var(--grc-id-label-group-width);
-        }
-
-        #anchor-wheel {
-            left: 48%;
-            top: 36%;
-        }
-  
-        #label-group-wheel {
-          left: var(--grc-id-label-group-left-left);
-          top: 57%;
+          left: var(--grc-id-label-group-offset-left);
+          top: 37%;
           width: var(--grc-id-label-group-width);
         }
 
         #anchor-hat-middle {
-            left: 52%;
-            top: 30%;
+            left: 51%;
+            top: 34%;
         }
   
         #label-group-hat-middle {
-          left: var(--grc-id-label-group-left-left);
-          top: 80%;
+          left: var(--grc-id-label-group-offset-left);
+          top: 45%;
           width: var(--grc-id-label-group-width);
         }
+
+        #anchor-wheel {
+            left: 49%;
+            top: 40%;
+        }
+  
+        #label-group-wheel {
+          left: var(--grc-id-label-group-offset-left);
+          top: 66%;
+          width: var(--grc-id-label-group-width);
+        }
+
+        #anchor-joystick {
+            left: 45%;
+            top: 77%;
+        }
+  
+        #label-group-joystick {
+          left: var(--grc-id-label-group-offset-left);
+          top: 84%;
+          width: var(--grc-id-label-group-width);
+        }
+
 
     </style>
 
@@ -332,17 +344,17 @@
         </div>
         <div id="anchor-mini-joystick" class="anchor"></div>    
         
-        <div id="label-group-trigger-flip" class="label-group">
-          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-1" class="label">Flip trigger first stage</span></div>
-          <div class="label"><img src="img/icon-button-stage-second.svg" class="label" /><span id="label-button-2" class="label">Flip trigger second stage</span></div>        
-        </div>
-        <div id="anchor-trigger-flip" class="anchor"></div>
-
         <div id="label-group-trigger" class="label-group">
           <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-3" class="label">Trigger first stage</span></div>
           <div class="label"><img src="img/icon-button-stage-second.svg" class="label" /><span id="label-button-4" class="label">Trigger second stage</span></div>        
         </div>
         <div id="anchor-trigger" class="anchor"></div>    
+
+        <div id="label-group-trigger-flip" class="label-group">
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-1" class="label">Flip trigger first stage</span></div>
+          <div class="label"><img src="img/icon-button-stage-second.svg" class="label" /><span id="label-button-2" class="label">Flip trigger second stage</span></div>        
+        </div>
+        <div id="anchor-trigger-flip" class="anchor"></div>
 
         <div id="label-group-hat-thumb" class="label-group">
           <div class="label"><img src="img/icon-arrow-up.svg" class="label" /><span id="label-button-26" class="label">Thumb hat top</span></div>
@@ -387,14 +399,6 @@
         </div>
         <div id="anchor-button-black" class="anchor"></div>    
 
-        <div id="label-group-wheel" class="label-group">
-          <div class="label"><img src="img/icon-arrow-up.svg" class="label" /><span id="label-button-24" class="label">Wheel up</span></div>
-          <div class="label"><img src="img/icon-arrow-down.svg" class="label" /><span id="label-button-23" class="label">Wheel down</span></div>                  
-          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-22" class="label">Wheel first stage button</span></div>
-          <div class="label"><img src="img/icon-button-stage-second.svg" class="label" /><span id="label-button-21" class="label">Wheel second stage button</span></div>        
-        </div>
-        <div id="anchor-wheel" class="anchor"></div>
-
         <div id="label-group-hat-middle" class="label-group">
           <div class="label"><img src="img/icon-arrow-up.svg" class="label" /><span id="label-button-14" class="label">Middle hat top</span></div>
           <div class="label"><img src="img/icon-arrow-right.svg" class="label" /><span id="label-button-15" class="label">Middle hat right</span></div>        
@@ -403,6 +407,21 @@
           <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-13" class="label">Middle hat button</span></div>
         </div>
         <div id="anchor-hat-middle" class="anchor"></div>
+
+        <div id="label-group-wheel" class="label-group">
+          <div class="label"><img src="img/icon-arrow-up.svg" class="label" /><span id="label-button-24" class="label">Wheel up</span></div>
+          <div class="label"><img src="img/icon-arrow-down.svg" class="label" /><span id="label-button-23" class="label">Wheel down</span></div>                  
+          <div class="label"><img src="img/icon-button-stage-first.svg" class="label" /><span id="label-button-22" class="label">Wheel first stage button</span></div>
+          <div class="label"><img src="img/icon-button-stage-second.svg" class="label" /><span id="label-button-21" class="label">Wheel second stage button</span></div>        
+        </div>
+        <div id="anchor-wheel" class="anchor"></div>
+
+        <div id="label-group-joystick" class="label-group">
+          <div class="label"><img src="img/icon-axis-x.svg" class="label" /><span id="VPC_Sens_5_0" class="label">Joystick X</span></div>
+          <div class="label"><img src="img/icon-axis-y.svg" class="label" /><span id="VPC_Sens_6_0" class="label">Joystick Y</span></div>                  
+          <div class="label"><img src="img/icon-axis-twist.svg" class="label" /><span id="VPC_Stick_1_1" class="label">Joystick twist</span></div>
+        </div>
+        <div id="anchor-joystick" class="anchor"></div>
 
   </div>
   </main>
