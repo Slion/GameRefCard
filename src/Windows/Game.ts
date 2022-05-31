@@ -1,4 +1,3 @@
-import { AppWindow } from "../AppWindow";
 import { Device } from "../Device";
 import { Log } from "../Log";
 import { Utils } from "../Utils";

@@ -1,7 +1,6 @@
-import { AppWindow } from "../AppWindow";
 import { Device } from "../Device";
 import { Log } from "../Log";
-import { Base } from "./Base";
+import { Base } from "../Base";
 //import { LeaderLine } from '../leader-line.min.js';
 
 // We just could not find a way to include it otherwise
@@ -20,7 +19,11 @@ export class RefCard extends Base {
     iHead: HTMLElement = document.getElementsByTagName('head')[0];
     iDivInsert: HTMLElement = document.getElementById('iDivInsert');
 
-    // TODO: Make it not game specific
+    /**
+     * For the time being we will be using only one device per window.
+     * However we kept support for multiple devices as we may make this a settings option.
+     * TODO: Make it not game specific
+     */ 
     iDevices = new Array<Device>();
 
 

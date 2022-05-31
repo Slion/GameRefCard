@@ -1,15 +1,4 @@
 import { OWWindow } from "@overwolf/overwolf-api-ts";
-import { XMLParser } from "fast-xml-parser";
-import { Device } from "../Device";
-import { KHardware } from "../Hardware";
-import { Log } from "../Log";
-import { Utils } from "../Utils";
-import { VirpilProfile } from "../VirpilProfile";
-import { WindowName } from "../WindowName";
-import { Base } from "./Base";
-import $ from "jquery";
-import { iframeResizer } from "iframe-resizer";
-import parse from "node-html-parser";
 import { Virpil } from "./Virpil";
 
 

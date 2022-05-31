@@ -5,7 +5,6 @@ import { KHardware } from "../Hardware";
 import { Log } from "../Log";
 import { Utils } from "../Utils";
 import { VirpilProfile } from "../VirpilProfile";
-import { Base } from "./Base";
 import { Game } from "./Game";
 import { RefCard } from "./RefCard";
 

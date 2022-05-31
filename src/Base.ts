@@ -1,9 +1,9 @@
-import { AppWindow } from "../AppWindow";
-import { Log } from "../Log";
+import { AppWindow } from "./AppWindow";
+import { Log } from "./Log";
 
 /**
- * Base window class.
- * Provide functionality common to all our windows.
+ * Base class.
+ * Enable access to global shared data.
  */
 export class Base {
 
