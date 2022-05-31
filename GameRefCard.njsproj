@@ -65,6 +65,7 @@
     <Folder Include="public\icons\" />
     <Folder Include="public\img\" />
     <Folder Include="src\" />
+    <Folder Include="src\Games\" />
     <Folder Include="src\Windows\" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +74,9 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\consts.ts" />
     <TypeScriptCompile Include="src\Device.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Games\Adapter.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\Hardware.ts">
@@ -95,9 +99,18 @@
     <TypeScriptCompile Include="src\Windows\Base.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Windows\Game.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\Windows\JoyMap.ts" />
     <TypeScriptCompile Include="src\Windows\MW5.ts" />
+    <TypeScriptCompile Include="src\Windows\RefCard.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\Windows\Settings.ts" />
+    <TypeScriptCompile Include="src\Windows\Virpil.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

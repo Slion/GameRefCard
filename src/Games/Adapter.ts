@@ -1,19 +1,19 @@
 import { AppWindow } from "../AppWindow";
 import { Log } from "../Log";
+import { Base } from "../Windows/Base";
 
 /**
- * Base window class.
+ * Game adapter class.
  * Provide functionality common to all our windows.
  */
-export class Base {
+export class Adapter extends Base {
 
-    iAppWindow = <AppWindow>overwolf.windows.getMainWindow();
 
     constructor() {
+        super();
         Log.d("Window.Base constructor");
     }
 
-    get Settings() { return this.iAppWindow.iSettings; }
 
 }
 
