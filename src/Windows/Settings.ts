@@ -110,7 +110,22 @@ export class Settings extends Base {
             this.Settings.Save();
 
             // Just show our reference card then
-            this.iAppWindow.iWindowMW5.restore();
+            //this.iAppWindow.iWindowMW5.restore();
+            this.iAppWindow.iWindowJoyMap.restore();
+
+            // Create one window for each of our controllers
+            // Support only N controllers since Overwolf won't let you create more than one instance of a window
+            if (this.Settings.iVirpilProfiles.length > 0) {
+                this.iAppWindow.iWindowJoyMap.restore();
+            }
+
+            if (this.Settings.iVirpilProfiles.length > 1) {
+                this.iAppWindow.iWindowMW5.restore();
+            }
+
+            // TODO: Keyboard support
+
+
         });
 
         //maximizeButton.addEventListener('click', () => {

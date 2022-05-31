@@ -135,19 +135,7 @@ export class MW5 extends Base {
         observer.observe(this.iDivInsert, config);
 
 
-        //this.iDivInsert.addEventListener('scroll', this.UpdateLinksPositions, false);
-
-        function resizeIFrameToFitContent(iFrame) {
-
-            iFrame.width = iFrame.contentWindow.document.body.scrollWidth;
-            iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
-        }
-
-
-
-        this.Construct();
-        
-
+        this.Construct();       
     }
 
     /**
@@ -156,9 +144,12 @@ export class MW5 extends Base {
     async Construct() {
 
         // First load our Virpil profiles
-        for (const vp of this.Settings.iVirpilProfiles) {
-            await this.LoadVirpilProfile(vp);
-        }
+        //for (const vp of this.Settings.iVirpilProfiles) {
+        //    await this.LoadVirpilProfile(vp);
+        //}
+
+        // That window only loads our second profile
+        await this.LoadVirpilProfile(this.Settings.iVirpilProfiles[1]);
 
         // Set action name text color
         this.iDevices.forEach(d => {
