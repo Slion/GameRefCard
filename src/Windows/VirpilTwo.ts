@@ -10,7 +10,7 @@ import { Virpil } from "./Virpil";
 
 // A base class for the app's foreground windows.
 // Sets the modal and drag behaviors, which are shared across the desktop and in-game windows.
-export class JoyMap extends Virpil {
+export class VirpilTwo extends Virpil {
     currWindow: OWWindow;
     mainWindow: OWWindow;
     maximized: boolean = false;
@@ -128,7 +128,7 @@ export class JoyMap extends Virpil {
         //}
 
         // That window only loads our second profile
-        await this.LoadVirpilProfile(this.Settings.iVirpilProfiles[0]);
+        await this.LoadVirpilProfile(this.Settings.iVirpilProfiles[1]);
 
         // Set action name text color
         this.iDevices.forEach(d => {
@@ -160,4 +160,4 @@ export class JoyMap extends Virpil {
     }
 }
 
-new JoyMap();
+new VirpilTwo();

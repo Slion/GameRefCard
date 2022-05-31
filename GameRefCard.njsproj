@@ -53,8 +53,7 @@
     <Content Include="public\manifest.json" />
     <Content Include="README.md" />
     <Content Include="src\Windows\Application.html" />
-    <Content Include="src\Windows\JoyMap.html" />
-    <Content Include="src\Windows\MW5.html" />
+    <Content Include="src\Windows\RefCard.html" />
     <Content Include="src\Windows\Settings.html" />
     <Content Include="tsconfig.json" />
     <Content Include="webpack.config.js" />
@@ -100,8 +99,8 @@
     <TypeScriptCompile Include="src\Windows\Game.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\Windows\JoyMap.ts" />
-    <TypeScriptCompile Include="src\Windows\MW5.ts" />
+    <TypeScriptCompile Include="src\Windows\VirpilTwo.ts" />
+    <TypeScriptCompile Include="src\Windows\VirpilOne.ts" />
     <TypeScriptCompile Include="src\Windows\RefCard.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

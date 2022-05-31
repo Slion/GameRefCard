@@ -17,6 +17,7 @@ export class RefCard extends Base {
     iFontSizeInPixels = 46;
 
     iHead: HTMLElement = document.getElementsByTagName('head')[0];
+    iTitle: HTMLElement = document.getElementsByTagName('title')[0];
     iDivInsert: HTMLElement = document.getElementById('iDivInsert');
 
     /**

@@ -8,8 +8,8 @@ const
 module.exports = env => ({
     entry: {
         Application: './src/Windows/Application.ts',
-        JoyMap: './src/Windows/JoyMap.ts',
-        MW5: './src/Windows/MW5.ts',
+        VirpilOne: './src/Windows/VirpilOne.ts',
+        VirpilTwo: './src/Windows/VirpilTwo.ts',
         Settings: './src/Windows/Settings.ts',
     },
     devtool: 'inline-source-map',
@@ -93,14 +93,14 @@ module.exports = env => ({
             chunks: ['Application']
         }),
         new HtmlWebpackPlugin({
-            template: './src/Windows/JoyMap.html',
-            filename: path.resolve(__dirname, './dist/JoyMap.html'),
-            chunks: ['JoyMap']
+            template: './src/Windows/RefCard.html',
+            filename: path.resolve(__dirname, './dist/VirpilOne.html'),
+            chunks: ['VirpilOne']
         }),
         new HtmlWebpackPlugin({
-            template: './src/Windows/MW5.html',
-            filename: path.resolve(__dirname, './dist/MW5.html'),
-            chunks: ['MW5']
+            template: './src/Windows/RefCard.html',
+            filename: path.resolve(__dirname, './dist/VirpilTwo.html'),
+            chunks: ['VirpilTwo']
         }),
         new HtmlWebpackPlugin({
             template: './src/Windows/Settings.html',

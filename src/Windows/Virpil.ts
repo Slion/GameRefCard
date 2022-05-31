@@ -228,7 +228,12 @@ export class Virpil extends Game {
 
         this.iDevices.push(device);
 
-        //while (!loaded) {};
+        // Show device name as window title
+        this.iTitle.innerText = aProfile.iName;
+        if (this.Settings.iShowDebugInfo) {
+            this.iTitle.innerText += ` - ${aProfile.iVendorId}:${aProfile.iProductId}`;
+        }
+
     }
 
 

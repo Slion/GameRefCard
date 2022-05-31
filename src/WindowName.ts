@@ -3,7 +3,7 @@
 
 export enum WindowName {
     Application = 'Application',
-    JoyMap = 'JoyMap',
-    MW5 = 'MW5',
+    VirpilOne = 'VirpilOne',
+    VirpilTwo = 'VirpilTwo',
     Settings = 'Settings'
 }

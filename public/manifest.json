@@ -46,8 +46,8 @@
         "background_optimization": false,
         "is_background_page": true
       },
-      "JoyMap": {
-        "file": "JoyMap.html",
+      "VirpilOne": {
+        "file": "VirpilOne.html",
         "native_window": false,
         "clickthrough": false,
         "transparent": false,
@@ -66,8 +66,8 @@
           "height": 300
         }
       },
-      "MW5": {
-        "file": "MW5.html",
+      "VirpilTwo": {
+        "file": "VirpilTwo.html",
         "native_window": false,
         "clickthrough": false,
         "transparent": false,
