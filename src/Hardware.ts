@@ -1,8 +1,4 @@
 
-enum ControlType {
-    Digital, // Typically a button
-    Analogue // Typically an axes
-}
 
 /**
  */
@@ -16,55 +12,6 @@ export class RefCardItem {
         public iWidth: number) { }
 }
 
-enum Axis {
-    X = 0,
-    Y = 1,
-    Z = 2,
-    rX = 3,
-    rY = 4,
-    rZ = 5,
-    Slider = 6,
-    Dial = 7
-}
-
-
-/**
- * 
- */
-export class RefCardDevice {
-
-    constructor(
-        public iName: string,
-        public iImageSrc: string,
-        public iButtons: RefCardItem[] = new Array<RefCardItem>(),
-        public iAxis: RefCardItem[] = new Array<RefCardItem>())
-    {
-    }
-}
-
-
-/**
- * Just an example of what a typed template list could look like.
- * Not currently actually used.
- */
-export const KRefCardTemplates: Map<string, RefCardDevice> = new Map<string, RefCardDevice>([
-    ['[FLIGHT BASE] VPC WarBRD.[FLIGHT GRIP] VPC Constellation ALPHA.LEFT',
-        {
-            iName: 'VPC Alpha Left',
-            iImageSrc:  './img/vpc-alpha-left.jpg',
-            iButtons: [
-                { iName: "tata", iX: 3, iY: 2, iWidth: 100 },
-                new RefCardItem("lala", 2, 3, 10),
-
-            ],
-            iAxis: [
-                { iName: "toto", iX: 3, iY: 2, iWidth: 100 }
-            ],
-        }],
-    ['[FLIGHT BASE] VPC WarBRD.[FLIGHT GRIP] VPC Constellation ALPHA.RIGHT',
-        new RefCardDevice('VPC Alpha Right', './img/vpc-alpha-right.jpg')
-    ],
-]);
 
 
 // Define coordinate for drawing control text

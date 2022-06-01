@@ -3,6 +3,7 @@ import { AppWindow } from "../AppWindow";
 import { Device } from "../Device";
 import { KHardware } from "../Hardware";
 import { Log } from "../Log";
+import { KTemplate } from "../Templates";
 import { Utils } from "../Utils";
 import { VirpilProfile } from "../VirpilProfile";
 import { Game } from "./Game";
@@ -22,21 +23,19 @@ export class Virpil extends Game {
 
 
     /**
-     * Load VPC profile from into our ref card
+     * Load Virpil profile from into our ref card
      */
-    public async LoadVirpilProfile(aProfile: VirpilProfile) {
-        //let dir = `${overwolf.io.paths.localAppData}\\Slions\\JoyMap\\MyFile`;
+    public async LoadVirpilProfile(aProfile: VirpilProfile) {       
 
         let xml = aProfile.iXml;
 
         //Log.d(xml);
 
-        //let frameDiv = document.createElement('div');
-        //frameDiv.classList.add('frame-container');
-
-        let frag = await fetch('VPC-Alpha-Left.html');
+        // Load our HTML template matching the given profile
+        let frag = await fetch(KTemplate[aProfile.iKey]);
 
         if (!frag.ok) {
+            Log.d(`No template for Virpil profile: ${aProfile.iKey}`);
             return;
         }
 
@@ -48,38 +47,13 @@ export class Virpil extends Game {
         let script = html.getElementById('script');
         let style = html.getElementById('style');
 
-        //content.id = aProfile.iProductId + aProfile.iVendorId;
-
-        //let frame = <HTMLIFrameElement>document.createElement('iframe');
-        //frame.src = 'VPC-Alpha-Left.html';
-
-        //frameDiv.appendChild(frame);     
-
-        //frame.width = '100%';
-        //frame.height = '50%';
-
         //this.iHead.insertAdjacentHTML("beforeend", script.outerHTML);
         this.iHead.insertAdjacentHTML("beforeend", style.outerHTML);
         this.iDivInsert.insertAdjacentHTML("beforeend", content.outerHTML);
 
         this.LinkLabelsToAnchors(contentId);
 
-
         let refCard = this.iDivInsert.querySelector(`#${contentId}`);
-
-        //this.iMain.appendChild(content);
-
-
-        //iframeResizer({ log: true, sizeHeight: true }, frame);
-
-
-
-
-        //let result = await Utils.ReadFile(aFileName);
-
-
-        //Log.d(`Logical ${xml.VIRPIL.BUTTONS_TABLE.ROW[0].iCOL0} mapped to hardware ${xml.VIRPIL.BUTTONS_TABLE.ROW[0].iCOL1}`);
-
 
 
         // Fetch our hardware definition
