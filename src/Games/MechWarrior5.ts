@@ -33,6 +33,7 @@ export class MechWarrior5 extends Adapter {
         //let mwUserSettings = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\GameUserSettings.ini';
         await this.LoadMechWarriorGameUserSettings(this.Settings.iMechWarriorFiveUserSettings);
 
+        aRefCard.HideDefaultLabels();
     }
 
     /*
@@ -165,9 +166,8 @@ export class MechWarrior5 extends Adapter {
                         // Yes it is, show it's name then
                         let label = d.iRemapToLabel.get(axis.Key);
                         let prints = Utils.FormatActionName(axis.AxisName, 0);
-                        label.innerHTML += "  " + prints;
+                        label.parentNode.insertBefore(Utils.CreateLabel(prints), label);
                     }
-
                 });
             }
 
@@ -187,7 +187,7 @@ export class MechWarrior5 extends Adapter {
                         if (d.iRemapToLabel.has(key.Key)) {
                             let label = d.iRemapToLabel.get(key.Key);
                             let prints = Utils.FormatActionName(action.ActionName, 0);
-                            label.innerHTML += "  " + prints;
+                            label.parentNode.insertBefore(Utils.CreateLabel(prints), label);
                         }
                     });
                 })
@@ -266,7 +266,7 @@ export class MechWarrior5 extends Adapter {
                         device.iRemapToLabel.set(outButtons, label);
                         if (this.Settings.iShowDebugInfo) {
                             // Use this to display the GameUserSettings button we map to
-                            label.innerHTML += outButtons;
+                            label.parentNode.insertBefore(Utils.CreateLabel(outButtons), label);
                         }
                     }
 
@@ -286,7 +286,7 @@ export class MechWarrior5 extends Adapter {
                             device.iRemapToLabel.set(outAxis, label);
                             if (this.Settings.iShowDebugInfo) {
                                 // Use this to display the GameUserSettings axis we map to
-                                label.innerHTML += outAxis;
+                                label.parentNode.insertBefore(Utils.CreateLabel(outAxis), label);
                             }
                         }
                     }

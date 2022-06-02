@@ -90,7 +90,7 @@ export class RefCard extends Base {
         // For each label group in our refcard
         for (let lg of lgs) {
             //console.log(lg);
-            // Workouk the anchor id for this label group
+            // Workout the anchor id for this label group
             let anchorId = lg.id.replace('label-group-', 'anchor-');
             //anchorId = anchorId.replace('label-','anchor-');
             // Create our link object 
@@ -107,6 +107,18 @@ export class RefCard extends Base {
         for (const l of this.iLines) {
             l.position();
         }
+    }
+
+    /**
+     */
+    HideDefaultLabels() {
+        this.iDevices.forEach((d) => {            
+            for (const label of d.iLogicalToLabel.values()) {
+                label.remove();
+                //label.innerHTML = "";
+                //(<HTMLElement>label).style.display = 'hidden';
+            }
+        });
     }
 
 }

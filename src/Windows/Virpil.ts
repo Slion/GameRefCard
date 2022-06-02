@@ -2,6 +2,7 @@ import { parse } from "node-html-parser";
 import { Device } from "../Device";
 import { Log } from "../Log";
 import { KTemplate } from "../Templates";
+import { Utils } from "../Utils";
 import { VirpilProfile } from "../VirpilProfile";
 import { Game } from "./Game";
 
@@ -41,7 +42,7 @@ export class Virpil extends Game {
 
 
     /**
-     * Load Virpil profile from into our ref card
+     * Load Virpil profile into our ref card
      */
     public async LoadVirpilProfile(aProfile: VirpilProfile) {       
 
@@ -99,18 +100,18 @@ export class Virpil extends Game {
                 }
 
                 // Keep track of the label for that button 
-                device.iLogicalToLabel.set(logicalButton.toString(), label);
+                device.iLogicalToLabel.set(logicalButton.toString(), label);     
 
-                // Remove default text
-                label.innerHTML = "";
+                // Add hardware button label if needed
+                if (this.Settings.iShowHardwareIds) {                    
+                    // Pad with zeros
+                    label.parentNode.insertBefore(Utils.CreateLabel(String(hardwareButton).padStart(2, '0')), label);
+                }
 
-                // Add button id as needed
-                if (this.Settings.iShowHardwareIds && this.Settings.iShowLogicalIds) {
-                    label.innerHTML = `${hardwareButton} - ${logicalButton}  `;
-                } else if (this.Settings.iShowHardwareIds) {
-                    label.innerHTML = `${hardwareButton}  `;
-                } else if (this.Settings.iShowLogicalIds) {
-                    label.innerHTML = `${logicalButton}  `;
+                // Add logical button label if needed
+                if (this.Settings.iShowLogicalIds) {
+                    // Pad with zeros
+                    label.parentNode.insertBefore(Utils.CreateLabel(String(logicalButton).padStart(2, '0')), label);
                 }
             }
         });
@@ -147,12 +148,12 @@ export class Virpil extends Game {
                 device.iLogicalToLabel.set(logicalAxisName, label);
 
                 // Display our logical axis codes and hardware axis id as specified by settings
-                if (this.Settings.iShowHardwareIds && this.Settings.iShowLogicalIds) {
-                    label.innerHTML = `${hwId} - ${logicalAxisName}  `;
-                } else if (this.Settings.iShowHardwareIds) {
-                    label.innerHTML = `${hwId}  `;
-                } else if (this.Settings.iShowLogicalIds) {
-                    label.innerHTML = `${logicalAxisName}  `;
+                if (this.Settings.iShowHardwareIds) {
+                    label.parentNode.insertBefore(Utils.CreateLabel(`${hwId}`), label);
+                }
+
+                if (this.Settings.iShowLogicalIds) {
+                    label.parentNode.insertBefore(Utils.CreateLabel(`${logicalAxisName}`), label);
                 }                
             }
         });

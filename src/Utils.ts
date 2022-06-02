@@ -135,4 +135,18 @@ export class Utils {
         return aFileName.substr(0, aFileName.lastIndexOf("\\") + 1);
     }
 
+    /**
+     * Create a label to be inserted in our ref card label list.
+     * 
+     * @param aContent
+     */
+    static CreateLabel(aContent: string) {
+        let label = document.createElement('span');
+        label.innerText = aContent;
+        label.className = 'label';
+        // Not needed since we do zero padding now
+        //label.style.minWidth = '4%'; // Make sure they mostly align
+        return label;
+    }
+
 }
