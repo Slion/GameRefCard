@@ -5,9 +5,8 @@ import { RefCard } from "./RefCard";
 
 /**
  * Game window class.
- * TODO: Abstract game for multiple game support
- * Right now we are MW5 specific.
  * Use game adapter to achieve this.
+ * TODO: Do we really need that class then?
  */
 export class Game extends RefCard {
 

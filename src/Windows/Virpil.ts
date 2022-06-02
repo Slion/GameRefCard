@@ -1,13 +1,9 @@
 import { parse } from "node-html-parser";
-import { AppWindow } from "../AppWindow";
 import { Device } from "../Device";
-import { KHardware } from "../Hardware";
 import { Log } from "../Log";
 import { KTemplate } from "../Templates";
-import { Utils } from "../Utils";
 import { VirpilProfile } from "../VirpilProfile";
 import { Game } from "./Game";
-import { RefCard } from "./RefCard";
 
 /**
  * Virpil window class.
@@ -78,37 +74,10 @@ export class Virpil extends Game {
         let refCard = this.iDivInsert.querySelector(`#${contentId}`);
 
 
-        // Fetch our hardware definition
-        let hwd = KHardware[aProfile.iKey];
-        Log.d(hwd);
-
         let device = new Device();
-        device.iTemplate = hwd;
         device.iVendorID = aProfile.iVendorId;
         device.iProductID = aProfile.iProductId;
-
-
-        // Prepare a canvas to draw our references
-        var canvas = document.createElement('canvas');
-        canvas.style.maxWidth = '100%';
-        canvas.style.maxHeight = '100%';
-        device.iCanvas = canvas;
-
-        // Object used to map logical axes and buttons to reference card items
-        let logicalMap = new Object();
-
-        //logicalButtons[0] = 'Not used';      
-
-        // Create our hardware image and wait for it to load
-        let img = await Utils.LoadImage(hwd.image);
-
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext('2d');
-        device.iContext = ctx;
-        ctx.drawImage(img, 0, 0);
-        ctx.font = `${this.iFontSizeInPixels}px Arial`;
-        ctx.fillStyle = "#000000";
+     
 
         // For each buttons
         xml.VIRPIL.BUTTONS_TABLE.ROW.forEach(row => {
@@ -117,15 +86,11 @@ export class Virpil extends Game {
             // Make sure that hardware button is valid
             if (hardwareButton) {
                 // If we have a valid hardware button
-                let btnKey = 'Joy_' + hardwareButton;
-
                 //Log.d(row.iCOL1);
-                //Log.d(btnKey);
-                let rci = hwd[btnKey]; // Ref Card Item
+
                 // Work out the logical button this hardware button was mapped to and display it
                 // COL0 is the logical button
                 let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
-                logicalMap[logicalButton] = rci;
 
                 let label = refCard.querySelector(`#label-button-${hardwareButton}`);
 
@@ -147,16 +112,6 @@ export class Virpil extends Game {
                 } else if (this.Settings.iShowLogicalIds) {
                     label.innerHTML = `${logicalButton}  `;
                 }
-
-                // Display our logical button codes
-                //ctx.fillText(logicalButton.toString(), rci.x, rci.y + this.iFontSizeInPixels);
-                // Display both hardware and logical button codes
-                //ctx.fillText(hardwareButton.toString() + ":" + logicalButton.toString(), rci.x, rci.y + this.iFontSizeInPixels);
-                // Display hardware button codes
-                ctx.fillText(hardwareButton.toString(), rci.x, rci.y + this.iFontSizeInPixels);
-                //
-                rci.offsetX = 80;
-                rci.labelCount = 0;
             }
         });
 
@@ -179,12 +134,7 @@ export class Virpil extends Game {
             // Make sure that hardware button is valid
             if (hwPort) {
                 // If we have a valid axis
-                // Fetch axis ref card item
-                let rci = hwd[hwId];
                 // Work out the logical button this hardware button was mapped to and display it
-
-                //let logicalButton = parseInt(row.iCOL0.substring('Button '.length));
-                logicalMap[logicalAxisName] = rci;
 
                 // Add axis id as needed
                 let label = refCard.querySelector(`#${hwId}`);
@@ -196,31 +146,16 @@ export class Virpil extends Game {
                 // Keep track of the label for that axis
                 device.iLogicalToLabel.set(logicalAxisName, label);
 
-
+                // Display our logical axis codes and hardware axis id as specified by settings
                 if (this.Settings.iShowHardwareIds && this.Settings.iShowLogicalIds) {
                     label.innerHTML = `${hwId} - ${logicalAxisName}  `;
                 } else if (this.Settings.iShowHardwareIds) {
                     label.innerHTML = `${hwId}  `;
                 } else if (this.Settings.iShowLogicalIds) {
                     label.innerHTML = `${logicalAxisName}  `;
-                }
-
-
-                // Display our logical axis codes
-                //ctx.fillText(logicalAxisName, rci.x, rci.y + this.iFontSizeInPixels);
-
-                // Display our hardware axis id
-                ctx.fillText(hwId, rci.x, rci.y + this.iFontSizeInPixels);
-
-                rci.offsetX = 360;
-                rci.labelCount = 0;
+                }                
             }
         });
-
-        // Add our canvas to our document
-        this.iDivInsert.appendChild(canvas);
-
-        device.iLogicalMap = logicalMap;
 
         this.iDevices.push(device);
 

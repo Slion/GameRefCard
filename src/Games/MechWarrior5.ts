@@ -11,8 +11,6 @@ import { RefCard } from "../Windows/RefCard";
 export class MechWarrior5 extends Adapter {
 
     iActionKeyMap: any;
-    // TODO: remove that once we removed canvas support
-    iFontSizeInPixels = 46;
 
     iRefCard: RefCard = null;
 
@@ -161,20 +159,10 @@ export class MechWarrior5 extends Adapter {
                 Log.d(lineData);
                 // 
                 let axis = JSON.parse(lineData);
-                // Check if that key is on any of our devices
+                // Check if that axis is on any of our devices
                 this.iRefCard.iDevices.forEach(d => {
-                    // TODO: remove canvas stuff
-                    if (d.iLabels.hasOwnProperty(axis.Key)) {
-                        let rci = d.iLabels[axis.Key]; // RCI = ref card item
-                        let prints = Utils.FormatActionName(axis.AxisName, rci.labelCount);
-                        d.iContext.fillText(prints, rci.x + rci.offsetX, rci.y + this.iFontSizeInPixels);
-                        // Offset our text cursor
-                        rci.offsetX += d.iContext.measureText(prints).width;
-                        rci.labelCount++;
-                    }
-
-                    // HTML stuff
                     if (d.iRemapToLabel.has(axis.Key)) {
+                        // Yes it is, show it's name then
                         let label = d.iRemapToLabel.get(axis.Key);
                         let prints = Utils.FormatActionName(axis.AxisName, 0);
                         label.innerHTML += "  " + prints;
@@ -195,17 +183,7 @@ export class MechWarrior5 extends Adapter {
                 action.BoundedKeys.forEach(key => {
                     // Check if that key is on any of our devices
                     this.iRefCard.iDevices.forEach(d => {
-                        // TODO: remove canvas stuff
-                        if (d.iLabels.hasOwnProperty(key.Key)) {
-                            let rci = d.iLabels[key.Key];
-                            let prints = Utils.FormatActionName(action.ActionName, rci.labelCount);
-                            d.iContext.fillText(prints, rci.x + rci.offsetX, rci.y + this.iFontSizeInPixels);
-                            // Offset our text cursor
-                            rci.offsetX += d.iContext.measureText(prints).width;
-                            rci.labelCount++;
-                        }
-
-                        //HTML stuff
+                        // Yes it is, display its action then
                         if (d.iRemapToLabel.has(key.Key)) {
                             let label = d.iRemapToLabel.get(key.Key);
                             let prints = Utils.FormatActionName(action.ActionName, 0);
@@ -281,20 +259,13 @@ export class MechWarrior5 extends Adapter {
                     let outButtons = split[1].split('=')[1];
                     Log.d("outButtons: " + outButtons);
                     Log.d("inButton: " + inButton);
-                    // TODO: remove canvas stuff
-                    let btn = device.iLogicalMap[inButton];
-                    Log.obj("Button: ", btn);
-                    btn.Key = outButtons;
-                    // Build our label map
-                    device.iLabels[outButtons] = btn;
-                    // Use this to display the GameUserSettings button we map to
-                    //device.iContext.fillText(outButtons, btn.x + btn.offsetX, btn.y + this.iFontSizeInPixels);
-
+                    
                     //HTML stuff
                     let label = device.iLogicalToLabel.get(inButton.toString());
                     if (label) {
                         device.iRemapToLabel.set(outButtons, label);
                         if (this.Settings.iShowDebugInfo) {
+                            // Use this to display the GameUserSettings button we map to
                             label.innerHTML += outButtons;
                         }
                     }
@@ -307,21 +278,14 @@ export class MechWarrior5 extends Adapter {
                     // OutAxis, assuming this is the second on our line
                     let outAxis = split[1].split('=')[1];
                     // Check if we know that axis
-                    if (KAxesMap.hasOwnProperty(inAxis)) {
-                        // TODO: Remove canvas stuff
+                    if (KAxesMap.hasOwnProperty(inAxis)) {                        
                         // That's an axis we know then, get the ref card item for it
-                        let refCardItem = device.iLogicalMap[KAxesMap[inAxis]];
-                        refCardItem.Key = outAxis;
-                        // Build our map
-                        device.iLabels[outAxis] = refCardItem;
-                        // Use this to display the GameUserSettings axis we map to
-                        //device.iContext.fillText(outAxis, refCardItem.x + refCardItem.offsetX, refCardItem.y + this.iFontSizeInPixels);
-
                         //HTML stuff
                         let label = device.iLogicalToLabel.get(KAxesMap[inAxis]);
                         if (label) {
                             device.iRemapToLabel.set(outAxis, label);
                             if (this.Settings.iShowDebugInfo) {
+                                // Use this to display the GameUserSettings axis we map to
                                 label.innerHTML += outAxis;
                             }
                         }

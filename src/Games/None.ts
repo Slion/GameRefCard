@@ -8,8 +8,6 @@ import { Adapter } from "./Adapter";
 export class None extends Adapter {
 
     iActionKeyMap: any;
-    // TODO: remove that once we removed canvas support
-    iFontSizeInPixels = 46;
 
     iRefCard: RefCard = null;
 

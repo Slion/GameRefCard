@@ -90,9 +90,6 @@
     <TypeScriptCompile Include="src\Games\None.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\Hardware.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="src\Log.ts" />
     <TypeScriptCompile Include="src\Settings.ts">
       <SubType>Code</SubType>
