@@ -6,6 +6,7 @@ import { VirpilProfile } from "../VirpilProfile";
 import { WindowName } from "../WindowName";
 import { Base } from "../Base";
 import { MDCSwitch } from '@material/switch';
+import { MDCSelect } from '@material/select';
 
 //import '@material/theme/dist/mdc.theme.css';
 
@@ -37,7 +38,8 @@ export class Settings extends Base {
     //
     iButtonShowDebugInfo = <HTMLButtonElement>document.getElementById('iButtonShowDebugInfo');
     iSwitchShowDebugInfo: MDCSwitch = null;
-
+    //
+    iSelectGame: MDCSelect = new MDCSelect(document.getElementById('iSelectGame')); 
     
 
     
@@ -55,16 +57,29 @@ export class Settings extends Base {
         this.mainWindow = new OWWindow(WindowName.Application);
         this.currWindow = new OWWindow(WindowName.Settings);
 
-        // Make sure our switches are functional
+        // Logical ID switch
         this.iSwitchShowLogicalIds = new MDCSwitch(this.iButtonShowLogicalIds);
         this.iSwitchShowLogicalIds.selected = this.Settings.iShowLogicalIds;
-        //this.iSwitchShowLogicalIds.listen("selected", () => { this.Settings.iShowLogicalIds = this.iSwitchShowLogicalIds.selected; this.Settings.Save(); })
+        this.iButtonShowLogicalIds.addEventListener('click', () => { this.Settings.iShowLogicalIds = this.iSwitchShowLogicalIds.selected; this.Settings.Save(); })
+
+        // Hardware ID switch
         this.iSwitchShowHardwareIds = new MDCSwitch(this.iButtonShowHardwareIds);
         this.iSwitchShowHardwareIds.selected = this.Settings.iShowHardwareIds;
-        //this.iSwitchShowHardwareIds.listen("selected", () => { console.log("toggle"); this.Settings.iShowHardwareIds = this.iSwitchShowHardwareIds.selected; this.Settings.Save(); })
+        this.iButtonShowHardwareIds.addEventListener('click', () => { this.Settings.iShowHardwareIds = this.iSwitchShowHardwareIds.selected; this.Settings.Save(); });
+
+        // Debug info switch
         this.iSwitchShowDebugInfo = new MDCSwitch(this.iButtonShowDebugInfo);
         this.iSwitchShowDebugInfo.selected = this.Settings.iShowDebugInfo;
-        //this.iSwitchShowHardwareIds.listen("selected", () => { console.log("toggle"); this.Settings.iShowHardwareIds = this.iSwitchShowHardwareIds.selected; this.Settings.Save(); })
+        this.iButtonShowDebugInfo.addEventListener('click', () => { this.Settings.iShowDebugInfo = this.iSwitchShowDebugInfo.selected; this.Settings.Save(); })
+
+        // Game selection
+        this.iSelectGame.value = this.Settings.iGameTag;
+        this.iSelectGame.listen('MDCSelect:change', () => {
+            //alert(`Selected option at index ${this.iSelectGame.selectedIndex} with value "${this.iSelectGame.value}"`);
+            this.Settings.iGameTag = this.iSelectGame.value;
+            this.Settings.SetGameAdapter();
+            this.Settings.Save();
+        });
 
 
         this.iButtonVirpilProfileAdd.addEventListener('click', () => {
@@ -98,25 +113,18 @@ export class Settings extends Base {
 
         this.iButtonCreateRefCard.addEventListener('click', () => {
 
-            // Save settings until we find away to get notified about it
-            // See: https://github.com/material-components/material-components-web/issues/7628
-            this.Settings.iShowLogicalIds = this.iSwitchShowLogicalIds.selected;
-            this.Settings.iShowHardwareIds = this.iSwitchShowHardwareIds.selected;
-            this.Settings.iShowDebugInfo = this.iSwitchShowDebugInfo.selected;
-            this.Settings.Save();
-
             // Just show our reference card then
             //this.iAppWindow.iWindowMW5.restore();
-            this.iAppWindow.iWindowJoyMap.restore();
+            this.iAppWindow.iWindowVirpilOne.restore();
 
             // Create one window for each of our controllers
             // Support only N controllers since Overwolf won't let you create more than one instance of a window
             if (this.Settings.iVirpilProfiles.length > 0) {
-                this.iAppWindow.iWindowJoyMap.restore();
+                this.iAppWindow.iWindowVirpilOne.restore();
             }
 
             if (this.Settings.iVirpilProfiles.length > 1) {
-                this.iAppWindow.iWindowMW5.restore();
+                this.iAppWindow.iWindowVirpilTwo.restore();
             }
 
             // TODO: Keyboard support

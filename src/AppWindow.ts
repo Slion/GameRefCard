@@ -7,7 +7,7 @@ import { Settings } from "./Settings";
  */
 export class AppWindow extends Window {
     iSettings: Settings;
-    iWindowJoyMap: OWWindow;
-    iWindowMW5: OWWindow;
+    iWindowVirpilOne: OWWindow;
+    iWindowVirpilTwo: OWWindow;
     iWindowSettings: OWWindow;
 }

@@ -21,8 +21,8 @@ class Application {
 
         this.iAppWindow = <AppWindow>overwolf.windows.getMainWindow();
         // Populating the background controller's window dictionary
-        this.iAppWindow.iWindowJoyMap = new OWWindow(WindowName.VirpilOne);
-        this.iAppWindow.iWindowMW5 = new OWWindow(WindowName.VirpilTwo);
+        this.iAppWindow.iWindowVirpilOne = new OWWindow(WindowName.VirpilOne);
+        this.iAppWindow.iWindowVirpilTwo = new OWWindow(WindowName.VirpilTwo);
         this.iAppWindow.iWindowSettings = new OWWindow(WindowName.Settings);
 
         // When a supported game game is started or is ended, toggle the app's windows

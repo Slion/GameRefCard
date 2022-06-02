@@ -135,14 +135,10 @@ export class VirpilOne extends Virpil {
             d.iContext.fillStyle = "#0000FF";
         });
 
-        //TODO; move game specific stuff elsewhere
 
-        //Log.obj("Devices: ", this.iDevices);
-        //let mwRemap = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\HOTASMappings.Remap';
-        await this.LoadMechWarriorRemap(this.Settings.iMechWarriorFiveHotasRemap);
+        // Build our game specific reference card
+        await this.Settings.iAdapter.BuildRefCard(this);
 
-        //let mwUserSettings = 'C:\\Dev\\GitHub\\Slion\\Gaming\\Games\\MW5\\DualAlphaWarBRD\\GameUserSettings.ini';
-        await this.LoadMechWarriorGameUserSettings(this.Settings.iMechWarriorFiveUserSettings);
 
     }
 

@@ -1,6 +1,11 @@
 import { JsonObject, JsonProperty, JsonSerializer } from "typescript-json-serializer";
+import { Games } from "./Game";
+import { Adapter } from "./Games/Adapter";
+import { MechWarrior5 } from "./Games/MechWarrior5";
+import { None } from "./Games/None";
 import { Utils } from "./Utils";
 import { VirpilProfile } from "./VirpilProfile";
+
 
 
 @JsonObject()
@@ -30,10 +35,21 @@ export class Settings {
     @JsonProperty()
     iShowDebugInfo: boolean = false;
 
+    @JsonProperty()
+    iGameTag: string = "None";
+
+    //iAdapter: Adapter = new MechWarrior5();
+    iAdapter: Adapter = new None();
+
     /**
     * Define path to persisted settings JSON file.
     */
     static get FileName(): string { return `${overwolf.io.paths.localAppData}\\Slions\\GameRefCard\\Settings.json`; }
+
+
+    constructor() {
+        this.SetGameAdapter();
+    }
 
     /**
      * Persist our settings into a file
@@ -52,10 +68,15 @@ export class Settings {
         if (res.success) {
             const serializer = new JsonSerializer();
             let settings: Settings = serializer.deserializeObject(res.content, Settings);
+            settings.SetGameAdapter();
             return settings;
         }
 
         return new Settings();
+    }
+
+    SetGameAdapter() {
+        this.iAdapter = Games.get(this.iGameTag);
     }
 
 }

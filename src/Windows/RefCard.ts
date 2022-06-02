@@ -13,6 +13,7 @@ var LeaderLine = function () { "use strict"; var Z, w, O, M, I, o, t, s, h, u, n
  */
 export class RefCard extends Base {
 
+
     // TODO: remove that once we removed canvas support
     iFontSizeInPixels = 46;
 

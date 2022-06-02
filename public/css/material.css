@@ -3,6 +3,10 @@
 Use those to override Material Component Design
 Those double hyphen properties are CSS variables
 See: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+
+We added the -mod variables to be able to combine the colors with opacity as explained there: 
+https://stackoverflow.com/questions/40010597/how-do-i-apply-opacity-to-a-css-color-variable
+We duplicate the -mod value in the actual color variable definition to be able to get the color preview in Visual Studio Code
 */
 :root {
     /* Menu */
@@ -19,16 +23,47 @@ See: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_propertie
     --mdc-switch-selected-focus-state-layer-opacity: 0.0;
     --mdc-switch-unselected-pressed-state-layer-opacity: 0.0;
     --mdc-switch-selected-pressed-state-layer-opacity: 0.0;
-    /* Theme colors */
-    --mdc-theme-primary: #64b5f6;
-    --mdc-theme-secondary: #ce93d8;
-    --mdc-theme-background: #000;
-    --mdc-theme-surface: #000;
-    --mdc-theme-error: #b00020;
-    --mdc-theme-on-primary: #fff;
-    --mdc-theme-on-secondary: #fff;
-    --mdc-theme-on-surface: #fff;
-    --mdc-theme-on-error: #fff;
+    /* Primary */
+    --mdc-theme-primary-preview: rgb(27, 140, 233);
+    --mdc-theme-primary-mod: 27, 140, 233;
+    --mdc-theme-primary: rgb(var(--mdc-theme-primary-mod));
+    /* Secondary */
+    --mdc-theme-secondary-preview: rgb(39, 189, 126);
+    --mdc-theme-secondary-mod: 39, 189, 126;
+    --mdc-theme-secondary: rgb(var(--mdc-theme-secondary-mod));
+    /* Background */
+    --mdc-theme-background-preview: rgb(0,0,0);
+    --mdc-theme-background-mod: 0, 0, 0;
+    --mdc-theme-background: rgb(var(--mdc-theme-background-mod));
+    /* Surface */
+    --mdc-theme-surface-preview: rgb(40,40,40);
+    --mdc-theme-surface-mod: 40, 40, 40;
+    --mdc-theme-surface: rgb(var(--mdc-theme-surface-mod));
+    /* Error */
+    --mdc-theme-error-preview: rgb(192,00,32);
+    --mdc-theme-error-mod: 192, 00, 32;
+    --mdc-theme-error: rgb(var(--mdc-theme-error-mod));
+    /* On primary */
+    --mdc-theme-on-primary-preview: rgb(255,255,255);
+    --mdc-theme-on-primary-mod: 255,255,255;
+    --mdc-theme-on-primary: rgb(var(--mdc-theme-on-primary-mod));
+
+    /* On secondary */
+    --mdc-theme-on-secondary-preview: rgb(255,255,255);
+    --mdc-theme-on-secondary-mod: 255,255,255;
+    --mdc-theme-on-secondary: rgb(var(--mdc-theme-on-secondary-mod));
+
+    /* On primary */
+    --mdc-theme-on-surface-preview: rgb(255,255,255);
+    --mdc-theme-on-surface-mod: 255,255,255;
+    --mdc-theme-on-surface: rgb(var(--mdc-theme-on-surface-mod));
+
+    /* On primary */
+    --mdc-theme-on-error-preview: rgb(255,255,255);
+    --mdc-theme-on-error-mod: 255,255,255;
+    --mdc-theme-on-error: rgb(var(--mdc-theme-on-error-mod));
+    
+    /* Texts */    
     --mdc-theme-text-primary-on-background: rgba(255, 255, 255, 0.87);
     --mdc-theme-text-secondary-on-background: rgba(255, 255, 255, 0.54);
     --mdc-theme-text-hint-on-background: rgba(255, 255, 255, 0.38);
@@ -46,6 +81,58 @@ See: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_propertie
     --mdc-theme-text-icon-on-dark: rgba(255, 255, 255, 0.5);
 }
 
+/* MDC fixes
+    See: https://github.com/material-components/material-components-web/issues/7629
+*/
+
+.mdc-menu .mdc-deprecated-list-item__meta {
+    color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87));
+}
+.mdc-menu .mdc-deprecated-list-item__graphic {
+    color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87));
+}
+.mdc-menu .mdc-deprecated-list {
+    color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87));
+}
+
+.mdc-select--filled:not(.mdc-select--disabled) .mdc-select__anchor {
+    background-color: var(--mdc-theme-surface);    
+}
+.mdc-select--filled.mdc-select--disabled .mdc-select__anchor {
+    background-color: rgba(var(--mdc-theme-surface-mod), 0.8);
+}
+.mdc-select--filled:not(.mdc-select--disabled) .mdc-line-ripple::before {
+    border-bottom-color: rgba(var(--mdc-theme-on-surface-mod), 0.42);
+}
+.mdc-select--filled:not(.mdc-select--disabled):hover .mdc-line-ripple::before {
+    border-bottom-color: rgba(var(--mdc-theme-on-surface-mod), 0.87);
+}
+
+.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
+    color: rgba(var(--mdc-theme-on-surface-mod), 0.87);
+}
+.mdc-select.mdc-select--disabled .mdc-select__selected-text {
+    color: rgba(var(--mdc-theme-on-surface-mod), 0.38);
+}
+.mdc-select:not(.mdc-select--disabled) .mdc-floating-label {
+    color: rgba(var(--mdc-theme-on-surface-mod), 0.6);
+}
+.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
+    color: rgba(var(--mdc-theme-primary-mod), 1.0);
+}
+.mdc-select.mdc-select--disabled .mdc-floating-label {
+    color: rgba(var(--mdc-theme-on-surface-mod), 0.38);
+}
+.mdc-select:not(.mdc-select--disabled) .mdc-select__dropdown-icon {
+    fill: rgba(var(--mdc-theme-on-surface-mod), 0.54);
+}
+
+.mdc-button--outlined .mdc-button__ripple {
+    border-color: var(--mdc-theme-primary, #6200ee);
+}
+
+
+/***********/
 
 html {
     /* Since material typography fonts are specified using root element unit (REM) we can change this to adjust them */
@@ -62,10 +149,6 @@ body {
 
 main {
     padding: 10px;
-}
-
-.mdc-button--outlined .mdc-button__ripple {
-    border-color: var(--mdc-theme-primary, #6200ee);
 }
 
 iframe {
@@ -99,4 +182,8 @@ iframe {
 
 .mdc-switch {
     vertical-align: middle;
+}
+
+.mdc-select {
+    max-width:350px;
 }
