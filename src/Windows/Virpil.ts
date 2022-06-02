@@ -16,9 +16,31 @@ import { RefCard } from "./RefCard";
 export class Virpil extends Game {
 
 
-    constructor() {
+    constructor(aProfileIndex: number) {
         super();
         Log.d("Window.Virpil constructor");
+
+        this.Construct(aProfileIndex);
+    }
+
+    /**
+     * 
+     * @param aProfileIndex
+     */
+    async Construct(aProfileIndex: number) {
+        if (aProfileIndex == -1) {
+            // First load our Virpil profiles
+            // TODO: not tested
+            for (const vp of this.Settings.iVirpilProfiles) {
+                await this.LoadVirpilProfile(vp);
+            }
+        } else {
+            // Only load one profile then
+            await this.LoadVirpilProfile(this.Settings.iVirpilProfiles[aProfileIndex]);
+        }
+
+        // Build our game specific reference card
+        await this.Settings.iAdapter.BuildRefCard(this);
     }
 
 

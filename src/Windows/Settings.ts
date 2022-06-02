@@ -128,7 +128,7 @@ export class Settings extends Base {
             }
 
             // TODO: Keyboard support
-
+            // TODO: Optionally create one window to load all profiles in it
 
         });
 

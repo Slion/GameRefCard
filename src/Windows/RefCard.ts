@@ -37,6 +37,40 @@ export class RefCard extends Base {
     constructor() {
         super();
         Log.d("Window.RefCard constructor");
+
+        // Make sure our links are updated
+        window.addEventListener('load', () => {
+            console.log("page is loaded")
+            this.UpdateLinksPositions();
+        })
+
+
+        window.addEventListener('resize', () => {
+            console.log("page is resized")
+            this.UpdateLinksPositions();
+        })
+
+        this.iDivInsert.addEventListener('scroll', () => {
+            console.log("on scroll")
+            this.UpdateLinksPositions();
+        })
+
+        // Observer changes in our insert
+        const config = { attributes: true, childList: true, subtree: true };
+        // Callback function to execute when mutations are observed
+        const callback = (mutationList, observer) => {
+            this.UpdateLinksPositions();
+        };
+        // Create an observer instance linked to the callback function
+        const observer = new MutationObserver(callback);
+        // Start observing the target node for configured mutations
+        observer.observe(this.iDivInsert, config);
+
+        //TODO: remove canvas stuff
+        // Set action name text color
+        this.iDevices.forEach(d => {
+            d.iContext.fillStyle = "#0000FF";
+        });
     }
 
    
@@ -74,7 +108,7 @@ export class RefCard extends Base {
     }
 
     /**
-     * Not sure why using this is not working.
+     * Make sure our links are updated.
      */
     UpdateLinksPositions() {
         for (const l of this.iLines) {
