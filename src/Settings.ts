@@ -1,5 +1,5 @@
 import { JsonObject, JsonProperty, JsonSerializer } from "typescript-json-serializer";
-import { Games } from "./Game";
+import { Games } from "./Games";
 import { Adapter } from "./Games/Adapter";
 import { MechWarrior5 } from "./Games/MechWarrior5";
 import { None } from "./Games/None";

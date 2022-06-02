@@ -78,7 +78,7 @@
     <TypeScriptCompile Include="src\Device.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\Game.ts">
+    <TypeScriptCompile Include="src\Games.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\Games\Adapter.ts">
