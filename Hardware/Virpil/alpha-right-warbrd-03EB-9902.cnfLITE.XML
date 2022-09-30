@@ -1,0 +1,562 @@
+<?xml version="1.0"?>
+<VIRPIL>
+	<AXES>
+		<GroupBox_AxisToButton>
+			<ab_typ_1 Name="ab_typ_1" Type="Select" Data="Logic (%)"/>
+			<ab_typ_2 Name="ab_typ_2" Type="Select" Data="Logic (%)"/>
+			<ab_typ_4 Name="ab_typ_4" Type="Select" Data="Logic (%)"/>
+			<ab_typ_3 Name="ab_typ_3" Type="Select" Data="Logic (%)"/>
+			<ab_typ_6 Name="ab_typ_6" Type="Select" Data="Logic (%)"/>
+			<ab_typ_5 Name="ab_typ_5" Type="Select" Data="Logic (%)"/>
+			<ab_typ_8 Name="ab_typ_8" Type="Select" Data="Logic (%)"/>
+			<ab_typ_7 Name="ab_typ_7" Type="Select" Data="Logic (%)"/>
+			<ab_end_1 Name="ab_end_1" Type="Digit" Data="0"/>
+			<ab_end_2 Name="ab_end_2" Type="Digit" Data="0"/>
+			<ab_end_4 Name="ab_end_4" Type="Digit" Data="0"/>
+			<ab_end_3 Name="ab_end_3" Type="Digit" Data="0"/>
+			<ab_end_5 Name="ab_end_5" Type="Digit" Data="0"/>
+			<ab_end_6 Name="ab_end_6" Type="Digit" Data="0"/>
+			<ab_end_8 Name="ab_end_8" Type="Digit" Data="0"/>
+			<ab_end_7 Name="ab_end_7" Type="Digit" Data="0"/>
+			<ab_beg_1 Name="ab_beg_1" Type="Digit" Data="0"/>
+			<ab_beg_2 Name="ab_beg_2" Type="Digit" Data="0"/>
+			<ab_beg_4 Name="ab_beg_4" Type="Digit" Data="0"/>
+			<ab_beg_3 Name="ab_beg_3" Type="Digit" Data="0"/>
+			<ab_beg_5 Name="ab_beg_5" Type="Digit" Data="0"/>
+			<ab_beg_6 Name="ab_beg_6" Type="Digit" Data="0"/>
+			<ab_beg_8 Name="ab_beg_8" Type="Digit" Data="0"/>
+			<ab_beg_7 Name="ab_beg_7" Type="Digit" Data="0"/>
+			<ab_axs_1 Name="ab_axs_1" Type="Digit" Data="0"/>
+			<ab_axs_2 Name="ab_axs_2" Type="Digit" Data="0"/>
+			<ab_axs_3 Name="ab_axs_3" Type="Digit" Data="0"/>
+			<ab_axs_4 Name="ab_axs_4" Type="Digit" Data="0"/>
+			<ab_axs_5 Name="ab_axs_5" Type="Digit" Data="0"/>
+			<ab_axs_6 Name="ab_axs_6" Type="Digit" Data="0"/>
+			<ab_axs_7 Name="ab_axs_7" Type="Digit" Data="0"/>
+			<ab_axs_8 Name="ab_axs_8" Type="Digit" Data="0"/>
+		</GroupBox_AxisToButton>
+		<GroupBox_DoubleAxisLock>
+			<sf_zon_prm_rgb Name="sf_zon_prm_rgb" Type="Color" Data="0" Tag="0"/>
+			<sf_thr_bmod Name="sf_thr_bmod" Type="Select" Data="--"/>
+			<sf_zon_prm_mod Name="sf_zon_prm_mod" Type="Select" Data="---"/>
+			<sf_zon_prm_typ Name="sf_zon_prm_typ" Type="Select" Data="OFF"/>
+			<sf_zon_sec_mod Name="sf_zon_sec_mod" Type="Select" Data="---"/>
+			<sf_thr_bnom Name="sf_thr_bnom" Type="Digit" Data="0"/>
+			<sf_thr_asrc Name="sf_thr_asrc" Type="Digit" Data="0"/>
+			<sf_thr_adsc Name="sf_thr_adsc" Type="Digit" Data="0"/>
+			<sf_thr_dz Name="sf_thr_dz" Type="Digit" Data="0"/>
+			<sf_zon_prm_btn Name="sf_zon_prm_btn" Type="Digit" Data="0"/>
+			<sf_zon_prm_sw_low Name="sf_zon_prm_sw_low" Type="Digit" Data="0"/>
+			<sf_zon_prm_sw_hgh Name="sf_zon_prm_sw_hgh" Type="Digit" Data="0"/>
+			<sf_zon_sec_sw_low Name="sf_zon_sec_sw_low" Type="Digit" Data="0"/>
+			<sf_zon_sec_sw_hgh Name="sf_zon_sec_sw_hgh" Type="Digit" Data="0"/>
+		</GroupBox_DoubleAxisLock>
+		<GroupBox_AxesZoom>
+			<sf_zoom_rgb Name="sf_zoom_rgb" Type="Color" Data="0" Tag="0"/>
+			<osi_zm_del Name="osi_zm_del" Type="Digit" Data="0"/>
+			<sf_zoom_btn Name="sf_zoom_btn" Type="Digit" Data="0"/>
+			<sf_zoom_typ Name="sf_zoom_typ" Type="Select" Data="OFF"/>
+		</GroupBox_AxesZoom>
+		<GroupBox_AxesDetentTrim>
+			<sf_trim_rgb Name="sf_trim_rgb" Type="Color" Data="0" Tag="0"/>
+			<sf_trim_typ Name="sf_trim_typ" Type="Select" Data="OFF"/>
+			<sf_trim_btn Name="sf_trim_btn" Type="Digit" Data="0"/>
+		</GroupBox_AxesDetentTrim>
+	</AXES>
+	<AXES_TABLE>
+		<TABLE COLS="48" ROWS="13"/>
+		<COL_CAPTION COL0="Num" COL1="Name" COL2="Value" COL3="Value(%)" COL4="Source" COL5="Port" COL6="Sub.Port" COL7="Inversion" COL8="Offset" COL9="Smooth" COL10="Raw Value" COL11="Link error" COL12="Calibration" COL13="Cal.BEG" COL14="Cal.LOW" COL15="Cal.HGH" COL16="Cal.END" COL17="Log.BEG" COL18="Log.LOW" COL19="Log.HGH" COL20="Log.END" COL21="DZ BEG" COL22="DZ LOW" COL23="DZ HGH" COL24="DZ END" COL25="DZ DYN" COL26="Curve type" COL27="Zoom" COL28="Trim" COL29="Vrt.Inc." COL30="Vrt.Mid." COL31="Vrt.Dec." COL32="Vrt.Step" COL33="Vrt.Reset" COL34="Mix.Axis" COL35="Mix.Mode" COL36="Mix.Prop" COL37="Mix.Begin" COL38="Axis to Button" COL39="AB1" COL40="AB2" COL41="AB3" COL42="AB4" COL43="AB5" COL44="AB6" COL45="AB7" COL46="AB8" COL47="Shift"/>
+		<ROW COL0="P1" COL1="X" COL2="30000" COL3="50%" COL4="VPC_Sens" COL5="5" COL6="0" COL7="True" COL8="False" COL9="x2" COL10="50381" COL11="0" COL12="With center" COL13="46703" COL14="50401" COL15="0" COL16="54345" COL17="0" COL18="50" COL19="0" COL20="100" COL21="2" COL22="2" COL23="0" COL24="2" COL25="0" COL26="Disabled" COL27="False" COL28="False" COL29="0" COL30="0" COL31="0" COL32="" COL33="" COL34="0" COL35="---" COL36="0" COL37="" COL38="---;---;---;---;---;---;---;---;" COL39="False" COL40="False" COL41="False" COL42="False" COL43="False" COL44="False" COL45="False" COL46="False" COL47="OFF" COL48=""/>
+		<ROW COL0="P2" COL1="Y" COL2="30000" COL3="50%" COL4="VPC_Sens" COL5="6" COL6="0" COL7="True" COL8="False" COL9="x2" COL10="39605" COL11="0" COL12="With center" COL13="36289" COL14="39591" COL15="0" COL16="42939" COL17="0" COL18="50" COL19="0" COL20="100" COL21="2" COL22="2" COL23="0" COL24="2" COL25="0" COL26="Disabled" COL27="False" COL28="False" COL29="0" COL30="0" COL31="0" COL32="" COL33="" COL34="0" COL35="---" COL36="0" COL37="" COL38="---;---;---;---;---;---;---;---;" COL39="False" COL40="False" COL41="False" COL42="False" COL43="False" COL44="False" COL45="False" COL46="False" COL47="OFF" COL48=""/>
+		<ROW COL0="P3" COL1="rY" COL2="30000" COL3="50%" COL4="VPC_Stick" COL5="1" COL6="3" COL7="True" COL8="False" COL9="x4" COL10="7392" COL11="0" COL12="With center" COL13="4624" COL14="7488" COL15="0" COL16="10416" COL17="0" COL18="50" COL19="0" COL20="100" COL21="10" COL22="10" COL23="0" COL24="10" COL25="50" COL26="Disabled" COL27="False" COL28="False" COL29="0" COL30="0" COL31="0" COL32="" COL33="" COL34="0" COL35="---" COL36="0" COL37="" COL38="---;---;---;---;---;---;---;---;" COL39="False" COL40="False" COL41="False" COL42="False" COL43="False" COL44="False" COL45="False" COL46="False" COL47="OFF" COL48=""/>
+		<ROW COL0="P4" COL1="rX" COL2="30745" COL3="51%" COL4="VPC_Stick" COL5="1" COL6="4" COL7="True" COL8="False" COL9="x4" COL10="8560" COL11="0" COL12="With center" COL13="4672" COL14="8192" COL15="0" COL16="11152" COL17="0" COL18="50" COL19="0" COL20="100" COL21="10" COL22="10" COL23="0" COL24="10" COL25="50" COL26="Disabled" COL27="False" COL28="False" COL29="0" COL30="0" COL31="0" COL32="" COL33="" COL34="0" COL35="---" COL36="0" COL37="" COL38="---;---;---;---;---;---;---;---;" COL39="False" COL40="False" COL41="False" COL42="False" COL43="False" COL44="False" COL45="False" COL46="False" COL47="OFF" COL48=""/>
+		<ROW COL0="P5" COL1="Slider" COL2="0" COL3="0%" COL4="VPC_Stick" COL5="1" COL6="2" COL7="True" COL8="False" COL9="x4" COL10="9346" COL11="0" COL12="No center" COL13="9330" COL14="0" COL15="0" COL16="12398" COL17="0" COL18="0" COL19="0" COL20="100" COL21="10" COL22="0" COL23="0" COL24="10" COL25="0" COL26="Disabled" COL27="False" COL28="False" COL29="0" COL30="0" COL31="0" COL32="" COL33="" COL34="0" COL35="---" COL36="0" COL37="" COL38="---;---;---;---;---;---;---;---;" COL39="False" COL40="False" COL41="False" COL42="False" COL43="False" COL44="False" COL45="False" COL46="False" COL47="OFF" COL48=""/>
+		<ROW COL0="P6" COL1="Z" COL2="30000" COL3="50%" COL4="VPC_Stick" COL5="1" COL6="1" COL7="True" COL8="False" COL9="x4" COL10="9090" COL11="0" COL12="With center" COL13="8350" COL14="9084" COL15="0" COL16="9834" COL17="0" COL18="50" COL19="0" COL20="100" COL21="10" COL22="10" COL23="0" COL24="10" COL25="0" COL26="Disabled" COL27="False" COL28="False" COL29="0" COL30="0" COL31="0" COL32="" COL33="" COL34="0" COL35="---" COL36="0" COL37="" COL38="---;---;---;---;---;---;---;---;" COL39="False" COL40="False" COL41="False" COL42="False" COL43="False" COL44="False" COL45="False" COL46="False" COL47="OFF" COL48=""/>
+		<ROW COL0="P7" COL1="---" COL2="---" COL3="---" COL4="---" COL5="---" COL6="---" COL7="---" COL8="---" COL9="---" COL10="---" COL11="---" COL12="---" COL13="---" COL14="---" COL15="---" COL16="---" COL17="---" COL18="---" COL19="---" COL20="---" COL21="---" COL22="---" COL23="---" COL24="---" COL25="---" COL26="---" COL27="---" COL28="---" COL29="---" COL30="---" COL31="---" COL32="---" COL33="---" COL34="---" COL35="---" COL36="---" COL37="---" COL38="---;---;---;---;---;---;---;---;" COL39="---" COL40="---" COL41="---" COL42="---" COL43="---" COL44="---" COL45="---" COL46="---" COL47="---" COL48="---"/>
+		<ROW COL0="P8" COL1="---" COL2="---" COL3="---" COL4="---" COL5="---" COL6="---" COL7="---" COL8="---" COL9="---" COL10="---" COL11="---" COL12="---" COL13="---" COL14="---" COL15="---" COL16="---" COL17="---" COL18="---" COL19="---" COL20="---" COL21="---" COL22="---" COL23="---" COL24="---" COL25="---" COL26="---" COL27="---" COL28="---" COL29="---" COL30="---" COL31="---" COL32="---" COL33="---" COL34="---" COL35="---" COL36="---" COL37="---" COL38="---;---;---;---;---;---;---;---;" COL39="---" COL40="---" COL41="---" COL42="---" COL43="---" COL44="---" COL45="---" COL46="---" COL47="---" COL48="---"/>
+		<ROW COL0="S1" COL1="---" COL2="---" COL3="---" COL4="---" COL5="---" COL6="---" COL7="---" COL8="---" COL9="---" COL10="---" COL11="---" COL12="---" COL13="---" COL14="---" COL15="---" COL16="---" COL17="---" COL18="---" COL19="---" COL20="---" COL21="---" COL22="---" COL23="---" COL24="---" COL25="---" COL26="---" COL27="---" COL28="---" COL29="---" COL30="---" COL31="---" COL32="---" COL33="---" COL34="---" COL35="---" COL36="---" COL37="---" COL38="---;---;---;---;---;---;---;---;" COL39="---" COL40="---" COL41="---" COL42="---" COL43="---" COL44="---" COL45="---" COL46="---" COL47="---" COL48="---"/>
+		<ROW COL0="S2" COL1="---" COL2="---" COL3="---" COL4="---" COL5="---" COL6="---" COL7="---" COL8="---" COL9="---" COL10="---" COL11="---" COL12="---" COL13="---" COL14="---" COL15="---" COL16="---" COL17="---" COL18="---" COL19="---" COL20="---" COL21="---" COL22="---" COL23="---" COL24="---" COL25="---" COL26="---" COL27="---" COL28="---" COL29="---" COL30="---" COL31="---" COL32="---" COL33="---" COL34="---" COL35="---" COL36="---" COL37="---" COL38="---;---;---;---;---;---;---;---;" COL39="---" COL40="---" COL41="---" COL42="---" COL43="---" COL44="---" COL45="---" COL46="---" COL47="---" COL48="---"/>
+		<ROW COL0="S3" COL1="---" COL2="---" COL3="---" COL4="---" COL5="---" COL6="---" COL7="---" COL8="---" COL9="---" COL10="---" COL11="---" COL12="---" COL13="---" COL14="---" COL15="---" COL16="---" COL17="---" COL18="---" COL19="---" COL20="---" COL21="---" COL22="---" COL23="---" COL24="---" COL25="---" COL26="---" COL27="---" COL28="---" COL29="---" COL30="---" COL31="---" COL32="---" COL33="---" COL34="---" COL35="---" COL36="---" COL37="---" COL38="---;---;---;---;---;---;---;---;" COL39="---" COL40="---" COL41="---" COL42="---" COL43="---" COL44="---" COL45="---" COL46="---" COL47="---" COL48="---"/>
+		<ROW COL0="S4" COL1="---" COL2="---" COL3="---" COL4="---" COL5="---" COL6="---" COL7="---" COL8="---" COL9="---" COL10="---" COL11="---" COL12="---" COL13="---" COL14="---" COL15="---" COL16="---" COL17="---" COL18="---" COL19="---" COL20="---" COL21="---" COL22="---" COL23="---" COL24="---" COL25="---" COL26="---" COL27="---" COL28="---" COL29="---" COL30="---" COL31="---" COL32="---" COL33="---" COL34="---" COL35="---" COL36="---" COL37="---" COL38="---;---;---;---;---;---;---;---;" COL39="---" COL40="---" COL41="---" COL42="---" COL43="---" COL44="---" COL45="---" COL46="---" COL47="---" COL48="---"/>
+		<ROW COL0="" COL1="" COL2="" COL3="" COL4="" COL5="" COL6="" COL7="" COL8="" COL9="" COL10="" COL11="" COL12="" COL13="" COL14="" COL15="" COL16="" COL17="" COL18="" COL19="" COL20="" COL21="" COL22="" COL23="" COL24="" COL25="" COL26="" COL27="" COL28="" COL29="" COL30="" COL31="" COL32="" COL33="" COL34="" COL35="" COL36="" COL37="" COL38="" COL39="" COL40="" COL41="" COL42="" COL43="" COL44="" COL45="" COL46="" COL47="" COL48=""/>
+	</AXES_TABLE>
+	<CURVES>
+		<grp_crv_1>
+			<crv_typ_a Name="crv_typ_a" Type="Select" Data="Normal"/>
+			<crv_eq_a_10 Name="crv_eq_a_10" Type="Digit" Data="100"/>
+			<crv_eq_a_09 Name="crv_eq_a_09" Type="Digit" Data="100"/>
+			<crv_eq_a_08 Name="crv_eq_a_08" Type="Digit" Data="100"/>
+			<crv_eq_a_07 Name="crv_eq_a_07" Type="Digit" Data="100"/>
+			<crv_eq_a_06 Name="crv_eq_a_06" Type="Digit" Data="100"/>
+			<crv_eq_a_05 Name="crv_eq_a_05" Type="Digit" Data="100"/>
+			<crv_eq_a_04 Name="crv_eq_a_04" Type="Digit" Data="100"/>
+			<crv_eq_a_03 Name="crv_eq_a_03" Type="Digit" Data="100"/>
+			<crv_eq_a_02 Name="crv_eq_a_02" Type="Digit" Data="100"/>
+			<crv_eq_a_01 Name="crv_eq_a_01" Type="Digit" Data="100"/>
+			<crv_eq_a_11 Name="crv_eq_a_11" Type="Digit" Data="100"/>
+		</grp_crv_1>
+		<grp_crv_2>
+			<crv_typ_b Name="crv_typ_b" Type="Select" Data="Normal"/>
+			<crv_eq_b_10 Name="crv_eq_b_10" Type="Digit" Data="100"/>
+			<crv_eq_b_09 Name="crv_eq_b_09" Type="Digit" Data="100"/>
+			<crv_eq_b_08 Name="crv_eq_b_08" Type="Digit" Data="100"/>
+			<crv_eq_b_07 Name="crv_eq_b_07" Type="Digit" Data="100"/>
+			<crv_eq_b_06 Name="crv_eq_b_06" Type="Digit" Data="100"/>
+			<crv_eq_b_05 Name="crv_eq_b_05" Type="Digit" Data="100"/>
+			<crv_eq_b_04 Name="crv_eq_b_04" Type="Digit" Data="100"/>
+			<crv_eq_b_03 Name="crv_eq_b_03" Type="Digit" Data="100"/>
+			<crv_eq_b_02 Name="crv_eq_b_02" Type="Digit" Data="100"/>
+			<crv_eq_b_01 Name="crv_eq_b_01" Type="Digit" Data="100"/>
+			<crv_eq_b_11 Name="crv_eq_b_11" Type="Digit" Data="100"/>
+		</grp_crv_2>
+		<grp_crv_3>
+			<crv_typ_c Name="crv_typ_c" Type="Select" Data="Normal"/>
+			<crv_eq_c_10 Name="crv_eq_c_10" Type="Digit" Data="100"/>
+			<crv_eq_c_09 Name="crv_eq_c_09" Type="Digit" Data="100"/>
+			<crv_eq_c_08 Name="crv_eq_c_08" Type="Digit" Data="100"/>
+			<crv_eq_c_07 Name="crv_eq_c_07" Type="Digit" Data="100"/>
+			<crv_eq_c_06 Name="crv_eq_c_06" Type="Digit" Data="100"/>
+			<crv_eq_c_05 Name="crv_eq_c_05" Type="Digit" Data="100"/>
+			<crv_eq_c_04 Name="crv_eq_c_04" Type="Digit" Data="100"/>
+			<crv_eq_c_03 Name="crv_eq_c_03" Type="Digit" Data="100"/>
+			<crv_eq_c_02 Name="crv_eq_c_02" Type="Digit" Data="100"/>
+			<crv_eq_c_01 Name="crv_eq_c_01" Type="Digit" Data="100"/>
+			<crv_eq_c_11 Name="crv_eq_c_11" Type="Digit" Data="100"/>
+		</grp_crv_3>
+		<grp_crv_4>
+			<crv_typ_d Name="crv_typ_d" Type="Select" Data="Normal"/>
+			<crv_eq_d_10 Name="crv_eq_d_10" Type="Digit" Data="100"/>
+			<crv_eq_d_09 Name="crv_eq_d_09" Type="Digit" Data="100"/>
+			<crv_eq_d_08 Name="crv_eq_d_08" Type="Digit" Data="100"/>
+			<crv_eq_d_07 Name="crv_eq_d_07" Type="Digit" Data="100"/>
+			<crv_eq_d_06 Name="crv_eq_d_06" Type="Digit" Data="100"/>
+			<crv_eq_d_05 Name="crv_eq_d_05" Type="Digit" Data="100"/>
+			<crv_eq_d_04 Name="crv_eq_d_04" Type="Digit" Data="100"/>
+			<crv_eq_d_03 Name="crv_eq_d_03" Type="Digit" Data="100"/>
+			<crv_eq_d_02 Name="crv_eq_d_02" Type="Digit" Data="100"/>
+			<crv_eq_d_01 Name="crv_eq_d_01" Type="Digit" Data="100"/>
+			<crv_eq_d_11 Name="crv_eq_d_11" Type="Digit" Data="100"/>
+		</grp_crv_4>
+	</CURVES>
+	<BUTTONS>
+		<GroupBox_ButtonsHardware>
+			<PnlGripWiz_Open Name="PnlGripWiz_Open" Type="Color" Data="26" Tag="0"/>
+			<sr_01_typ Name="sr_01_typ" Type="Select" Data="[ALPHA] VPC Constellation ALPHA Grip"/>
+			<sr_01_chk Name="sr_01_chk" Type="Check" Data="true"/>
+			<hw_bd_1 Name="hw_bd_1" Type="Select" Data="--"/>
+			<hw_bd_2 Name="hw_bd_2" Type="Select" Data="--"/>
+			<hw_bd_3 Name="hw_bd_3" Type="Select" Data="--"/>
+			<hw_bd_4 Name="hw_bd_4" Type="Select" Data="--"/>
+			<hw_bd_5 Name="hw_bd_5" Type="Select" Data="--"/>
+			<hw_bd_6 Name="hw_bd_6" Type="Select" Data="--"/>
+			<hw_bd_8 Name="hw_bd_8" Type="Select" Data="--"/>
+			<hw_bd_7 Name="hw_bd_7" Type="Select" Data="--"/>
+			<sr_04_typ Name="sr_04_typ" Type="Select" Data="--------"/>
+			<sr_03_typ Name="sr_03_typ" Type="Select" Data="--------"/>
+			<sr_02_typ Name="sr_02_typ" Type="Select" Data="--------"/>
+			<hw_br_2 Name="hw_br_2" Type="Select" Data="--"/>
+			<hw_br_3 Name="hw_br_3" Type="Select" Data="--"/>
+			<hw_br_4 Name="hw_br_4" Type="Select" Data="--"/>
+			<hw_br_5 Name="hw_br_5" Type="Select" Data="--"/>
+			<hw_br_6 Name="hw_br_6" Type="Select" Data="--"/>
+			<hw_br_7 Name="hw_br_7" Type="Select" Data="--"/>
+			<hw_br_8 Name="hw_br_8" Type="Select" Data="--"/>
+			<hw_bc_1 Name="hw_bc_1" Type="Select" Data="--"/>
+			<hw_bc_2 Name="hw_bc_2" Type="Select" Data="--"/>
+			<hw_bc_3 Name="hw_bc_3" Type="Select" Data="--"/>
+			<hw_bc_4 Name="hw_bc_4" Type="Select" Data="--"/>
+			<hw_bc_5 Name="hw_bc_5" Type="Select" Data="--"/>
+			<hw_bc_6 Name="hw_bc_6" Type="Select" Data="--"/>
+			<hw_bc_8 Name="hw_bc_8" Type="Select" Data="--"/>
+			<hw_bc_7 Name="hw_bc_7" Type="Select" Data="--"/>
+			<hw_br_1 Name="hw_br_1" Type="Select" Data="--"/>
+			<sr_04_dat Name="sr_04_dat" Type="Digit" Data="0"/>
+			<sr_03_dat Name="sr_03_dat" Type="Digit" Data="0"/>
+			<sr_02_dat Name="sr_02_dat" Type="Digit" Data="0"/>
+			<sr_01_dat Name="sr_01_dat" Type="Digit" Data="5"/>
+			<sr_04_kol Name="sr_04_kol" Type="Digit" Data="0"/>
+			<sr_03_kol Name="sr_03_kol" Type="Digit" Data="0"/>
+			<sr_02_kol Name="sr_02_kol" Type="Digit" Data="0"/>
+			<sr_01_kol Name="sr_01_kol" Type="Digit" Data="12"/>
+			<sr_04_err Name="sr_04_err" Type="Digit" Data="0"/>
+			<sr_03_err Name="sr_03_err" Type="Digit" Data="0"/>
+			<sr_02_err Name="sr_02_err" Type="Digit" Data="0"/>
+			<sr_01_err Name="sr_01_err" Type="Digit" Data="0"/>
+			<sr_02_chk Name="sr_02_chk" Type="Check" Data="true"/>
+			<sr_03_chk Name="sr_03_chk" Type="Check" Data="true"/>
+			<sr_04_chk Name="sr_04_chk" Type="Check" Data="true"/>
+		</GroupBox_ButtonsHardware>
+		<GroupBox_ButtonsModification>
+			<enc_timer Name="enc_timer" Type="Select" Data="100ms"/>
+			<btn_timer Name="btn_timer" Type="Select" Data="100ms"/>
+			<tgl_b_01 Name="tgl_b_01" Type="Digit" Data="0"/>
+			<tgl_a_01 Name="tgl_a_01" Type="Digit" Data="0"/>
+			<tgl_a_02 Name="tgl_a_02" Type="Digit" Data="0"/>
+			<tgl_b_02 Name="tgl_b_02" Type="Digit" Data="0"/>
+			<tgl_b_03 Name="tgl_b_03" Type="Digit" Data="0"/>
+			<tgl_a_03 Name="tgl_a_03" Type="Digit" Data="0"/>
+			<tgl_a_04 Name="tgl_a_04" Type="Digit" Data="0"/>
+			<tgl_b_04 Name="tgl_b_04" Type="Digit" Data="0"/>
+			<tgl_b_05 Name="tgl_b_05" Type="Digit" Data="0"/>
+			<tgl_a_05 Name="tgl_a_05" Type="Digit" Data="0"/>
+			<tgl_a_06 Name="tgl_a_06" Type="Digit" Data="0"/>
+			<tgl_b_06 Name="tgl_b_06" Type="Digit" Data="0"/>
+			<tgl_am_01 Name="tgl_am_01" Type="Select" Data="OFF"/>
+			<tgl_am_02 Name="tgl_am_02" Type="Select" Data="OFF"/>
+			<tgl_am_04 Name="tgl_am_04" Type="Select" Data="OFF"/>
+			<tgl_am_03 Name="tgl_am_03" Type="Select" Data="OFF"/>
+			<tgl_am_06 Name="tgl_am_06" Type="Select" Data="OFF"/>
+			<tgl_am_05 Name="tgl_am_05" Type="Select" Data="OFF"/>
+			<tgl_bm_06 Name="tgl_bm_06" Type="Select" Data="OFF"/>
+			<tgl_bm_05 Name="tgl_bm_05" Type="Select" Data="OFF"/>
+			<tgl_bm_04 Name="tgl_bm_04" Type="Select" Data="OFF"/>
+			<tgl_bm_03 Name="tgl_bm_03" Type="Select" Data="OFF"/>
+			<tgl_bm_02 Name="tgl_bm_02" Type="Select" Data="OFF"/>
+			<tgl_bm_01 Name="tgl_bm_01" Type="Select" Data="OFF"/>
+			<enc_m_01 Name="enc_m_01" Type="Select" Data="EncoderScroll"/>
+			<enc_a_01 Name="enc_a_01" Type="Digit" Data="23"/>
+			<enc_b_01 Name="enc_b_01" Type="Digit" Data="24"/>
+			<enc_m_02 Name="enc_m_02" Type="Select" Data="---"/>
+			<enc_a_02 Name="enc_a_02" Type="Digit" Data="0"/>
+			<enc_b_02 Name="enc_b_02" Type="Digit" Data="0"/>
+			<enc_m_03 Name="enc_m_03" Type="Select" Data="---"/>
+			<enc_a_03 Name="enc_a_03" Type="Digit" Data="0"/>
+			<enc_b_03 Name="enc_b_03" Type="Digit" Data="0"/>
+			<enc_b_06 Name="enc_b_06" Type="Digit" Data="0"/>
+			<enc_a_06 Name="enc_a_06" Type="Digit" Data="0"/>
+			<enc_m_06 Name="enc_m_06" Type="Select" Data="---"/>
+			<enc_m_05 Name="enc_m_05" Type="Select" Data="---"/>
+			<enc_a_05 Name="enc_a_05" Type="Digit" Data="0"/>
+			<enc_b_05 Name="enc_b_05" Type="Digit" Data="0"/>
+			<enc_b_04 Name="enc_b_04" Type="Digit" Data="0"/>
+			<enc_a_04 Name="enc_a_04" Type="Digit" Data="0"/>
+			<enc_m_04 Name="enc_m_04" Type="Select" Data="---"/>
+			<enc_m_08 Name="enc_m_08" Type="Select" Data="---"/>
+			<enc_a_08 Name="enc_a_08" Type="Digit" Data="0"/>
+			<enc_b_08 Name="enc_b_08" Type="Digit" Data="0"/>
+			<enc_b_07 Name="enc_b_07" Type="Digit" Data="0"/>
+			<enc_a_07 Name="enc_a_07" Type="Digit" Data="0"/>
+			<enc_m_07 Name="enc_m_07" Type="Select" Data="---"/>
+			<alps_mod_1 Name="alps_mod_1" Type="Select" Data="4W"/>
+			<alps_lft_5 Name="alps_lft_5" Type="Digit" Data="0"/>
+			<alps_dwn_5 Name="alps_dwn_5" Type="Digit" Data="0"/>
+			<alps_rgt_5 Name="alps_rgt_5" Type="Digit" Data="0"/>
+			<alps_upp_5 Name="alps_upp_5" Type="Digit" Data="0"/>
+			<alps_cnt_5 Name="alps_cnt_5" Type="Digit" Data="0"/>
+			<alps_lft_4 Name="alps_lft_4" Type="Digit" Data="29"/>
+			<alps_dwn_4 Name="alps_dwn_4" Type="Digit" Data="28"/>
+			<alps_rgt_4 Name="alps_rgt_4" Type="Digit" Data="27"/>
+			<alps_upp_4 Name="alps_upp_4" Type="Digit" Data="26"/>
+			<alps_cnt_4 Name="alps_cnt_4" Type="Digit" Data="25"/>
+			<alps_lft_3 Name="alps_lft_3" Type="Digit" Data="17"/>
+			<alps_dwn_3 Name="alps_dwn_3" Type="Digit" Data="16"/>
+			<alps_rgt_3 Name="alps_rgt_3" Type="Digit" Data="15"/>
+			<alps_upp_3 Name="alps_upp_3" Type="Digit" Data="14"/>
+			<alps_cnt_3 Name="alps_cnt_3" Type="Digit" Data="13"/>
+			<alps_lft_2 Name="alps_lft_2" Type="Digit" Data="11"/>
+			<alps_dwn_2 Name="alps_dwn_2" Type="Digit" Data="10"/>
+			<alps_rgt_2 Name="alps_rgt_2" Type="Digit" Data="9"/>
+			<alps_upp_2 Name="alps_upp_2" Type="Digit" Data="8"/>
+			<alps_cnt_2 Name="alps_cnt_2" Type="Digit" Data="7"/>
+			<alps_lft_1 Name="alps_lft_1" Type="Digit" Data="0"/>
+			<alps_dwn_1 Name="alps_dwn_1" Type="Digit" Data="0"/>
+			<alps_rgt_1 Name="alps_rgt_1" Type="Digit" Data="20"/>
+			<alps_upp_1 Name="alps_upp_1" Type="Digit" Data="19"/>
+			<alps_cnt_1 Name="alps_cnt_1" Type="Digit" Data="18"/>
+			<alps_lft_6 Name="alps_lft_6" Type="Digit" Data="0"/>
+			<alps_dwn_6 Name="alps_dwn_6" Type="Digit" Data="0"/>
+			<alps_rgt_6 Name="alps_rgt_6" Type="Digit" Data="0"/>
+			<alps_upp_6 Name="alps_upp_6" Type="Digit" Data="0"/>
+			<alps_cnt_6 Name="alps_cnt_6" Type="Digit" Data="0"/>
+			<alps_mod_6 Name="alps_mod_6" Type="Select" Data="---"/>
+			<alps_mod_5 Name="alps_mod_5" Type="Select" Data="---"/>
+			<alps_mod_4 Name="alps_mod_4" Type="Select" Data="8W"/>
+			<alps_mod_3 Name="alps_mod_3" Type="Select" Data="8W"/>
+			<alps_mod_2 Name="alps_mod_2" Type="Select" Data="8W"/>
+			<rgb_mode_0 Name="rgb_mode_0" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_5 Name="rgb_mode_5" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_4 Name="rgb_mode_4" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_3 Name="rgb_mode_3" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_2 Name="rgb_mode_2" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_1 Name="rgb_mode_1" Type="Color" Data="3" Tag="1"/>
+			<btn_mode_1 Name="btn_mode_1" Type="Digit" Data="1"/>
+			<btn_mode_5 Name="btn_mode_5" Type="Digit" Data="0"/>
+			<btn_mode_4 Name="btn_mode_4" Type="Digit" Data="0"/>
+			<btn_mode_3 Name="btn_mode_3" Type="Digit" Data="0"/>
+			<btn_mode_2 Name="btn_mode_2" Type="Digit" Data="0"/>
+			<typ_mode_1 Name="typ_mode_1" Type="Select" Data="OFF"/>
+			<typ_mode_2 Name="typ_mode_2" Type="Select" Data="OFF"/>
+			<typ_mode_3 Name="typ_mode_3" Type="Select" Data="OFF"/>
+			<typ_mode_4 Name="typ_mode_4" Type="Select" Data="OFF"/>
+			<typ_mode_5 Name="typ_mode_5" Type="Select" Data="OFF"/>
+			<pov_1 Name="pov_1" Type="Select" Data="OFF"/>
+			<pov_2 Name="pov_2" Type="Select" Data="OFF"/>
+			<pov_3 Name="pov_3" Type="Select" Data="OFF"/>
+			<pov_4 Name="pov_4" Type="Select" Data="OFF"/>
+		</GroupBox_ButtonsModification>
+	</BUTTONS>
+	<BUTTONS_TABLE>
+		<TABLE COLS="5" ROWS="129"/>
+		<COL_CAPTION COL0="Logic" COL1="Physical" COL2="Mode" COL3="Shift" COL4="Delay"/>
+		<ROW COL0="Button 1" COL1="003" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 2" COL1="030" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 3" COL1="012" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 4" COL1="006" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 5" COL1="004" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 6" COL1="001" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 7" COL1="002" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 8" COL1="007" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 9" COL1="008" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 10" COL1="009" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 11" COL1="010" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 12" COL1="011" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 13" COL1="013" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 14" COL1="014" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 15" COL1="015" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 16" COL1="016" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 17" COL1="017" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 18" COL1="018" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 19" COL1="019" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 20" COL1="020" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 21" COL1="021" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 22" COL1="022" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 23" COL1="023" COL2="Encoder" COL3="OFF" COL4="True" COL5=""/>
+		<ROW COL0="Button 24" COL1="024" COL2="Encoder" COL3="OFF" COL4="True" COL5=""/>
+		<ROW COL0="Button 25" COL1="025" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 26" COL1="026" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 27" COL1="027" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 28" COL1="028" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 29" COL1="029" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 30" COL1="030" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 31" COL1="031" COL2="Normal" COL3="OFF" COL4="False" COL5=""/>
+		<ROW COL0="Button 32" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 33" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 34" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 35" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 36" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 37" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 38" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 39" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 40" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 41" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 42" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 43" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 44" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 45" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 46" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 47" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 48" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 49" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 50" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 51" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 52" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 53" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 54" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 55" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 56" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 57" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 58" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 59" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 60" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 61" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 62" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 63" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 64" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 65" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 66" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 67" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 68" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 69" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 70" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 71" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 72" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 73" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 74" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 75" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 76" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 77" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 78" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 79" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 80" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 81" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 82" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 83" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 84" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 85" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 86" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 87" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 88" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 89" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 90" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 91" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 92" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 93" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 94" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 95" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 96" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 97" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 98" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 99" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 100" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 101" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 102" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 103" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 104" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 105" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 106" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 107" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 108" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 109" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 110" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 111" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 112" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 113" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 114" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 115" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 116" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 117" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 118" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 119" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 120" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 121" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 122" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 123" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 124" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 125" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 126" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 127" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="Button 128" COL1="---" COL2="---" COL3="---" COL4="---" COL5=""/>
+		<ROW COL0="" COL1="" COL2="" COL3="" COL4="" COL5=""/>
+	</BUTTONS_TABLE>
+	<OUTPUT>
+		<GroupBox_LedsOnMaster>
+			<cnt_led_rgb_1 Name="cnt_led_rgb_1" Type="Color" Data="0" Tag="5"/>
+			<cnt_led_rgb_2 Name="cnt_led_rgb_2" Type="Color" Data="0" Tag="6"/>
+			<cnt_led_rgb_4 Name="cnt_led_rgb_4" Type="Color" Data="0" Tag="8"/>
+			<cnt_led_rgb_3 Name="cnt_led_rgb_3" Type="Color" Data="0" Tag="7"/>
+			<cnt_led_rgb_7 Name="cnt_led_rgb_7" Type="Color" Data="0" Tag="11"/>
+			<cnt_led_rgb_8 Name="cnt_led_rgb_8" Type="Color" Data="0" Tag="12"/>
+			<cnt_led_rgb_6 Name="cnt_led_rgb_6" Type="Color" Data="0" Tag="10"/>
+			<cnt_led_rgb_5 Name="cnt_led_rgb_5" Type="Color" Data="0" Tag="9"/>
+			<cnt_led_rgb_9 Name="cnt_led_rgb_9" Type="Color" Data="0" Tag="13"/>
+			<cnt_led_rgb_10 Name="cnt_led_rgb_10" Type="Color" Data="0" Tag="14"/>
+			<cnt_led_rgb_11 Name="cnt_led_rgb_11" Type="Color" Data="0" Tag="15"/>
+			<cnt_led_rgb_12 Name="cnt_led_rgb_12" Type="Color" Data="0" Tag="16"/>
+			<cnt_led_rgb_14 Name="cnt_led_rgb_14" Type="Color" Data="0" Tag="18"/>
+			<cnt_led_rgb_13 Name="cnt_led_rgb_13" Type="Color" Data="0" Tag="17"/>
+			<cnt_led_rgb_16 Name="cnt_led_rgb_16" Type="Color" Data="0" Tag="20"/>
+			<cnt_led_rgb_15 Name="cnt_led_rgb_15" Type="Color" Data="0" Tag="19"/>
+			<cnt_led_rgb_all Name="cnt_led_rgb_all" Type="Color" Data="26" Tag="0"/>
+			<cnt_led_rgb_18 Name="cnt_led_rgb_18" Type="Color" Data="0" Tag="22"/>
+			<cnt_led_rgb_17 Name="cnt_led_rgb_17" Type="Color" Data="0" Tag="21"/>
+			<cnt_led_rgb_20 Name="cnt_led_rgb_20" Type="Color" Data="0" Tag="24"/>
+			<cnt_led_rgb_19 Name="cnt_led_rgb_19" Type="Color" Data="0" Tag="23"/>
+			<cnt_led_typ_1 Name="cnt_led_typ_1" Type="Select" Data="---"/>
+			<cnt_led_typ_2 Name="cnt_led_typ_2" Type="Select" Data="---"/>
+			<cnt_led_typ_9 Name="cnt_led_typ_9" Type="Select" Data="---"/>
+			<cnt_led_typ_10 Name="cnt_led_typ_10" Type="Select" Data="---"/>
+			<cnt_led_typ_4 Name="cnt_led_typ_4" Type="Select" Data="---"/>
+			<cnt_led_typ_12 Name="cnt_led_typ_12" Type="Select" Data="---"/>
+			<cnt_led_typ_5 Name="cnt_led_typ_5" Type="Select" Data="---"/>
+			<cnt_led_typ_13 Name="cnt_led_typ_13" Type="Select" Data="---"/>
+			<cnt_led_typ_14 Name="cnt_led_typ_14" Type="Select" Data="---"/>
+			<cnt_led_typ_6 Name="cnt_led_typ_6" Type="Select" Data="---"/>
+			<cnt_led_typ_15 Name="cnt_led_typ_15" Type="Select" Data="---"/>
+			<cnt_led_typ_7 Name="cnt_led_typ_7" Type="Select" Data="---"/>
+			<cnt_led_typ_8 Name="cnt_led_typ_8" Type="Select" Data="---"/>
+			<cnt_led_typ_16 Name="cnt_led_typ_16" Type="Select" Data="---"/>
+			<cnt_led_typ_3 Name="cnt_led_typ_3" Type="Select" Data="---"/>
+			<cnt_led_typ_11 Name="cnt_led_typ_11" Type="Select" Data="---"/>
+			<cnt_led_typ_17 Name="cnt_led_typ_17" Type="Select" Data="---"/>
+			<cnt_led_typ_18 Name="cnt_led_typ_18" Type="Select" Data="---"/>
+			<cnt_led_typ_19 Name="cnt_led_typ_19" Type="Select" Data="---"/>
+			<cnt_led_typ_20 Name="cnt_led_typ_20" Type="Select" Data="---"/>
+		</GroupBox_LedsOnMaster>
+		<GroupBox_LedsOnSlave>
+			<stk_led_rgb_1 Name="stk_led_rgb_1" Type="Color" Data="48" Tag="1"/>
+			<stk_led_rgb_2 Name="stk_led_rgb_2" Type="Color" Data="0" Tag="2"/>
+			<stk_led_rgb_3 Name="stk_led_rgb_3" Type="Color" Data="0" Tag="3"/>
+			<stk_led_rgb_4 Name="stk_led_rgb_4" Type="Color" Data="0" Tag="4"/>
+			<dbg_stk_led_rgb_1 Name="dbg_stk_led_rgb_1" Type="Color" Data="48" Tag="0"/>
+			<dbg_stk_led_rgb_2 Name="dbg_stk_led_rgb_2" Type="Color" Data="0" Tag="0"/>
+			<dbg_stk_led_rgb_3 Name="dbg_stk_led_rgb_3" Type="Color" Data="0" Tag="0"/>
+			<dbg_stk_led_rgb_4 Name="dbg_stk_led_rgb_4" Type="Color" Data="0" Tag="0"/>
+			<slv_led_rgb_1 Name="slv_led_rgb_1" Type="Color" Data="0" Tag="25"/>
+			<slv_led_rgb_2 Name="slv_led_rgb_2" Type="Color" Data="0" Tag="26"/>
+			<slv_led_rgb_4 Name="slv_led_rgb_4" Type="Color" Data="0" Tag="28"/>
+			<slv_led_rgb_3 Name="slv_led_rgb_3" Type="Color" Data="0" Tag="27"/>
+			<slv_led_rgb_7 Name="slv_led_rgb_7" Type="Color" Data="0" Tag="31"/>
+			<slv_led_rgb_8 Name="slv_led_rgb_8" Type="Color" Data="0" Tag="32"/>
+			<slv_led_rgb_6 Name="slv_led_rgb_6" Type="Color" Data="0" Tag="30"/>
+			<slv_led_rgb_5 Name="slv_led_rgb_5" Type="Color" Data="0" Tag="29"/>
+			<slv_led_rgb_9 Name="slv_led_rgb_9" Type="Color" Data="0" Tag="33"/>
+			<slv_led_rgb_10 Name="slv_led_rgb_10" Type="Color" Data="0" Tag="34"/>
+			<slv_led_rgb_11 Name="slv_led_rgb_11" Type="Color" Data="0" Tag="35"/>
+			<slv_led_rgb_12 Name="slv_led_rgb_12" Type="Color" Data="0" Tag="36"/>
+			<slv_led_rgb_14 Name="slv_led_rgb_14" Type="Color" Data="0" Tag="38"/>
+			<slv_led_rgb_13 Name="slv_led_rgb_13" Type="Color" Data="0" Tag="37"/>
+			<slv_led_rgb_16 Name="slv_led_rgb_16" Type="Color" Data="0" Tag="40"/>
+			<slv_led_rgb_15 Name="slv_led_rgb_15" Type="Color" Data="0" Tag="39"/>
+			<slv_led_rgb_all Name="slv_led_rgb_all" Type="Color" Data="26" Tag="0"/>
+			<slv_led_rgb_20 Name="slv_led_rgb_20" Type="Color" Data="0" Tag="44"/>
+			<slv_led_rgb_19 Name="slv_led_rgb_19" Type="Color" Data="0" Tag="43"/>
+			<slv_led_rgb_18 Name="slv_led_rgb_18" Type="Color" Data="0" Tag="42"/>
+			<slv_led_rgb_17 Name="slv_led_rgb_17" Type="Color" Data="0" Tag="41"/>
+			<slv_port Name="slv_port" Type="Digit" Data="0"/>
+		</GroupBox_LedsOnSlave>
+		<GroupBox_SimpleIndication>
+			<rgb_mode_12 Name="rgb_mode_12" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_11 Name="rgb_mode_11" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_10 Name="rgb_mode_10" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_09 Name="rgb_mode_09" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_16 Name="rgb_mode_16" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_15 Name="rgb_mode_15" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_14 Name="rgb_mode_14" Type="Color" Data="0" Tag="0"/>
+			<rgb_mode_13 Name="rgb_mode_13" Type="Color" Data="0" Tag="0"/>
+			<typ_mode_12 Name="typ_mode_12" Type="Select" Data="OFF"/>
+			<btn_mode_12 Name="btn_mode_12" Type="Digit" Data="0"/>
+			<typ_mode_11 Name="typ_mode_11" Type="Select" Data="OFF"/>
+			<btn_mode_11 Name="btn_mode_11" Type="Digit" Data="0"/>
+			<typ_mode_10 Name="typ_mode_10" Type="Select" Data="OFF"/>
+			<btn_mode_10 Name="btn_mode_10" Type="Digit" Data="0"/>
+			<typ_mode_09 Name="typ_mode_09" Type="Select" Data="OFF"/>
+			<btn_mode_09 Name="btn_mode_09" Type="Digit" Data="0"/>
+			<typ_mode_16 Name="typ_mode_16" Type="Select" Data="OFF"/>
+			<btn_mode_16 Name="btn_mode_16" Type="Digit" Data="0"/>
+			<typ_mode_15 Name="typ_mode_15" Type="Select" Data="OFF"/>
+			<btn_mode_15 Name="btn_mode_15" Type="Digit" Data="0"/>
+			<typ_mode_14 Name="typ_mode_14" Type="Select" Data="OFF"/>
+			<btn_mode_14 Name="btn_mode_14" Type="Digit" Data="0"/>
+			<typ_mode_13 Name="typ_mode_13" Type="Select" Data="OFF"/>
+			<btn_mode_13 Name="btn_mode_13" Type="Digit" Data="0"/>
+		</GroupBox_SimpleIndication>
+	</OUTPUT>
+	<PROFILE>
+		<GroupBox_ProfileWizard>
+			<btn_side_right Name="btn_side_right" Type="Color" Data="3" Tag="0"/>
+			<btn_side_left Name="btn_side_left" Type="Color" Data="26" Tag="0"/>
+			<btn_mode_usb Name="btn_mode_usb" Type="Color" Data="3" Tag="0"/>
+			<btn_mode_out Name="btn_mode_out" Type="Color" Data="26" Tag="0"/>
+			<BtnProfileSet Name="BtnProfileSet" Type="Color" Data="26" Tag="0"/>
+			<pfl_base Name="pfl_base" Type="Select" Data="[FLIGHT BASE] VPC WarBRD"/>
+			<pfl_grip Name="pfl_grip" Type="Select" Data="[FLIGHT GRIP] VPC Constellation ALPHA"/>
+			<dev_side Name="dev_side" Type="Select" Data="RIGHT"/>
+			<dev_notwist Name="dev_notwist" Type="Check" Data="false"/>
+			<pfl_panel Name="pfl_panel" Type="Select" Data="-NO PANEL-"/>
+			<dev_mode Name="dev_mode" Type="Select" Data="USB Joystick"/>
+			<dev_split Name="dev_split" Type="Check" Data="false"/>
+		</GroupBox_ProfileWizard>
+		<GroupBox_ProfileUSB>
+			<dev_delay Name="dev_delay" Type="Select" Data="2 sec"/>
+			<dev_name Name="dev_name" Type="Text" Data="Alpha WarBRD"/>
+			<dev_vid Name="dev_vid" Type="Text" Data="03EB"/>
+			<dev_pid Name="dev_pid" Type="Text" Data="9902"/>
+		</GroupBox_ProfileUSB>
+		<GroupBox_ResetSession>
+			<osi_rst_knp Name="osi_rst_knp" Type="Digit" Data="0"/>
+		</GroupBox_ResetSession>
+		<GroupBox_SleepUSB>
+			<sleep_time Name="sleep_time" Type="Digit" Data="10"/>
+		</GroupBox_SleepUSB>
+	</PROFILE>
+</VIRPIL>
